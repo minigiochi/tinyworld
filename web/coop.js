@@ -1,4 +1,4 @@
-/* Boss Coop (2-4 giocatori) — rete WebRTC punto-a-punto senza server, scambio manuale di codici.
+/* Boss Coop (1-4 giocatori) — rete WebRTC punto-a-punto senza server, scambio manuale di codici.
  * Sincronizzazione "lockstep": tutti simulano lo STESSO scontro (stesso seme casuale, passo fisso 0,05 s);
  * si scambiano solo gli ingressi (abilità, ult, schivata) con un ritardo fisso di D passi, decisi dall'host.
  * Ogni giocatore comanda UN eroe; gli altri eroi sono automatici. */
@@ -181,8 +181,8 @@
   }
   function checkHash(k) { if (C.myH[k] !== undefined && C.hostH[k] !== undefined) { if (C.myH[k] !== C.hostH[k]) { C.desync++; note('⚠ Possibile desincronizzazione (' + C.desync + ')'); } delete C.myH[k]; delete C.hostH[k]; } }
   function stepCount(n, dt) {
-    if (!C.on) return n * Math.max(1, Math.round(dt / .05));
-    if (C.role === 'host') return n * Math.max(1, Math.round(dt / .05));
+    if (!C.on) return window.__dbaSim(n, dt);
+    if (C.role === 'host') return window.__dbaSim(n, dt);
     var avail = C.hostTick + D - C.tick;
     C.stall = avail <= 0 ? C.stall + 1 : 0;
     return Math.max(0, Math.min(avail, 60));
@@ -305,7 +305,8 @@
   var cs = 'display:block;width:100%;margin:8px 0;padding:12px;border-radius:12px;border:1px solid rgba(251,191,36,.55);background:rgba(251,191,36,.14);color:#fde68a;font-size:15px;font-weight:700;cursor:pointer';
   var ts = 'width:100%;box-sizing:border-box;height:70px;margin:6px 0;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font:11px monospace;word-break:break-all';
   var ss = 'padding:5px 8px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:13px';
-  function open() {
+  function open(mode) {
+    C.mode = mode || C.mode || 'b';
     if (UI) UI.remove();
     document.documentElement.classList.remove('dba-picking');
     UI = document.createElement('div'); UI.id = 'dbaCoop';
@@ -323,7 +324,7 @@
   }
   function bossOpts() { var t = $('ti'), h = ''; if (t) for (var i = 0; i < t.options.length; i++) h += '<option value="' + t.options[i].value + '"' + (+t.options[i].value === +C.cfg.ti ? ' selected' : '') + '>' + E(t.options[i].textContent) + '</option>'; return h; }
   function render() {
-    if (!UI) return; var h = '<div style="max-width:560px;width:100%"><h2 style="color:#fde68a;margin:0 0 4px;text-align:center">🤝 Boss Coop</h2><div style="font-size:12px;color:#94a3b8;text-align:center;margin-bottom:10px">2-4 giocatori · ognuno comanda un eroe · connessione diretta, senza server</div>';
+    if (!UI) return; var h = '<div style="max-width:560px;width:100%"><h2 style="color:#fde68a;margin:0 0 4px;text-align:center">'+(C.mode === 'o' ? '🌍 Open world coop' : '🤝 Boss Coop')+'</h2><div style="font-size:12px;color:#94a3b8;text-align:center;margin-bottom:10px">1-4 giocatori · ognuno comanda un eroe · connessione diretta, senza server</div>';
     if (!C.role) {
       h += '<label style="font-size:12px;color:#94a3b8">Il tuo nome</label><input id="cpName" value="' + E(C.name) + '" maxlength="20" style="' + ss + ';width:100%;box-sizing:border-box;margin-bottom:6px"><button data-a="host" style="' + cs + '">👑 Crea una stanza pubblica</button><button data-a="browse" style="' + cs + '">🌐 Cerca stanze pubbliche</button><button data-a="join" style="' + cs + ';font-size:13px;border-color:#475569;color:#cbd5e1;background:none">🔑 Entra con un codice (avanzato)</button><button data-a="x" style="' + cs + ';font-size:13px;border-color:#475569;color:#94a3b8;background:none">Annulla</button>';
     } else if (C.role === 'host') {
@@ -340,7 +341,7 @@
       h += '</details>';
       h += heroPicker() + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;align-items:center"><label style="font-size:12px;color:#94a3b8">Boss <select id="cpTi" style="' + ss + '">' + bossOpts() + '</select></label><label style="font-size:12px;color:#94a3b8">Livello <input id="cpLv" type="number" min="1" max="80" value="' + C.cfg.lv + '" style="' + ss + ';width:60px"></label><label style="font-size:12px;color:#94a3b8">Scala <input id="cpBi" type="number" min="0" max="13" value="' + C.cfg.bi + '" style="' + ss + ';width:55px"></label></div>';
       var ready = C.players.filter(function (p) { return p && p.hero && p.connected !== false; }).length;
-      h += '<button data-a="go" style="' + cs + (ready >= 2 ? '' : ';opacity:.45') + '">⚔️ Avvia la battaglia (' + ready + ' giocatori pronti)</button><button data-a="gow" style="' + cs + (ready >= 2 ? '' : ';opacity:.45') + '">🌍 Entra nel mondo condiviso</button><button data-a="x" style="' + cs + ';font-size:13px;border-color:#475569;color:#94a3b8;background:none">Chiudi stanza</button>';
+      h += (C.mode === 'o' ? '' : '<button data-a="go" style="' + cs + (ready >= 1 ? '' : ';opacity:.45') + '">⚔️ Avvia la battaglia (' + ready + ' giocatori pronti)</button>') + (C.mode === 'o' ? '<button data-a="gow" style="' + cs + (ready >= 1 ? '' : ';opacity:.45') + '">🌍 Entra nel mondo (' + ready + ' giocatori pronti)</button>' : '') + '<button data-a="x" style="' + cs + ';font-size:13px;border-color:#475569;color:#94a3b8;background:none">Chiudi stanza</button>';
     } else {
       if (gstage === 'browse') h += browseHtml();
       else if (gstage === 'joining' || gstage === 'link') h += '<div style="margin:14px 0;color:#fde68a">⏳ Collegamento alla stanza in corso…</div>' + (gerr ? '<div style="color:#fca5a5;font-size:12px">' + E(gerr) + '</div>' : '');
@@ -387,8 +388,8 @@
     else if (a === 'acc') hostAccept(si);
     else if (a === 'cp' || a === 'cpg') { var tx = a === 'cp' ? slots[si].code : gcode; try { navigator.clipboard.writeText(tx); } catch (e) {} }
     else if (a === 'jn') { var o = $('cpOffer'); guestJoin(o ? o.value : ''); }
-    else if (a === 'gow') { var rd2 = C.players.filter(function (p) { return p && p.hero && p.connected !== false; }).length; if (rd2 >= 2) worldHostStart(); }
-    else if (a === 'go') { var rdy = C.players.filter(function (p) { return p && p.hero && p.connected !== false; }).length; if (rdy >= 2) hostStart(); }
+    else if (a === 'gow') { var rd2 = C.players.filter(function (p) { return p && p.hero && p.connected !== false; }).length; if (rd2 >= 1) worldHostStart(); }
+    else if (a === 'go') { var rdy = C.players.filter(function (p) { return p && p.hero && p.connected !== false; }).length; if (rdy >= 1) hostStart(); }
   }
 
   /* ---------- mondo condiviso (fase 1: si vedono muoversi) ----------
@@ -524,7 +525,7 @@
     }
   }
   window.__dbaWorldMP = W;
-  window.DBA_COOP = open;
+  window.DBA_COOP = open; window.DBA_COOPWORLD = 1;
   window.__dbaCoopState = C;           // utile per prove automatiche
   if (/[?&]coop=1/.test(location.search)) setTimeout(open, 1500);
 })();

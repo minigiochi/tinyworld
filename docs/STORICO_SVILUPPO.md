@@ -522,3 +522,9 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 
 ## Controllo animazioni (nessuna modifica al codice)
 - Corsa e attacco verificati in galleria su tutte le 13 razze con le nuove gambe e proporzioni: nessuna deformazione evidente, spada impugnata. Non verificato: mondo aperto/battaglia reale, telefoni.
+
+## Velocità battaglie -50% e flusso Solo/Coop
+- Il passo di simulazione ora usa un accumulatore a tempo reale (`__dbaSim`, 1.5 s di gioco per secondo reale a 1×, 3 a 2×) invece di un numero fisso di passi per frame: prima la velocità dipendeva dai Hz dello schermo (a 60 Hz era il doppio di adesso). Vale per battaglie, boss, mondo e host coop.
+- Flusso (coop/world): crea party → Automatico/Comanda 1 eroe → modalità (Dungeon, Open world, Boss diretto) → Solo o Coop → partenza. Il pulsante "Boss Coop" separato è stato rimosso. Dungeon: coop non disponibile. Open world coop solo nella versione world.
+- Lobby coop da 1 a 4 giocatori (si può avviare da soli). Titoli e pulsanti seguono la modalità scelta.
+- Verificato: matematica dell'accumulatore a 30/60/144 fps, flusso con screenshot, avvio boss coop con 1 giocatore, ingresso nel mondo coop con 1 giocatore, boss solo. Non verificato: sensazione reale della velocità su schermi veloci/telefoni, partita coop con 2+ giocatori dopo questa modifica, interfaccia di "Comanda 1 eroe" ancora da ridurre.
