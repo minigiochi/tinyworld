@@ -1,0 +1,16 @@
+<!doctype html><html lang="it"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Galleria boss — Tiny World</title>
+<style>body{margin:0;background:#0b0f1a;color:#e5e7eb;font:14px system-ui}#bar{padding:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}canvas{width:100%;height:calc(100vh - 56px);display:block}select,button{background:#1f2937;color:#e5e7eb;border:1px solid #374151;border-radius:6px;padding:6px}</style>
+<div id="bar"><label>Boss <select id="b"></select></label><button id="prev">◀</button><button id="next">▶</button><label><input type="checkbox" id="sp" checked> ruota</label><span id="lab"></span></div>
+<canvas id="c"></canvas>
+<script src="engine.bundle.js"></script><script src="mini3d.js"></script><script src="threeshim.js"></script><script src="bossAtlas.js"></script><script src="bossbuild.js"></script><script src="boss3d_orig.js"></script>
+<script>
+const r=Mini3D(document.getElementById('c')),BO=BossO3D(r),m=Mini3D.m,sel=document.getElementById('b');
+const keys=[];for(let i=0;i<32;i++){const b=DBAEngine.createBoss(1,i,1);keys.push([b.key,b.name]);sel.add(new Option(b.name+' ('+b.key+')',i))}
+const go=d=>{sel.value=(+sel.value+d+32)%32};document.getElementById('prev').onclick=()=>go(-1);document.getElementById('next').onclick=()=>go(1);
+const q=new URLSearchParams(location.search);if(q.get('i'))sel.value=q.get('i');let t=0;
+function frame(){t+=.016;const b=keys[sel.value];r.env({fog:[.1,.11,.18],light:[1.15,1.1,1.05]});
+ r.camera({yaw:0,pitch:.22,dist:+(q.get('d')||16),target:[0,2.2,0]});r.begin(t,14);r.draw('disc',m.trs(0,0,0,0,40,1,40),{color:[.2,.22,.28]});
+ if(BO.ready())BO.draw(b[0],0,0,document.getElementById('sp').checked?Math.sin(t*.5)*1.2+(+q.get('y')||0):+q.get('y')||0,+(q.get('s')||1),t,{hit:0,cast:Math.max(0,Math.sin(t*.8))});r.end();
+ document.getElementById('lab').textContent=b[1]+' — '+(BO.ready()?'atlante pronto':'carico atlante…');requestAnimationFrame(frame)}
+frame();
+</script></html>

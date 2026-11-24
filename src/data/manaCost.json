@@ -1,0 +1,21 @@
+{
+ "dual": 16,
+ "strike": 2,
+ "taunt_strike": 3,
+ "big_strike": 10,
+ "shot": 2,
+ "big_shot": 10,
+ "aoe": 15,
+ "chain": 16,
+ "dot": 14,
+ "heal_single": 8,
+ "heal_aoe": 18,
+ "regen": 12,
+ "shield": 16,
+ "buff_atk": 22,
+ "wall": 18,
+ "threat": 6,
+ "revive": 30,
+ "revive_companion": 15,
+ "summon_boost": 25
+}

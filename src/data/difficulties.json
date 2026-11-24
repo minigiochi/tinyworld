@@ -1,0 +1,42 @@
+[
+ {
+  "key": "white",
+  "name": "Bianco",
+  "icon": "⚪️",
+  "color": "#e5e5e5",
+  "statMul": 1,
+  "chance": 0.5
+ },
+ {
+  "key": "blue",
+  "name": "Blu",
+  "icon": "🔵",
+  "color": "#3b82f6",
+  "statMul": 1.2,
+  "chance": 0.25
+ },
+ {
+  "key": "violet",
+  "name": "Viola",
+  "icon": "🟣",
+  "color": "#a855f7",
+  "statMul": 1.8,
+  "chance": 0.12
+ },
+ {
+  "key": "gold",
+  "name": "Oro",
+  "icon": "🟡",
+  "color": "#fbbf24",
+  "statMul": 2.5,
+  "chance": 0.08
+ },
+ {
+  "key": "red",
+  "name": "Rosso",
+  "icon": "🔴",
+  "color": "#ef4444",
+  "statMul": 3,
+  "chance": 0.05
+ }
+]

@@ -1,0 +1,7 @@
+{
+ "name": "Resurrezione",
+ "cd": 16,
+ "kind": "revive",
+ "vfx": "heal_beam",
+ "desc": "Risveglia un alleato caduto"
+}

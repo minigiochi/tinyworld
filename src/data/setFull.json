@@ -1,0 +1,30 @@
+{
+ "fenice": {
+  "rig": 3
+ },
+ "titano": {
+  "baluardo": 3
+ },
+ "tempesta": {
+  "furia": 3
+ },
+ "drago": {
+  "furia": 2,
+  "baluardo": 2
+ },
+ "gelo": {
+  "baluardo": 2,
+  "fort": 2
+ },
+ "sangue": {
+  "vamp": 4
+ },
+ "luce": {
+  "xp": 3,
+  "rig": 1
+ },
+ "vita": {
+  "rig": 4,
+  "vamp": 1
+ }
+}

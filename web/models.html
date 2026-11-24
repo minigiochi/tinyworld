@@ -1,0 +1,25 @@
+<!doctype html><html lang="it"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Galleria modelli — Tiny World</title>
+<style>body{margin:0;background:#0b0f1a;color:#e5e7eb;font:14px system-ui}#bar{padding:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}canvas{width:100%;height:calc(100vh - 56px);display:block}select,button{background:#1f2937;color:#e5e7eb;border:1px solid #374151;border-radius:6px;padding:6px}</style>
+<div id="bar"><label>Classe <select id="cl"></select></label><label>Razza <select id="rc"></select></label><label>Sesso <select id="sx"><option>male</option><option>female</option></select></label><button id="all">Tutte le razze</button><button id="allc">Tutte le classi</button><span id="lab"></span></div>
+<canvas id="c"></canvas><canvas id="o" style="display:none"></canvas>
+<script src="engine.bundle.js"></script><script src="mini3d.js"></script><script src="threeshim.js"></script><script src="wowdata.js"></script><script src="texdec.js"></script><script src="wowbuild.js"></script><script src="hero3d.js"></script>
+<script>
+const C=DBAEngine.CLASSES,r=Mini3D(document.getElementById('c')),H=Hero3D(r,C),m=Mini3D.m;
+const cl=document.getElementById('cl'),rc=document.getElementById('rc'),sx=document.getElementById('sx');
+Object.keys(C).forEach(k=>cl.add(new Option((WOW_CLS[k]?WOW_CLS[k].r+' · ':'')+k,k)));Object.keys(WOW_RACES).forEach(k=>rc.add(new Option(WOW_RACES[k].n,k)));
+let mode='one',t=0,spin=true;
+document.getElementById('all').onclick=()=>mode='races';document.getElementById('allc').onclick=()=>mode='classes';[cl,rc,sx].forEach(e=>e.onchange=()=>mode='one');
+function hero(k,race,sex,i){const c=C[k];return{id:'g'+k+race+sex,classKey:k,arch:c.arch,color:c.color,helmet:c.helmet,weapon:c.weapon,race,sex}}
+function frame(){t+=.016;const items=[];
+ if(mode==='one')items.push(hero(cl.value,rc.value,sx.value));
+ else if(mode==='races')Object.keys(WOW_RACES).forEach(rr=>items.push(hero(cl.value,rr,sx.value)));
+ else Object.keys(C).forEach(k=>items.push(hero(k,rc.value,sx.value)));
+ const n=items.length,cols=n===1?1:Math.ceil(Math.sqrt(n*1.6)),rows=Math.ceil(n/cols),sp=2.6;
+ r.env({fog:[.06,.07,.12],light:[1.1,1.05,1]});
+ r.camera({yaw:0,pitch:.28,dist:n===1?5.2:Math.max(8,cols*sp*1.05),target:[0,n===1?1:rows*sp*.1+.6,0]});
+ r.begin(t,14);r.draw('disc',m.trs(0,0,0,0,40,1,40),{color:[.16,.18,.24]});
+ items.forEach((h,i)=>{const cx=(i%cols-(cols-1)/2)*sp,rz=(Math.floor(i/cols)-(rows-1)/2)*sp;
+  const ok=H.draw(h,cx,0,rz,spin?Math.sin(t*.7)*.9:0,{step:t*5,moving:false,atk:0,melee:true,fall:0,flash:0});r.draw('disc',m.trs(cx,.02,rz,0,.7,1,.7),{color:[0,0,0],alpha:.35});});
+ r.end();document.getElementById('lab').textContent=mode==='one'?H.label(items[0]):n+' modelli';requestAnimationFrame(frame)}
+frame();
+</script></html>

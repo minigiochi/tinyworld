@@ -1,0 +1,22 @@
+{
+ "fire": "lava",
+ "phoenix": "lava",
+ "magma": "lava",
+ "blood": "horn",
+ "frost": "ice",
+ "ancient": "ice",
+ "crystal": "crys",
+ "nature": "thorn",
+ "venom": "thorn",
+ "shadow": "shade",
+ "void": "shade",
+ "spectral": "shade",
+ "chaos": "shade",
+ "bone": "bone",
+ "sand": "stone",
+ "storm": "bolt",
+ "thunder": "bolt",
+ "light": "bolt",
+ "celestial": "bolt",
+ "abyss": "water"
+}

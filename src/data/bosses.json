@@ -1,0 +1,1122 @@
+[
+ {
+  "key": "inferno",
+  "name": "Drago Infernale",
+  "title": "Signore delle Fiamme",
+  "icon": "🐉",
+  "theme": "fire",
+  "bossColor": "#ef4444",
+  "arena": {
+   "ground": "#2a0a0a",
+   "fog": "#1a0505",
+   "ring": "#ef4444",
+   "light": "#ff7733"
+  },
+  "requiredLevel": 1,
+  "companionChance": 0.15,
+  "companionName": "Elementale di Fuoco",
+  "specialAbilities": [
+   {
+    "name": "Pioggia di Meteore",
+    "type": "meteor",
+    "damage": 0.7,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#ff7733"
+   },
+   {
+    "name": "Onda d'Urto",
+    "type": "shockwave",
+    "damage": 0.5,
+    "radius": 5,
+    "cd": 11,
+    "color": "#fb923c"
+   }
+  ]
+ },
+ {
+  "key": "orco",
+  "name": "Orco Capoguerra",
+  "title": "Il Fracassateste",
+  "icon": "🪓",
+  "theme": "blood",
+  "bossColor": "#65a30d",
+  "arena": {
+   "ground": "#14200a",
+   "fog": "#0c1406",
+   "ring": "#65a30d",
+   "light": "#d9f99d"
+  },
+  "requiredLevel": 2,
+  "companionChance": 0.2,
+  "companionName": "Orco Guerriero",
+  "specialAbilities": [
+   {
+    "name": "Fendente Devastante",
+    "type": "shockwave",
+    "damage": 0.55,
+    "radius": 4.5,
+    "cd": 9,
+    "color": "#84cc16"
+   },
+   {
+    "name": "Grido di Guerra",
+    "type": "meteor",
+    "damage": 0.6,
+    "radius": 3.5,
+    "cd": 11,
+    "color": "#a3e635"
+   }
+  ]
+ },
+ {
+  "key": "frost",
+  "name": "Drago Glaciale",
+  "title": "Signore del Gelo",
+  "icon": "❄️",
+  "theme": "frost",
+  "bossColor": "#67e8f9",
+  "arena": {
+   "ground": "#0a1a2a",
+   "fog": "#08121f",
+   "ring": "#22d3ee",
+   "light": "#88ccff"
+  },
+  "requiredLevel": 3,
+  "companionChance": 0.18,
+  "companionName": "Elementale di Ghiaccio",
+  "specialAbilities": [
+   {
+    "name": "Tempesta Glaciale",
+    "type": "frost_storm",
+    "damage": 0.6,
+    "radius": 4,
+    "cd": 8,
+    "color": "#22d3ee"
+   },
+   {
+    "name": "Lancia di Ghiaccio",
+    "type": "ice_lance",
+    "damage": 0.8,
+    "radius": 2.5,
+    "cd": 10,
+    "color": "#67e8f9"
+   }
+  ]
+ },
+ {
+  "key": "golem",
+  "name": "Golem di Pietra",
+  "title": "Il Guardiano Antico",
+  "icon": "🗿",
+  "theme": "sand",
+  "bossColor": "#a8a29e",
+  "arena": {
+   "ground": "#1c1a16",
+   "fog": "#12100c",
+   "ring": "#fb923c",
+   "light": "#fed7aa"
+  },
+  "requiredLevel": 4,
+  "companionChance": 0.2,
+  "companionName": "Frammento di Roccia",
+  "specialAbilities": [
+   {
+    "name": "Pugno Tellurico",
+    "type": "shockwave",
+    "damage": 0.6,
+    "radius": 5,
+    "cd": 10,
+    "color": "#fb923c"
+   },
+   {
+    "name": "Frana",
+    "type": "meteor",
+    "damage": 0.7,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#a8a29e"
+   }
+  ]
+ },
+ {
+  "key": "natura",
+  "name": "Drago Selvatico",
+  "title": "Guardiano della Foresta",
+  "icon": "🌿",
+  "theme": "nature",
+  "bossColor": "#4ade80",
+  "arena": {
+   "ground": "#0a1a0a",
+   "fog": "#061206",
+   "ring": "#4ade80",
+   "light": "#bbf7a0"
+  },
+  "requiredLevel": 5,
+  "companionChance": 0.2,
+  "companionName": "Anima della Foresta",
+  "specialAbilities": [
+   {
+    "name": "Radici Avvolgenti",
+    "type": "root",
+    "damage": 0.5,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#4ade80"
+   },
+   {
+    "name": "Spore Velenose",
+    "type": "poison",
+    "damage": 0.6,
+    "radius": 4.5,
+    "cd": 11,
+    "color": "#a3e635"
+   }
+  ]
+ },
+ {
+  "key": "troll",
+  "name": "Troll delle Caverne",
+  "title": "Il Rigenerante",
+  "icon": "👹",
+  "theme": "nature",
+  "bossColor": "#4d7c0f",
+  "arena": {
+   "ground": "#101a0a",
+   "fog": "#0a1206",
+   "ring": "#84cc16",
+   "light": "#d9f99d"
+  },
+  "requiredLevel": 6,
+  "companionChance": 0.2,
+  "companionName": "Troll Minore",
+  "specialAbilities": [
+   {
+    "name": "Radici Fangose",
+    "type": "root",
+    "damage": 0.5,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#65a30d"
+   },
+   {
+    "name": "Clava Sismica",
+    "type": "shockwave",
+    "damage": 0.55,
+    "radius": 5,
+    "cd": 11,
+    "color": "#a3e635"
+   }
+  ]
+ },
+ {
+  "key": "ombra",
+  "name": "Drago d'Ombra",
+  "title": "Signore del Vuoto",
+  "icon": "🌑",
+  "theme": "shadow",
+  "bossColor": "#a78bfa",
+  "arena": {
+   "ground": "#0a0a14",
+   "fog": "#08081a",
+   "ring": "#a78bfa",
+   "light": "#c4b5fd"
+  },
+  "requiredLevel": 7,
+  "companionChance": 0.25,
+  "companionName": "Ombra Vivente",
+  "specialAbilities": [
+   {
+    "name": "Onda d'Ombra",
+    "type": "shadow_wave",
+    "damage": 0.7,
+    "radius": 4.5,
+    "cd": 8,
+    "color": "#a78bfa"
+   },
+   {
+    "name": "Buco Nero",
+    "type": "void",
+    "damage": 0.9,
+    "radius": 3,
+    "cd": 12,
+    "color": "#7c3aed"
+   }
+  ]
+ },
+ {
+  "key": "ciclope",
+  "name": "Ciclope Tonante",
+  "title": "Il Gigante Cieco",
+  "icon": "👁️",
+  "theme": "storm",
+  "bossColor": "#d97706",
+  "arena": {
+   "ground": "#1c140a",
+   "fog": "#120d06",
+   "ring": "#facc15",
+   "light": "#fef08a"
+  },
+  "requiredLevel": 8,
+  "companionChance": 0.2,
+  "companionName": "Gigante Minore",
+  "specialAbilities": [
+   {
+    "name": "Sguardo Folgorante",
+    "type": "lightning_storm",
+    "damage": 0.8,
+    "radius": 3,
+    "cd": 8,
+    "color": "#facc15"
+   },
+   {
+    "name": "Lancio di Roccia",
+    "type": "meteor",
+    "damage": 0.7,
+    "radius": 3.5,
+    "cd": 10,
+    "color": "#d97706"
+   }
+  ]
+ },
+ {
+  "key": "tempesta",
+  "name": "Drago della Tempesta",
+  "title": "Signore dei Cieli",
+  "icon": "⚡",
+  "theme": "storm",
+  "bossColor": "#facc15",
+  "arena": {
+   "ground": "#1a1a0a",
+   "fog": "#121008",
+   "ring": "#facc15",
+   "light": "#fff3b0"
+  },
+  "requiredLevel": 9,
+  "companionChance": 0.3,
+  "companionName": "Elementale del Fulmine",
+  "specialAbilities": [
+   {
+    "name": "Fulmine a Caten",
+    "type": "lightning_storm",
+    "damage": 0.8,
+    "radius": 3,
+    "cd": 7,
+    "color": "#facc15"
+   },
+   {
+    "name": "Tempesta Elettrica",
+    "type": "storm",
+    "damage": 0.6,
+    "radius": 5.5,
+    "cd": 10,
+    "color": "#fff3b0"
+   }
+  ]
+ },
+ {
+  "key": "minotauro",
+  "name": "Minotauro del Labirinto",
+  "title": "Il Cornuto",
+  "icon": "🐂",
+  "theme": "magma",
+  "bossColor": "#9a3412",
+  "arena": {
+   "ground": "#200c06",
+   "fog": "#160804",
+   "ring": "#f97316",
+   "light": "#fdba74"
+  },
+  "requiredLevel": 10,
+  "companionChance": 0.2,
+  "companionName": "Mandriano Infernale",
+  "specialAbilities": [
+   {
+    "name": "Carica Furiosa",
+    "type": "shockwave",
+    "damage": 0.6,
+    "radius": 5.5,
+    "cd": 10,
+    "color": "#f97316"
+   },
+   {
+    "name": "Ascia di Fuoco",
+    "type": "meteor",
+    "damage": 0.7,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#ef4444"
+   }
+  ]
+ },
+ {
+  "key": "sangue",
+  "name": "Drago di Sangue",
+  "title": "Il Sanguinario",
+  "icon": "🩸",
+  "theme": "blood",
+  "bossColor": "#dc2626",
+  "arena": {
+   "ground": "#2a0000",
+   "fog": "#1a0000",
+   "ring": "#dc2626",
+   "light": "#ff6b6b"
+  },
+  "requiredLevel": 11,
+  "companionChance": 0.22,
+  "companionName": "Elementale di Sangue",
+  "specialAbilities": [
+   {
+    "name": "Vortice di Sangue",
+    "type": "void",
+    "damage": 0.8,
+    "radius": 3,
+    "cd": 11,
+    "color": "#dc2626"
+   },
+   {
+    "name": "Pioggia di Sangue",
+    "type": "meteor",
+    "damage": 0.6,
+    "radius": 4,
+    "cd": 9,
+    "color": "#ef4444"
+   }
+  ]
+ },
+ {
+  "key": "lich",
+  "name": "Lich Sovrano",
+  "title": "Il Re Non Morto",
+  "icon": "💀",
+  "theme": "bone",
+  "bossColor": "#6366f1",
+  "arena": {
+   "ground": "#0a0a18",
+   "fog": "#060610",
+   "ring": "#6366f1",
+   "light": "#a5b4fc"
+  },
+  "requiredLevel": 12,
+  "companionChance": 0.2,
+  "companionName": "Servo Scheletrico",
+  "specialAbilities": [
+   {
+    "name": "Onda Necrotica",
+    "type": "shadow_wave",
+    "damage": 0.7,
+    "radius": 4.5,
+    "cd": 8,
+    "color": "#818cf8"
+   },
+   {
+    "name": "Vuoto Eterno",
+    "type": "void",
+    "damage": 0.9,
+    "radius": 3,
+    "cd": 12,
+    "color": "#6366f1"
+   }
+  ]
+ },
+ {
+  "key": "cristallo",
+  "name": "Drago di Cristallo",
+  "title": "Il Prisma",
+  "icon": "💎",
+  "theme": "crystal",
+  "bossColor": "#67e8f9",
+  "arena": {
+   "ground": "#0a1a2a",
+   "fog": "#08141f",
+   "ring": "#67e8f9",
+   "light": "#a5f3fc"
+  },
+  "requiredLevel": 13,
+  "companionChance": 0.25,
+  "companionName": "Elementale di Cristallo",
+  "specialAbilities": [
+   {
+    "name": "Scheggia di Cristallo",
+    "type": "ice_lance",
+    "damage": 0.85,
+    "radius": 2.5,
+    "cd": 9,
+    "color": "#67e8f9"
+   },
+   {
+    "name": "Prisma Radente",
+    "type": "frost_storm",
+    "damage": 0.65,
+    "radius": 4,
+    "cd": 11,
+    "color": "#22d3ee"
+   }
+  ]
+ },
+ {
+  "key": "demone",
+  "name": "Demone Infernale",
+  "title": "Il Tormentatore",
+  "icon": "😈",
+  "theme": "fire",
+  "bossColor": "#dc2626",
+  "arena": {
+   "ground": "#2a0606",
+   "fog": "#1a0303",
+   "ring": "#ef4444",
+   "light": "#fca5a5"
+  },
+  "requiredLevel": 14,
+  "companionChance": 0.2,
+  "companionName": "Diavoletto",
+  "specialAbilities": [
+   {
+    "name": "Pioggia di Brace",
+    "type": "meteor",
+    "damage": 0.75,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#f97316"
+   },
+   {
+    "name": "Frustata Ardente",
+    "type": "shockwave",
+    "damage": 0.55,
+    "radius": 5,
+    "cd": 10,
+    "color": "#ef4444"
+   }
+  ]
+ },
+ {
+  "key": "magma",
+  "name": "Drago di Magma",
+  "title": "Il Forno",
+  "icon": "🌋",
+  "theme": "magma",
+  "bossColor": "#f97316",
+  "arena": {
+   "ground": "#2a1000",
+   "fog": "#1a0a00",
+   "ring": "#f97316",
+   "light": "#ffa726"
+  },
+  "requiredLevel": 15,
+  "companionChance": 0.28,
+  "companionName": "Elementale di Magma",
+  "specialAbilities": [
+   {
+    "name": "Bombardamento di Magma",
+    "type": "meteor",
+    "damage": 0.75,
+    "radius": 3.5,
+    "cd": 8,
+    "color": "#f97316"
+   },
+   {
+    "name": "Eruzione",
+    "type": "shockwave",
+    "damage": 0.6,
+    "radius": 5.5,
+    "cd": 10,
+    "color": "#fb923c"
+   }
+  ]
+ },
+ {
+  "key": "gargoyle",
+  "name": "Gargoyle Alato",
+  "title": "La Sentinella di Pietra",
+  "icon": "🦇",
+  "theme": "shadow",
+  "bossColor": "#64748b",
+  "arena": {
+   "ground": "#10121a",
+   "fog": "#0a0c12",
+   "ring": "#94a3b8",
+   "light": "#cbd5e1"
+  },
+  "requiredLevel": 16,
+  "companionChance": 0.2,
+  "companionName": "Gargoyle Minore",
+  "specialAbilities": [
+   {
+    "name": "Ali di Pietra",
+    "type": "shadow_wave",
+    "damage": 0.6,
+    "radius": 4.5,
+    "cd": 8,
+    "color": "#94a3b8"
+   },
+   {
+    "name": "Picchiata",
+    "type": "shockwave",
+    "damage": 0.6,
+    "radius": 5,
+    "cd": 11,
+    "color": "#64748b"
+   }
+  ]
+ },
+ {
+  "key": "sabbie",
+  "name": "Drago delle Sabbie",
+  "title": "Il Deserto",
+  "icon": "🏜️",
+  "theme": "sand",
+  "bossColor": "#eab308",
+  "arena": {
+   "ground": "#2a2000",
+   "fog": "#1f1800",
+   "ring": "#eab308",
+   "light": "#fde68a"
+  },
+  "requiredLevel": 17,
+  "companionChance": 0.3,
+  "companionName": "Elementale delle Sabbie",
+  "specialAbilities": [
+   {
+    "name": "Tempesta di Sabbia",
+    "type": "shockwave",
+    "damage": 0.55,
+    "radius": 5,
+    "cd": 9,
+    "color": "#eab308"
+   },
+   {
+    "name": "Sabbie Mobili",
+    "type": "root",
+    "damage": 0.65,
+    "radius": 4,
+    "cd": 11,
+    "color": "#ca8a04"
+   }
+  ]
+ },
+ {
+  "key": "cavaliere",
+  "name": "Cavaliere della Morte",
+  "title": "Il Condottiero Oscuro",
+  "icon": "🛡️",
+  "theme": "void",
+  "bossColor": "#7c3aed",
+  "arena": {
+   "ground": "#0a0614",
+   "fog": "#06030e",
+   "ring": "#7c3aed",
+   "light": "#c4b5fd"
+  },
+  "requiredLevel": 18,
+  "companionChance": 0.2,
+  "companionName": "Soldato Spettrale",
+  "specialAbilities": [
+   {
+    "name": "Lama del Vuoto",
+    "type": "void",
+    "damage": 0.85,
+    "radius": 3,
+    "cd": 11,
+    "color": "#7c3aed"
+   },
+   {
+    "name": "Onda Oscura",
+    "type": "shadow_wave",
+    "damage": 0.65,
+    "radius": 4.5,
+    "cd": 8,
+    "color": "#a78bfa"
+   }
+  ]
+ },
+ {
+  "key": "spettrale",
+  "name": "Drago Spettrale",
+  "title": "Il Fantasma",
+  "icon": "👻",
+  "theme": "spectral",
+  "bossColor": "#a5b4fc",
+  "arena": {
+   "ground": "#1a1a2a",
+   "fog": "#0f0f1a",
+   "ring": "#a5b4fc",
+   "light": "#c7d2fe"
+  },
+  "requiredLevel": 19,
+  "companionChance": 0.32,
+  "companionName": "Fantasma",
+  "specialAbilities": [
+   {
+    "name": "Onda Spettrale",
+    "type": "shadow_wave",
+    "damage": 0.7,
+    "radius": 4.5,
+    "cd": 8,
+    "color": "#a5b4fc"
+   },
+   {
+    "name": "Possessione",
+    "type": "void",
+    "damage": 0.85,
+    "radius": 3,
+    "cd": 12,
+    "color": "#818cf8"
+   }
+  ]
+ },
+ {
+  "key": "ragno",
+  "name": "Ragno Gigante",
+  "title": "La Vedova Tessitrice",
+  "icon": "🕷️",
+  "theme": "venom",
+  "bossColor": "#65a30d",
+  "arena": {
+   "ground": "#0a140a",
+   "fog": "#060c06",
+   "ring": "#84cc16",
+   "light": "#d9f99d"
+  },
+  "requiredLevel": 20,
+  "companionChance": 0.2,
+  "companionName": "Ragnetto Velenoso",
+  "specialAbilities": [
+   {
+    "name": "Ragnatela",
+    "type": "root",
+    "damage": 0.5,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#d9f99d"
+   },
+   {
+    "name": "Veleno Corrosivo",
+    "type": "poison",
+    "damage": 0.65,
+    "radius": 4.5,
+    "cd": 11,
+    "color": "#84cc16"
+   }
+  ]
+ },
+ {
+  "key": "ossa",
+  "name": "Drago d'Ossa",
+  "title": "Il Re Scheletro",
+  "icon": "💀",
+  "theme": "bone",
+  "bossColor": "#d1d5db",
+  "arena": {
+   "ground": "#1a1a1a",
+   "fog": "#0f0f0f",
+   "ring": "#d1d5db",
+   "light": "#f3f4f6"
+  },
+  "requiredLevel": 21,
+  "companionChance": 0.5,
+  "companionName": "Scheletro Evocato",
+  "specialAbilities": [
+   {
+    "name": "Ossa Avvolgenti",
+    "type": "root",
+    "damage": 0.6,
+    "radius": 4,
+    "cd": 9,
+    "color": "#d1d5db"
+   },
+   {
+    "name": "Maledizione d'Ossa",
+    "type": "poison",
+    "damage": 0.7,
+    "radius": 4.5,
+    "cd": 11,
+    "color": "#9ca3af"
+   }
+  ]
+ },
+ {
+  "key": "idra",
+  "name": "Idra a Tre Teste",
+  "title": "La Rigenerante",
+  "icon": "🐍",
+  "theme": "nature",
+  "bossColor": "#15803d",
+  "arena": {
+   "ground": "#0a1a0e",
+   "fog": "#06100a",
+   "ring": "#22c55e",
+   "light": "#86efac"
+  },
+  "requiredLevel": 22,
+  "companionChance": 0.2,
+  "companionName": "Serpente Minore",
+  "specialAbilities": [
+   {
+    "name": "Triplo Soffio",
+    "type": "poison",
+    "damage": 0.65,
+    "radius": 4.5,
+    "cd": 9,
+    "color": "#22c55e"
+   },
+   {
+    "name": "Morso Multiplo",
+    "type": "root",
+    "damage": 0.55,
+    "radius": 3.5,
+    "cd": 10,
+    "color": "#4ade80"
+   }
+  ]
+ },
+ {
+  "key": "luce",
+  "name": "Drago di Luce",
+  "title": "L'Ascendente",
+  "icon": "✨",
+  "theme": "light",
+  "bossColor": "#fde047",
+  "arena": {
+   "ground": "#2a2a00",
+   "fog": "#1f1f00",
+   "ring": "#fde047",
+   "light": "#fef9c3"
+  },
+  "requiredLevel": 23,
+  "companionChance": 0.38,
+  "companionName": "Elementale di Luce",
+  "specialAbilities": [
+   {
+    "name": "Luce Accecante",
+    "type": "lightning_storm",
+    "damage": 0.85,
+    "radius": 3,
+    "cd": 7,
+    "color": "#fde047"
+   },
+   {
+    "name": "Giudizio",
+    "type": "storm",
+    "damage": 0.6,
+    "radius": 5.5,
+    "cd": 10,
+    "color": "#fef08a"
+   }
+  ]
+ },
+ {
+  "key": "kraken",
+  "name": "Kraken Abissale",
+  "title": "Il Terrore delle Profondità",
+  "icon": "🐙",
+  "theme": "abyss",
+  "bossColor": "#1d4ed8",
+  "arena": {
+   "ground": "#050f24",
+   "fog": "#030a18",
+   "ring": "#3b82f6",
+   "light": "#93c5fd"
+  },
+  "requiredLevel": 24,
+  "companionChance": 0.2,
+  "companionName": "Tentacolo Vivente",
+  "specialAbilities": [
+   {
+    "name": "Tempesta di Maree",
+    "type": "frost_storm",
+    "damage": 0.6,
+    "radius": 4,
+    "cd": 8,
+    "color": "#3b82f6"
+   },
+   {
+    "name": "Abbraccio Abissale",
+    "type": "void",
+    "damage": 0.85,
+    "radius": 3,
+    "cd": 12,
+    "color": "#1d4ed8"
+   }
+  ]
+ },
+ {
+  "key": "caos",
+  "name": "Drago del Caos",
+  "title": "L'Anomalia",
+  "icon": "🔱",
+  "theme": "chaos",
+  "bossColor": "#d946ef",
+  "arena": {
+   "ground": "#2a002a",
+   "fog": "#1a001a",
+   "ring": "#d946ef",
+   "light": "#f0abfc"
+  },
+  "requiredLevel": 25,
+  "companionChance": 0.4,
+  "companionName": "Anomalia",
+  "specialAbilities": [
+   {
+    "name": "Distorsione",
+    "type": "void",
+    "damage": 0.9,
+    "radius": 3.5,
+    "cd": 10,
+    "color": "#d946ef"
+   },
+   {
+    "name": "Caos Primordiale",
+    "type": "shadow_wave",
+    "damage": 0.75,
+    "radius": 5,
+    "cd": 8,
+    "color": "#c026d3"
+   }
+  ]
+ },
+ {
+  "key": "abisso",
+  "name": "Drago dell'Abisso",
+  "title": "L'Orrore",
+  "icon": "🌊",
+  "theme": "abyss",
+  "bossColor": "#2563eb",
+  "arena": {
+   "ground": "#000a2a",
+   "fog": "#00051a",
+   "ring": "#2563eb",
+   "light": "#60a5fa"
+  },
+  "requiredLevel": 27,
+  "companionChance": 0.42,
+  "companionName": "Orrore Abissale",
+  "specialAbilities": [
+   {
+    "name": "Marea Abissale",
+    "type": "storm",
+    "damage": 0.7,
+    "radius": 5.5,
+    "cd": 9,
+    "color": "#2563eb"
+   },
+   {
+    "name": "Voragine",
+    "type": "void",
+    "damage": 0.85,
+    "radius": 3.5,
+    "cd": 12,
+    "color": "#1d4ed8"
+   }
+  ]
+ },
+ {
+  "key": "tuono",
+  "name": "Drago del Tuono",
+  "title": "Il Rombo",
+  "icon": "⛈️",
+  "theme": "thunder",
+  "bossColor": "#ca8a04",
+  "arena": {
+   "ground": "#1a1a00",
+   "fog": "#121200",
+   "ring": "#ca8a04",
+   "light": "#fde047"
+  },
+  "requiredLevel": 29,
+  "companionChance": 0.44,
+  "companionName": "Elementale del Tuono",
+  "specialAbilities": [
+   {
+    "name": "Fulmine Devastante",
+    "type": "lightning_storm",
+    "damage": 0.8,
+    "radius": 3.5,
+    "cd": 6,
+    "color": "#ca8a04"
+   },
+   {
+    "name": "Tuono Continuo",
+    "type": "storm",
+    "damage": 0.65,
+    "radius": 5,
+    "cd": 9,
+    "color": "#eab308"
+   }
+  ]
+ },
+ {
+  "key": "veleno",
+  "name": "Drago del Veleno",
+  "title": "Il Tossico",
+  "icon": "☠️",
+  "theme": "venom",
+  "bossColor": "#16a34a",
+  "arena": {
+   "ground": "#0a2a00",
+   "fog": "#061f00",
+   "ring": "#16a34a",
+   "light": "#86efac"
+  },
+  "requiredLevel": 31,
+  "companionChance": 0.46,
+  "companionName": "Elementale del Veleno",
+  "specialAbilities": [
+   {
+    "name": "Nube Tossica",
+    "type": "poison",
+    "damage": 0.75,
+    "radius": 4.5,
+    "cd": 8,
+    "color": "#16a34a"
+   },
+   {
+    "name": "Radici Velenose",
+    "type": "root",
+    "damage": 0.65,
+    "radius": 4,
+    "cd": 10,
+    "color": "#22c55e"
+   }
+  ]
+ },
+ {
+  "key": "fenice",
+  "name": "Drago Fenice",
+  "title": "La Rinascita",
+  "icon": "🔥",
+  "theme": "phoenix",
+  "bossColor": "#f97316",
+  "arena": {
+   "ground": "#2a0a00",
+   "fog": "#1a0500",
+   "ring": "#f97316",
+   "light": "#fbbf24"
+  },
+  "requiredLevel": 33,
+  "companionChance": 0.48,
+  "companionName": "Cenere Ardente",
+  "specialAbilities": [
+   {
+    "name": "Ceneri Ardenti",
+    "type": "meteor",
+    "damage": 0.8,
+    "radius": 3.5,
+    "cd": 7,
+    "color": "#f97316"
+   },
+   {
+    "name": "Ala di Fuoco",
+    "type": "shockwave",
+    "damage": 0.65,
+    "radius": 5,
+    "cd": 10,
+    "color": "#fb923c"
+   }
+  ]
+ },
+ {
+  "key": "nulla",
+  "name": "Drago del Nulla",
+  "title": "L'Oblio",
+  "icon": "⬛",
+  "theme": "void",
+  "bossColor": "#831843",
+  "arena": {
+   "ground": "#000000",
+   "fog": "#000000",
+   "ring": "#831843",
+   "light": "#be185d"
+  },
+  "requiredLevel": 35,
+  "companionChance": 0.5,
+  "companionName": "Ombra del Nulla",
+  "specialAbilities": [
+   {
+    "name": "Cancellazione",
+    "type": "void",
+    "damage": 0.95,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#831843"
+   },
+   {
+    "name": "Onda del Nulla",
+    "type": "shadow_wave",
+    "damage": 0.75,
+    "radius": 5.5,
+    "cd": 8,
+    "color": "#9d174d"
+   }
+  ]
+ },
+ {
+  "key": "antico",
+  "name": "Drago Antico",
+  "title": "Il Primordiale",
+  "icon": "🐲",
+  "theme": "ancient",
+  "bossColor": "#14b8a6",
+  "arena": {
+   "ground": "#002a2a",
+   "fog": "#001f1f",
+   "ring": "#14b8a6",
+   "light": "#5eead4"
+  },
+  "requiredLevel": 37,
+  "companionChance": 0.52,
+  "companionName": "Spirito Antico",
+  "specialAbilities": [
+   {
+    "name": "Era Glaciale",
+    "type": "frost_storm",
+    "damage": 0.7,
+    "radius": 5,
+    "cd": 9,
+    "color": "#14b8a6"
+   },
+   {
+    "name": "Saggezza Antica",
+    "type": "lightning_storm",
+    "damage": 0.85,
+    "radius": 3,
+    "cd": 7,
+    "color": "#2dd4bf"
+   }
+  ]
+ },
+ {
+  "key": "celeste",
+  "name": "Drago Celeste",
+  "title": "Il Divino",
+  "icon": "🌟",
+  "theme": "celestial",
+  "bossColor": "#fbbf24",
+  "arena": {
+   "ground": "#1a1a2a",
+   "fog": "#0f0f1f",
+   "ring": "#fbbf24",
+   "light": "#fef3c7"
+  },
+  "requiredLevel": 39,
+  "companionChance": 0.55,
+  "companionName": "Angelo Celeste",
+  "specialAbilities": [
+   {
+    "name": "Giudizio Celeste",
+    "type": "storm",
+    "damage": 0.75,
+    "radius": 6,
+    "cd": 8,
+    "color": "#fbbf24"
+   },
+   {
+    "name": "Caduta delle Stelle",
+    "type": "meteor",
+    "damage": 0.9,
+    "radius": 3.5,
+    "cd": 9,
+    "color": "#f59e0b"
+   }
+  ]
+ }
+]

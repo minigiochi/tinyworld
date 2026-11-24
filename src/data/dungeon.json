@@ -1,0 +1,324 @@
+{
+ "roomNouns": [
+  "Cripta",
+  "Sala",
+  "Galleria",
+  "Camera",
+  "Caverna",
+  "Biblioteca",
+  "Fucina",
+  "Cisterna",
+  "Cappella",
+  "Armeria"
+ ],
+ "roomAdjectives": [
+  "Oscura",
+  "Antica",
+  "Maledetta",
+  "Sommersa",
+  "Silenziosa",
+  "Ardente",
+  "Gelida",
+  "Crollata",
+  "Dimenticata",
+  "Sanguinosa"
+ ],
+ "themes": [
+  [
+   "🕸️",
+   "Ragnatele spesse coprono ogni angolo."
+  ],
+  [
+   "🔥",
+   "L'aria brucia e le pareti sono incandescenti."
+  ],
+  [
+   "❄️",
+   "Il ghiaccio scricchiola sotto i tuoi passi."
+  ],
+  [
+   "💀",
+   "Ossa antiche tappezzano il pavimento."
+  ],
+  [
+   "🌿",
+   "Radici e muschio invadono la pietra."
+  ],
+  [
+   "💧",
+   "Acqua gocciola dal soffitto nel buio."
+  ],
+  [
+   "⚡",
+   "Scariche elettriche corrono sulle pareti."
+  ],
+  [
+   "🌑",
+   "Un'oscurità innaturale inghiotte la luce."
+  ],
+  [
+   "🩸",
+   "Rune rosse pulsano sul pavimento."
+  ],
+  [
+   "✨",
+   "Una luce fioca illumina simboli arcani."
+  ]
+ ],
+ "enemies": [
+  [
+   "🕷️",
+   "Ragno Gigante"
+  ],
+  [
+   "💀",
+   "Scheletro"
+  ],
+  [
+   "👺",
+   "Goblin"
+  ],
+  [
+   "👻",
+   "Spettro"
+  ],
+  [
+   "🐺",
+   "Lupo Famelico"
+  ],
+  [
+   "🧟",
+   "Ghoul"
+  ],
+  [
+   "😈",
+   "Imp"
+  ],
+  [
+   "🦇",
+   "Pipistrello Vampiro"
+  ]
+ ],
+ "minibosses": [
+  [
+   "🗿",
+   "Golem Antico"
+  ],
+  [
+   "⚔️",
+   "Campione Corrotto"
+  ],
+  [
+   "🪓",
+   "Mastro Carnefice"
+  ],
+  [
+   "🛡️",
+   "Guardiano Maledetto"
+  ],
+  [
+   "🌑",
+   "Ombra Ancestrale"
+  ]
+ ],
+ "riddles": [
+  [
+   "Parlo senza bocca e ascolto senza orecchie. Chi sono?",
+   [
+    "L'eco",
+    "Il vento",
+    "Un fantasma"
+   ],
+   0
+  ],
+  [
+   "Ha città ma non case, fiumi ma non acqua.",
+   [
+    "Una mappa",
+    "Un sogno",
+    "Un quadro"
+   ],
+   0
+  ],
+  [
+   "Più ne togli, più diventa grande.",
+   [
+    "Un buco",
+    "Un debito",
+    "Un muro"
+   ],
+   0
+  ],
+  [
+   "Ha chiavi ma non apre porte.",
+   [
+    "Una tastiera",
+    "Un forziere",
+    "Un orologio"
+   ],
+   0
+  ],
+  [
+   "Quanto più asciuga, tanto più si bagna.",
+   [
+    "Un asciugamano",
+    "Il sole",
+    "Il vento"
+   ],
+   0
+  ],
+  [
+   "Ha un collo ma nessuna testa, e un tappo ma non beve.",
+   [
+    "Una bottiglia",
+    "Una camicia",
+    "Un pozzo"
+   ],
+   0
+  ],
+  [
+   "Ha lancette ma non ti saluta, si muove ma non va da nessuna parte.",
+   [
+    "Un orologio",
+    "Una bussola",
+    "Una stella"
+   ],
+   0
+  ],
+  [
+   "Si rompe appena lo nomini.",
+   [
+    "Il silenzio",
+    "Il vetro",
+    "Un patto"
+   ],
+   0
+  ],
+  [
+   "Ha denti ma non morde.",
+   [
+    "Un pettine",
+    "Un cane",
+    "Un serpente"
+   ],
+   0
+  ],
+  [
+   "Ha un occhio solo ma non vede.",
+   [
+    "Un ago",
+    "Un ciclope",
+    "Un faro"
+   ],
+   0
+  ],
+  [
+   "Se lo condividi, non lo hai più.",
+   [
+    "Un segreto",
+    "Un pane",
+    "Un tesoro"
+   ],
+   0
+  ],
+  [
+   "Vive solo se mangia, muore se beve.",
+   [
+    "Il fuoco",
+    "L'uomo",
+    "Una pianta"
+   ],
+   0
+  ],
+  [
+   "Ha un letto ma non dorme, una bocca ma non mangia.",
+   [
+    "Un fiume",
+    "Un lago",
+    "Un pozzo"
+   ],
+   0
+  ],
+  [
+   "Ti passa sempre davanti ma non puoi mai vederlo.",
+   [
+    "Il futuro",
+    "Il passato",
+    "L'aria"
+   ],
+   0
+  ],
+  [
+   "Si può spezzare, regalare, mantenere, ma mai toccare.",
+   [
+    "Una promessa",
+    "Una spada",
+    "Una catena"
+   ],
+   0
+  ],
+  [
+   "Sta in un angolo ma viaggia per il mondo.",
+   [
+    "Un francobollo",
+    "Una ragnatela",
+    "Un ragno"
+   ],
+   0
+  ]
+ ],
+ "labels": {
+  "Sinistra": "⬅️",
+  "Dritto": "⬆️",
+  "Destra": "➡️"
+ },
+ "pairs": [
+  [
+   "Sinistra",
+   "Destra"
+  ],
+  [
+   "Sinistra",
+   "Dritto"
+  ],
+  [
+   "Dritto",
+   "Destra"
+  ]
+ ],
+ "shapes": [
+  "rect",
+  "oct",
+  "cross",
+  "hex",
+  "round",
+  "rect",
+  "hex",
+  "round",
+  "oct",
+  "cross"
+ ],
+ "traps": {
+  "spike": [
+   "Spuntoni",
+   "Spuntoni affilati emergono dal pavimento!"
+  ],
+  "arrow": [
+   "Frecce",
+   "Frecce partono dalle pareti!"
+  ],
+  "fire": [
+   "Fiamme",
+   "Colonne di fuoco esplodono dal suolo!"
+  ],
+  "poison": [
+   "Veleno",
+   "Una nube di veleno avvolge la stanza!"
+  ]
+ },
+ "doorX": {
+  "Sinistra": -0.3,
+  "Dritto": 0,
+  "Destra": 0.3
+ }
+}

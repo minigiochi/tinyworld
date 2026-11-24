@@ -1,0 +1,9 @@
+node_modules/
+reference/
+*.zip
+.DS_Store
+*.log
+sd_*.png
+nk*.png
+.vscode/
+.idea/

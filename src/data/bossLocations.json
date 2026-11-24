@@ -1,0 +1,82 @@
+{
+ "inferno": {
+  "location": "Vulcano di Ignis",
+  "element": "Fuoco"
+ },
+ "frost": {
+  "location": "Ghiacciai di Niflheim",
+  "element": "Ghiaccio"
+ },
+ "natura": {
+  "location": "Foresta dei Druidi",
+  "element": "Natura"
+ },
+ "ombra": {
+  "location": "Cripte del Vuoto",
+  "element": "Ombra"
+ },
+ "tempesta": {
+  "location": "Picchi Tempestosi",
+  "element": "Fulmine"
+ },
+ "sangue": {
+  "location": "Santuario del Sangue",
+  "element": "Sangue"
+ },
+ "cristallo": {
+  "location": "Caverne di Cristallo",
+  "element": "Cristallo"
+ },
+ "magma": {
+  "location": "Fornace Profonda",
+  "element": "Magma"
+ },
+ "sabbie": {
+  "location": "Deserto Infinito",
+  "element": "Sabbia"
+ },
+ "spettrale": {
+  "location": "Dominio Spettrale",
+  "element": "Spettro"
+ },
+ "ossa": {
+  "location": "Necropoli d'Ossa",
+  "element": "Morte"
+ },
+ "luce": {
+  "location": "Tempio della Luce",
+  "element": "Luce"
+ },
+ "caos": {
+  "location": "Voragine del Caos",
+  "element": "Caos"
+ },
+ "abisso": {
+  "location": "Abisso Oceanico",
+  "element": "Abisso"
+ },
+ "tuono": {
+  "location": "Cima del Tuono",
+  "element": "Tuono"
+ },
+ "veleno": {
+  "location": "Palude Tossica",
+  "element": "Veleno"
+ },
+ "fenice": {
+  "location": "Nido della Fenice",
+  "element": "Fuoco"
+ },
+ "nulla": {
+  "location": "Regno del Nulla",
+  "element": "Nulla"
+ },
+ "antico": {
+  "location": "Rovine Antiche",
+  "element": "Natura"
+ },
+ "celeste": {
+  "location": "Regno Celeste",
+  "element": "Luce"
+ }
+}

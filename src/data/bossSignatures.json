@@ -1,0 +1,121 @@
+{
+ "inferno": {
+  "t": "barrage",
+  "n": 5,
+  "r": 2.6,
+  "d": 0.55,
+  "c": "#ff6a00",
+  "nm": "Pioggia Ardente",
+  "fx": "meteor",
+  "cd": 15
+ },
+ "frost": {
+  "t": "slow",
+  "c": "#93c5fd",
+  "nm": "Gelo Eterno",
+  "cd": 16
+ },
+ "natura": {
+  "t": "summon",
+  "c": "#4ade80",
+  "nm": "Richiamo della Selva",
+  "cd": 22
+ },
+ "ombra": {
+  "t": "drain",
+  "r": 7,
+  "d": 0.5,
+  "h": 0.04,
+  "c": "#a78bfa",
+  "nm": "Divorare Ombra",
+  "fx": "shadow_wave",
+  "cd": 16
+ },
+ "tempesta": {
+  "t": "barrage",
+  "n": 4,
+  "r": 2.2,
+  "d": 0.6,
+  "c": "#60a5fa",
+  "nm": "Fulmini a Catena",
+  "fx": "lightning_storm",
+  "cd": 14
+ },
+ "sangue": {
+  "t": "drain",
+  "r": 8,
+  "d": 0.5,
+  "h": 0.05,
+  "c": "#dc2626",
+  "nm": "Sete di Sangue",
+  "fx": "void",
+  "cd": 17
+ },
+ "cristallo": {
+  "t": "barrage",
+  "n": 6,
+  "r": 1.8,
+  "d": 0.45,
+  "c": "#c4b5fd",
+  "nm": "Schegge Prismatiche",
+  "fx": "ice_lance",
+  "cd": 13
+ },
+ "magma": {
+  "t": "barrage",
+  "n": 4,
+  "r": 3.2,
+  "d": 0.7,
+  "c": "#ff7a00",
+  "nm": "Eruzione",
+  "fx": "meteor",
+  "cd": 16
+ },
+ "sabbie": {
+  "t": "ring",
+  "r": 9,
+  "d": 0.6,
+  "c": "#d9b36a",
+  "nm": "Tempesta di Sabbia",
+  "fx": "storm",
+  "cd": 17
+ },
+ "spettrale": {
+  "t": "summon",
+  "c": "#c7f9ff",
+  "nm": "Legione Spettrale",
+  "cd": 22
+ },
+ "ossa": {
+  "t": "summon",
+  "c": "#ece6d6",
+  "nm": "Risveglio dei Caduti",
+  "cd": 22
+ },
+ "luce": {
+  "t": "blind",
+  "c": "#fde68a",
+  "nm": "Luce Accecante",
+  "cd": 16
+ },
+ "caos": {
+  "t": "barrage",
+  "n": 6,
+  "r": 2,
+  "d": 0.5,
+  "c": "#ff4fd8",
+  "nm": "Frammenti del Caos",
+  "fx": "void",
+  "cd": 13,
+  "rnd": 1
+ },
+ "abisso": {
+  "t": "ring",
+  "r": 10,
+  "d": 0.6,
+  "c": "#22d3ee",
+  "nm": "Marea Abissale",
+  "fx": "tide",
+  "cd": 16
+ }
+}

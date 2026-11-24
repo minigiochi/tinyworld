@@ -1,0 +1,30 @@
+[
+ {
+  "id": "focus",
+  "name": "Assalto Concentrato",
+  "desc": "+40% attacco a tutti gli eroi per 6s",
+  "icon": "⚔️",
+  "color": "#f59e0b"
+ },
+ {
+  "id": "defense",
+  "name": "Formazione Difensiva",
+  "desc": "-50% danni subiti per 6s",
+  "icon": "🛡️",
+  "color": "#38bdf8"
+ },
+ {
+  "id": "heal",
+  "name": "Cura di Gruppo",
+  "desc": "Cura tutti gli eroi del 30% HP max",
+  "icon": "💚",
+  "color": "#22c55e"
+ },
+ {
+  "id": "fury",
+  "name": "Furia",
+  "desc": "+60% velocità d'attacco per 6s",
+  "icon": "🔥",
+  "color": "#ef4444"
+ }
+]

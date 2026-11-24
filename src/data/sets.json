@@ -1,0 +1,105 @@
+[
+ {
+  "k": "fenice",
+  "n": "della Fenice",
+  "ic": "🔥",
+  "b2": {
+   "attack": 0.1
+  },
+  "b3": {
+   "attack": 0.12,
+   "maxHp": 0.1
+  }
+ },
+ {
+  "k": "titano",
+  "n": "del Titano",
+  "ic": "🏔️",
+  "b2": {
+   "defense": 0.15
+  },
+  "b3": {
+   "defense": 0.15,
+   "maxHp": 0.12
+  }
+ },
+ {
+  "k": "tempesta",
+  "n": "della Tempesta",
+  "ic": "⚡",
+  "b2": {
+   "manaRegen": 0.25
+  },
+  "b3": {
+   "manaRegen": 0.25,
+   "atkSpd": 0.12,
+   "attack": 0.06
+  }
+ },
+ {
+  "k": "vita",
+  "n": "della Vita",
+  "ic": "🌿",
+  "b2": {
+   "maxHp": 0.12
+  },
+  "b3": {
+   "maxHp": 0.13,
+   "manaRegen": 0.2
+  }
+ },
+ {
+  "k": "gelo",
+  "n": "del Gelo",
+  "ic": "❄️",
+  "b2": {
+   "defense": 0.1,
+   "maxHp": 0.06
+  },
+  "b3": {
+   "defense": 0.12,
+   "mana": 0.2
+  }
+ },
+ {
+  "k": "sangue",
+  "n": "del Sangue",
+  "ic": "🩸",
+  "b2": {
+   "attack": 0.12
+  },
+  "b3": {
+   "attack": 0.12,
+   "atkSpd": 0.1
+  }
+ },
+ {
+  "k": "luce",
+  "n": "della Luce",
+  "ic": "✨",
+  "b2": {
+   "mana": 0.2
+  },
+  "b3": {
+   "mana": 0.2,
+   "manaRegen": 0.3,
+   "maxHp": 0.08
+  }
+ },
+ {
+  "k": "drago",
+  "n": "del Drago",
+  "ic": "🐉",
+  "rare": 1,
+  "b2": {
+   "attack": 0.1,
+   "defense": 0.1
+  },
+  "b3": {
+   "attack": 0.1,
+   "defense": 0.1,
+   "maxHp": 0.15,
+   "mana": 0.15
+  }
+ }
+]

@@ -1,0 +1,14 @@
+<!doctype html><html lang="it"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tiny World — mondo aperto</title>
+<style>body{margin:0;background:#0b0d14;color:#e8e8f0;font:14px system-ui}</style>
+<body>
+<script src="engine.bundle.js"></script>
+<script>window.__werr=[];addEventListener('error',e=>window.__werr.push(e.message+' @'+(e.filename||'').split('/').pop()+':'+e.lineno));</script>
+<script src="assets.js"></script><script src="texdec.js"></script><script src="world.bundle.js"></script>
+<script src="orig/script_16.js"></script><script src="orig/script_17.js"></script><script src="orig/script_20.js"></script><script src="orig/script_13.js"></script>
+<script>
+const EN=DBAEngine,CLS=EN.CLASSES,mkBoss0=EN.createBoss;
+function party(keys,L){return keys.map((k,i)=>{const c=CLS[k],r={maxHp:c.maxHp,attack:c.attack,defense:c.defense};for(let n=1;n<L;n++)levelUpGains(r);return{id:'h'+i,name:c.name,classKey:k,className:c.name,icon:c.icon,arch:c.arch,maxHp:r.maxHp,hp:r.maxHp,attack:r.attack,defense:r.defense,alive:true,level:L,xp:0,maxMana:c.maxMana||60,mana:c.maxMana||60,manaRegen:c.manaRegen||2.5,atkSpd:0,talents:[],isTank:c.arch=='tank',isHealer:c.arch=='healer',isDps:c.arch=='melee'||c.arch=='ranged'}})}
+window.startWorld=function(keys,L,bi,ti){const H=party(keys,L||10),B=mkBoss0(bi||3,ti||0,1);
+ window.DBA_OW(H,B,()=>{},()=>{},n=>[],(b,p,cb)=>cb&&cb('victory',p),null)};
+</script></body></html>

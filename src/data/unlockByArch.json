@@ -1,0 +1,234 @@
+{
+ "healer": [
+  {
+   "name": "Cura di Gruppo",
+   "cd": 8,
+   "kind": "heal_aoe",
+   "vfx": "heal_ring",
+   "desc": "Cura tutti gli alleati"
+  },
+  {
+   "name": "Benedizione",
+   "cd": 14,
+   "kind": "buff_atk",
+   "vfx": "aura",
+   "desc": "Attacco + al party"
+  },
+  {
+   "name": "Santuario",
+   "cd": 18,
+   "kind": "shield",
+   "vfx": "bubble",
+   "desc": "Scudo potente"
+  },
+  {
+   "name": "Purificazione",
+   "cd": 22,
+   "kind": "heal_aoe",
+   "vfx": "heal_ring",
+   "desc": "Cura massiva"
+  },
+  {
+   "name": "Tocco Risanante",
+   "cd": 4,
+   "kind": "heal_single",
+   "vfx": "heal_beam",
+   "desc": "Cura singola rapida"
+  },
+  {
+   "name": "Raggio Rigenerante",
+   "cd": 10,
+   "kind": "regen",
+   "vfx": "regen",
+   "desc": "Rigenerazione continua"
+  },
+  {
+   "name": "Egida Sacra",
+   "cd": 20,
+   "kind": "shield",
+   "vfx": "bubble",
+   "desc": "Scudo molto resistente"
+  },
+  {
+   "name": "Furia Benedetta",
+   "cd": 26,
+   "kind": "buff_atk",
+   "vfx": "aura",
+   "desc": "Attacco molto aumentato"
+  }
+ ],
+ "tank": [
+  {
+   "name": "Fendente Rotante",
+   "cd": 7,
+   "kind": "aoe",
+   "vfx": "ring",
+   "desc": "Colpo ad area + provocazione"
+  },
+  {
+   "name": "Pelle di Granito",
+   "cd": 14,
+   "kind": "wall",
+   "vfx": "aura",
+   "desc": "Danni -80%"
+  },
+  {
+   "name": "Terra Tremante",
+   "cd": 18,
+   "kind": "aoe",
+   "vfx": "ring",
+   "desc": "Onda d'urto"
+  },
+  {
+   "name": "Ultimo Baluardo",
+   "cd": 22,
+   "kind": "threat",
+   "vfx": "ring",
+   "desc": "Provocazione assoluta"
+  },
+  {
+   "name": "Scudo Spezzaossa",
+   "cd": 6,
+   "kind": "taunt_strike",
+   "vfx": "ring",
+   "desc": "Colpo che provoca"
+  },
+  {
+   "name": "Muro di Ferro",
+   "cd": 16,
+   "kind": "wall",
+   "vfx": "aura",
+   "desc": "Danni -80%"
+  },
+  {
+   "name": "Grido di Sfida",
+   "cd": 10,
+   "kind": "threat",
+   "vfx": "ring",
+   "desc": "Attira i nemici"
+  },
+  {
+   "name": "Maglio Titanico",
+   "cd": 20,
+   "kind": "big_strike",
+   "vfx": "slash_big",
+   "desc": "Colpo devastante"
+  }
+ ],
+ "melee": [
+  {
+   "name": "Colpo Rotante",
+   "cd": 7,
+   "kind": "aoe",
+   "vfx": "ring",
+   "desc": "Colpo ad area"
+  },
+  {
+   "name": "Assalto Furente",
+   "cd": 12,
+   "kind": "chain",
+   "vfx": "multislash",
+   "desc": "Più colpi"
+  },
+  {
+   "name": "Devastazione",
+   "cd": 18,
+   "kind": "big_strike",
+   "vfx": "slash_big",
+   "desc": "Danno enorme"
+  },
+  {
+   "name": "Tempesta Mortale",
+   "cd": 22,
+   "kind": "aoe",
+   "vfx": "explosion",
+   "desc": "Esplosione finale"
+  },
+  {
+   "name": "Lama Danzante",
+   "cd": 5,
+   "kind": "strike",
+   "vfx": "multislash",
+   "desc": "Colpo rapido"
+  },
+  {
+   "name": "Furia Sanguinaria",
+   "cd": 14,
+   "kind": "chain",
+   "vfx": "multislash",
+   "desc": "Raffica di colpi"
+  },
+  {
+   "name": "Colpo Sismico",
+   "cd": 16,
+   "kind": "aoe",
+   "vfx": "ring",
+   "desc": "Onda d'urto"
+  },
+  {
+   "name": "Esecuzione",
+   "cd": 24,
+   "kind": "big_strike",
+   "vfx": "slash_big",
+   "desc": "Colpo letale"
+  }
+ ],
+ "ranged": [
+  {
+   "name": "Pioggia di Colpi",
+   "cd": 7,
+   "kind": "aoe",
+   "vfx": "rain",
+   "desc": "Pioggia di proiettili"
+  },
+  {
+   "name": "Tiro Multiplo",
+   "cd": 12,
+   "kind": "chain",
+   "vfx": "lightning",
+   "desc": "Proiettili a catena"
+  },
+  {
+   "name": "Devastazione Arcana",
+   "cd": 18,
+   "kind": "big_shot",
+   "vfx": "projectile",
+   "desc": "Proiettile enorme"
+  },
+  {
+   "name": "Apocalisse",
+   "cd": 22,
+   "kind": "aoe",
+   "vfx": "explosion",
+   "desc": "Esplosione finale"
+  },
+  {
+   "name": "Dardo Rapido",
+   "cd": 5,
+   "kind": "shot",
+   "vfx": "projectile",
+   "desc": "Tiro veloce"
+  },
+  {
+   "name": "Catena Folgorante",
+   "cd": 13,
+   "kind": "chain",
+   "vfx": "lightning",
+   "desc": "Fulmini a catena"
+  },
+  {
+   "name": "Tempesta di Frecce",
+   "cd": 16,
+   "kind": "aoe",
+   "vfx": "rain",
+   "desc": "Pioggia su tutta l'area"
+  },
+  {
+   "name": "Colpo Perfetto",
+   "cd": 24,
+   "kind": "big_shot",
+   "vfx": "projectile",
+   "desc": "Colpo mirato enorme"
+  }
+ ]
+}

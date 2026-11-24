@@ -1,0 +1,235 @@
+{
+ "tank": [
+  [
+   {
+    "id": "t1a",
+    "n": "Pelle di Ferro",
+    "d": "+15% vita",
+    "m": {
+     "hp": 0.15
+    }
+   },
+   {
+    "id": "t1b",
+    "n": "Muro Vivente",
+    "d": "+6 difesa, +25% minaccia",
+    "m": {
+     "def": 6,
+     "thr": 0.25
+    }
+   }
+  ],
+  [
+   {
+    "id": "t2a",
+    "n": "Bastione",
+    "d": "+8 difesa, +10% vita",
+    "m": {
+     "def": 8,
+     "hp": 0.1
+    }
+   },
+   {
+    "id": "t2b",
+    "n": "Provocatore",
+    "d": "+50% minaccia, +10% attacco",
+    "m": {
+     "thr": 0.5,
+     "atk": 0.1
+    }
+   }
+  ],
+  [
+   {
+    "id": "t3a",
+    "n": "Titano",
+    "d": "+25% vita",
+    "m": {
+     "hp": 0.25
+    }
+   },
+   {
+    "id": "t3b",
+    "n": "Contrattacco",
+    "d": "+20% attacco, +5 difesa",
+    "m": {
+     "atk": 0.2,
+     "def": 5
+    }
+   }
+  ]
+ ],
+ "melee": [
+  [
+   {
+    "id": "m1a",
+    "n": "Lame Affilate",
+    "d": "+12% attacco",
+    "m": {
+     "atk": 0.12
+    }
+   },
+   {
+    "id": "m1b",
+    "n": "Furia Rapida",
+    "d": "+12% velocità d'attacco",
+    "m": {
+     "spd": 0.12
+    }
+   }
+  ],
+  [
+   {
+    "id": "m2a",
+    "n": "Colpo Letale",
+    "d": "+18% attacco",
+    "m": {
+     "atk": 0.18
+    }
+   },
+   {
+    "id": "m2b",
+    "n": "Sinergia Fiammeggiante",
+    "d": "Le combo fanno +50% di effetto",
+    "m": {
+     "syn": 0.5
+    }
+   }
+  ],
+  [
+   {
+    "id": "m3a",
+    "n": "Maestro d'Armi",
+    "d": "+20% attacco, +10% velocità",
+    "m": {
+     "atk": 0.2,
+     "spd": 0.1
+    }
+   },
+   {
+    "id": "m3b",
+    "n": "Assassino",
+    "d": "+30% attacco, -10% vita",
+    "m": {
+     "atk": 0.3,
+     "hp": -0.1
+    }
+   }
+  ]
+ ],
+ "ranged": [
+  [
+   {
+    "id": "r1a",
+    "n": "Occhio di Falco",
+    "d": "+12% attacco",
+    "m": {
+     "atk": 0.12
+    }
+   },
+   {
+    "id": "r1b",
+    "n": "Mano Veloce",
+    "d": "+12% velocità d'attacco",
+    "m": {
+     "spd": 0.12
+    }
+   }
+  ],
+  [
+   {
+    "id": "r2a",
+    "n": "Tiratore Scelto",
+    "d": "+18% attacco",
+    "m": {
+     "atk": 0.18
+    }
+   },
+   {
+    "id": "r2b",
+    "n": "Sinergia Arcana",
+    "d": "Le combo fanno +50% di effetto",
+    "m": {
+     "syn": 0.5
+    }
+   }
+  ],
+  [
+   {
+    "id": "r3a",
+    "n": "Maestro del Mana",
+    "d": "+25% attacco, +30% mana",
+    "m": {
+     "atk": 0.25,
+     "mr": 0.3
+    }
+   },
+   {
+    "id": "r3b",
+    "n": "Cecchino",
+    "d": "+30% attacco, -10% vita",
+    "m": {
+     "atk": 0.3,
+     "hp": -0.1
+    }
+   }
+  ]
+ ],
+ "healer": [
+  [
+   {
+    "id": "h1a",
+    "n": "Fonte di Mana",
+    "d": "+30% rigenerazione mana",
+    "m": {
+     "mr": 0.3
+    }
+   },
+   {
+    "id": "h1b",
+    "n": "Cuore Gentile",
+    "d": "+15% vita",
+    "m": {
+     "hp": 0.15
+    }
+   }
+  ],
+  [
+   {
+    "id": "h2a",
+    "n": "Grazia",
+    "d": "+20% potere di cura",
+    "m": {
+     "atk": 0.2
+    }
+   },
+   {
+    "id": "h2b",
+    "n": "Sinergia Vitale",
+    "d": "Le combo fanno +50% di effetto",
+    "m": {
+     "syn": 0.5
+    }
+   }
+  ],
+  [
+   {
+    "id": "h3a",
+    "n": "Saggezza",
+    "d": "+25% cura, +20% mana",
+    "m": {
+     "atk": 0.25,
+     "mr": 0.2
+    }
+   },
+   {
+    "id": "h3b",
+    "n": "Vitalità",
+    "d": "+25% vita",
+    "m": {
+     "hp": 0.25
+    }
+   }
+  ]
+ ]
+}

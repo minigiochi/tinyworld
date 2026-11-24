@@ -1,0 +1,1386 @@
+{
+ "druido": {
+  "key": "druido",
+  "name": "Druido",
+  "icon": "🌿",
+  "arch": "healer",
+  "maxHp": 75,
+  "attack": 11,
+  "defense": 6,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 6.5,
+  "color": "#4ade80",
+  "accent": "from-emerald-500 to-green-600",
+  "text": "text-emerald-300",
+  "theme": "nature",
+  "weapon": "staff",
+  "helmet": "hood",
+  "desc": "Cure naturali e rigenerazione con erbe.",
+  "abilities": [
+   {
+    "name": "Cura Selvatica",
+    "cd": 2.2,
+    "kind": "heal_single",
+    "vfx": "heal_beam",
+    "desc": "Cura un alleato"
+   },
+   {
+    "name": "Rinnovamento",
+    "cd": 7,
+    "kind": "regen",
+    "vfx": "regen",
+    "desc": "Rigenerazione 6s"
+   },
+   {
+    "name": "Sinergia Vitale",
+    "cd": 11,
+    "kind": "heal_aoe",
+    "vfx": "heal_ring",
+    "desc": "Cura tutto il party"
+   }
+  ]
+ },
+ "monaco": {
+  "key": "monaco",
+  "name": "Monaco",
+  "icon": "💧",
+  "arch": "healer",
+  "maxHp": 80,
+  "attack": 8,
+  "defense": 7,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 6.5,
+  "color": "#38bdf8",
+  "accent": "from-cyan-500 to-blue-600",
+  "text": "text-cyan-300",
+  "theme": "water",
+  "weapon": "staff",
+  "helmet": "band",
+  "desc": "Cure ad area d'acqua e scudi liquidi.",
+  "abilities": [
+   {
+    "name": "Onda Curativa",
+    "cd": 3,
+    "kind": "heal_aoe",
+    "vfx": "heal_ring",
+    "desc": "Cura ad area"
+   },
+   {
+    "name": "Sorgente",
+    "cd": 3.5,
+    "kind": "heal_single",
+    "vfx": "heal_beam",
+    "desc": "Cura singola grande"
+   },
+   {
+    "name": "Acquascudo",
+    "cd": 7,
+    "kind": "shield",
+    "vfx": "bubble",
+    "desc": "Scudo d'acqua"
+   }
+  ]
+ },
+ "chierico": {
+  "key": "chierico",
+  "name": "Chierico",
+  "icon": "✨",
+  "arch": "healer",
+  "maxHp": 78,
+  "attack": 12,
+  "defense": 8,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 6.5,
+  "color": "#fde047",
+  "accent": "from-amber-300 to-yellow-500",
+  "text": "text-amber-300",
+  "theme": "light",
+  "weapon": "mace",
+  "helmet": "circlet",
+  "desc": "Cure sacre gialle e barriere di luce.",
+  "abilities": [
+   {
+    "name": "Luce Sacra",
+    "cd": 2.2,
+    "kind": "heal_single",
+    "vfx": "heal_beam",
+    "desc": "Cura sacra"
+   },
+   {
+    "name": "Barriera di Luce",
+    "cd": 7,
+    "kind": "shield",
+    "vfx": "bubble",
+    "desc": "Scudo di luce"
+   },
+   {
+    "name": "Preghiera",
+    "cd": 10,
+    "kind": "heal_aoe",
+    "vfx": "heal_ring",
+    "desc": "Cura ad area sacra"
+   }
+  ]
+ },
+ "mago_sangue": {
+  "key": "mago_sangue",
+  "name": "Mago del Sangue",
+  "icon": "🩸",
+  "arch": "healer",
+  "maxHp": 70,
+  "attack": 12,
+  "defense": 6,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 6.5,
+  "color": "#ef4444",
+  "accent": "from-red-500 to-rose-700",
+  "text": "text-red-300",
+  "theme": "blood",
+  "weapon": "staff",
+  "helmet": "hood",
+  "desc": "Cure oscure col potere del sangue.",
+  "abilities": [
+   {
+    "name": "Cura di Sangue",
+    "cd": 2.4,
+    "kind": "heal_single",
+    "vfx": "heal_beam",
+    "desc": "Cura sanguigna"
+   },
+   {
+    "name": "Rigenerazione Sanguigna",
+    "cd": 7,
+    "kind": "regen",
+    "vfx": "regen",
+    "desc": "Rigenerazione 6s"
+   },
+   {
+    "name": "Emorragia Curativa",
+    "cd": 11,
+    "kind": "heal_aoe",
+    "vfx": "heal_ring",
+    "desc": "Cura ad area"
+   }
+  ]
+ },
+ "cavaliere": {
+  "key": "cavaliere",
+  "name": "Cavaliere",
+  "icon": "🛡️",
+  "arch": "tank",
+  "maxHp": 210,
+  "attack": 11,
+  "defense": 22,
+  "speed": 4.3,
+  "radius": 0.78,
+  "range": 2.5,
+  "color": "#cbd5e1",
+  "accent": "from-slate-400 to-slate-600",
+  "text": "text-slate-300",
+  "theme": "steel",
+  "weapon": "sword",
+  "helmet": "helmet",
+  "desc": "Cavaliere in armatura, provoca il boss.",
+  "abilities": [
+   {
+    "name": "Assalto",
+    "cd": 1.6,
+    "kind": "taunt_strike",
+    "vfx": "taunt_strike",
+    "desc": "Colpo + provocazione"
+   },
+   {
+    "name": "Grido di Guerra",
+    "cd": 7,
+    "kind": "threat",
+    "vfx": "ring",
+    "desc": "Attira il boss 4s"
+   },
+   {
+    "name": "Muro di Ferro",
+    "cd": 13,
+    "kind": "wall",
+    "vfx": "aura",
+    "desc": "Danni -65% 5s"
+   }
+  ]
+ },
+ "barbaro": {
+  "key": "barbaro",
+  "name": "Barbaro",
+  "icon": "🪓",
+  "arch": "tank",
+  "maxHp": 240,
+  "attack": 14,
+  "defense": 17,
+  "speed": 4.3,
+  "radius": 0.82,
+  "range": 2.5,
+  "color": "#dc2626",
+  "accent": "from-red-600 to-rose-800",
+  "text": "text-red-300",
+  "theme": "berserk",
+  "weapon": "axe",
+  "helmet": "horned",
+  "desc": "Carne enorme e rabbia feroce.",
+  "abilities": [
+   {
+    "name": "Fendente",
+    "cd": 1.6,
+    "kind": "taunt_strike",
+    "vfx": "taunt_strike",
+    "desc": "Colpo + provocazione"
+   },
+   {
+    "name": "Ruggito",
+    "cd": 7,
+    "kind": "threat",
+    "vfx": "ring",
+    "desc": "Attira il boss 4s"
+   },
+   {
+    "name": "Pelle di Ferro",
+    "cd": 13,
+    "kind": "wall",
+    "vfx": "aura",
+    "desc": "Danni -65% 5s"
+   }
+  ]
+ },
+ "guardiano": {
+  "key": "guardiano",
+  "name": "Guardiano",
+  "icon": "⛰️",
+  "arch": "tank",
+  "maxHp": 252,
+  "attack": 10,
+  "defense": 24,
+  "speed": 4.1,
+  "radius": 0.85,
+  "range": 2.5,
+  "color": "#a16207",
+  "accent": "from-amber-700 to-yellow-900",
+  "text": "text-amber-400",
+  "theme": "earth",
+  "weapon": "hammer",
+  "helmet": "helmet",
+  "desc": "Muro di pietra, devia i colpi.",
+  "abilities": [
+   {
+    "name": "Martellata",
+    "cd": 1.6,
+    "kind": "taunt_strike",
+    "vfx": "taunt_strike",
+    "desc": "Colpo + provocazione"
+   },
+   {
+    "name": "Terraferma",
+    "cd": 7,
+    "kind": "threat",
+    "vfx": "ring",
+    "desc": "Attira il boss 4s"
+   },
+   {
+    "name": "Pietra",
+    "cd": 13,
+    "kind": "wall",
+    "vfx": "aura",
+    "desc": "Danni -65% 5s"
+   }
+  ]
+ },
+ "paladino": {
+  "key": "paladino",
+  "name": "Paladino",
+  "icon": "⚜️",
+  "arch": "tank",
+  "maxHp": 216,
+  "attack": 12,
+  "defense": 20,
+  "speed": 4.3,
+  "radius": 0.78,
+  "range": 2.5,
+  "color": "#fbbf24",
+  "accent": "from-amber-400 to-yellow-600",
+  "text": "text-amber-300",
+  "theme": "light",
+  "weapon": "mace",
+  "helmet": "circlet",
+  "desc": "Difensore sacro con scudo divino.",
+  "abilities": [
+   {
+    "name": "Giudizio",
+    "cd": 1.6,
+    "kind": "taunt_strike",
+    "vfx": "taunt_strike",
+    "desc": "Colpo + provocazione"
+   },
+   {
+    "name": "Sfida",
+    "cd": 7,
+    "kind": "threat",
+    "vfx": "ring",
+    "desc": "Attira il boss 4s"
+   },
+   {
+    "name": "Scudo Sacro",
+    "cd": 13,
+    "kind": "wall",
+    "vfx": "aura",
+    "desc": "Danni -65% 5s"
+   }
+  ]
+ },
+ "guerriero": {
+  "key": "guerriero",
+  "name": "Guerriero",
+  "icon": "⚔️",
+  "arch": "melee",
+  "maxHp": 95,
+  "attack": 18,
+  "defense": 4,
+  "speed": 5.6,
+  "radius": 0.6,
+  "range": 2.5,
+  "color": "#cbd5e1",
+  "accent": "from-slate-400 to-slate-600",
+  "text": "text-slate-300",
+  "theme": "steel",
+  "weapon": "sword",
+  "helmet": "helmet",
+  "desc": "Soldato con spada, danno solido.",
+  "abilities": [
+   {
+    "name": "Assalto",
+    "cd": 1.1,
+    "kind": "strike",
+    "vfx": "slash",
+    "desc": "Colpo rapido"
+   },
+   {
+    "name": "Fendente Letale",
+    "cd": 6,
+    "kind": "big_strike",
+    "vfx": "slash_big",
+    "desc": "Danno enorme"
+   },
+   {
+    "name": "Vortice",
+    "cd": 10,
+    "kind": "aoe",
+    "vfx": "ring",
+    "desc": "Colpo rotante"
+   }
+  ]
+ },
+ "assassino": {
+  "key": "assassino",
+  "name": "Assassino",
+  "icon": "🗡️",
+  "arch": "melee",
+  "maxHp": 80,
+  "attack": 20,
+  "defense": 3,
+  "speed": 5.8,
+  "radius": 0.58,
+  "range": 2.5,
+  "color": "#a78bfa",
+  "accent": "from-violet-500 to-purple-700",
+  "text": "text-violet-300",
+  "theme": "shadow",
+  "weapon": "dagger",
+  "helmet": "hood",
+  "desc": "Ombre letali con pugnali.",
+  "abilities": [
+   {
+    "name": "Pugnalata",
+    "cd": 1,
+    "kind": "strike",
+    "vfx": "slash",
+    "desc": "Colpo rapido"
+   },
+   {
+    "name": "Ombra Letale",
+    "cd": 6,
+    "kind": "big_strike",
+    "vfx": "slash_big",
+    "desc": "Danno enorme"
+   },
+   {
+    "name": "Danza di Lame",
+    "cd": 9,
+    "kind": "chain",
+    "vfx": "multislash",
+    "desc": "Più colpi"
+   }
+  ]
+ },
+ "gladiatore": {
+  "key": "gladiatore",
+  "name": "Gladiatore",
+  "icon": "🪈",
+  "arch": "melee",
+  "maxHp": 100,
+  "attack": 17,
+  "defense": 6,
+  "speed": 5.5,
+  "radius": 0.62,
+  "range": 2.5,
+  "color": "#d97706",
+  "accent": "from-amber-600 to-orange-800",
+  "text": "text-amber-300",
+  "theme": "bronze",
+  "weapon": "spear",
+  "helmet": "helmet",
+  "desc": "Combattente d'arena con lancia.",
+  "abilities": [
+   {
+    "name": "Stoccata",
+    "cd": 1.1,
+    "kind": "strike",
+    "vfx": "slash",
+    "desc": "Colpo rapido"
+   },
+   {
+    "name": "Affondo",
+    "cd": 6,
+    "kind": "big_strike",
+    "vfx": "slash_big",
+    "desc": "Danno enorme"
+   },
+   {
+    "name": "Lancia Rotante",
+    "cd": 10,
+    "kind": "aoe",
+    "vfx": "ring",
+    "desc": "Colpo rotante"
+   }
+  ]
+ },
+ "berserker": {
+  "key": "berserker",
+  "name": "Berserker",
+  "icon": "🔥",
+  "arch": "melee",
+  "maxHp": 85,
+  "attack": 21,
+  "defense": 3,
+  "speed": 5.6,
+  "radius": 0.6,
+  "range": 2.5,
+  "color": "#dc2626",
+  "accent": "from-red-600 to-rose-800",
+  "text": "text-red-300",
+  "theme": "berserk",
+  "weapon": "axe",
+  "helmet": "horned",
+  "desc": "Rabbia sanguinaria con ascia.",
+  "abilities": [
+   {
+    "name": "Ascia",
+    "cd": 1.6,
+    "kind": "big_strike",
+    "vfx": "slash_big",
+    "desc": "Colpo pesante"
+   },
+   {
+    "name": "Furia Sanguinaria",
+    "cd": 8,
+    "kind": "aoe",
+    "vfx": "aura",
+    "desc": "Esplosione rabbia"
+   },
+   {
+    "name": "Frenesia",
+    "cd": 14,
+    "kind": "buff_atk",
+    "vfx": "aura",
+    "desc": "Attacco +70% 5s"
+   }
+  ]
+ },
+ "spadaccino": {
+  "key": "spadaccino",
+  "name": "Spadaccino",
+  "icon": "🤺",
+  "arch": "melee",
+  "maxHp": 90,
+  "attack": 19,
+  "defense": 5,
+  "speed": 5.8,
+  "radius": 0.58,
+  "range": 2.5,
+  "color": "#e5e7eb",
+  "accent": "from-slate-300 to-slate-500",
+  "text": "text-slate-200",
+  "theme": "steel",
+  "weapon": "sword",
+  "helmet": "band",
+  "desc": "Duellante elegante con stocco.",
+  "abilities": [
+   {
+    "name": "Stoccata Rapida",
+    "cd": 0.9,
+    "kind": "strike",
+    "vfx": "slash",
+    "desc": "Colpo rapido"
+   },
+   {
+    "name": "Raffica",
+    "cd": 6,
+    "kind": "chain",
+    "vfx": "multislash",
+    "desc": "Più colpi"
+   },
+   {
+    "name": "Lama Vorticosa",
+    "cd": 10,
+    "kind": "aoe",
+    "vfx": "ring",
+    "desc": "Colpo rotante"
+   }
+  ]
+ },
+ "cavaliere_oscuro": {
+  "key": "cavaliere_oscuro",
+  "name": "Cav. Oscuro",
+  "icon": "🌑",
+  "arch": "melee",
+  "maxHp": 95,
+  "attack": 18,
+  "defense": 5,
+  "speed": 5.5,
+  "radius": 0.6,
+  "range": 2.5,
+  "color": "#7c3aed",
+  "accent": "from-purple-600 to-violet-900",
+  "text": "text-purple-300",
+  "theme": "shadow",
+  "weapon": "greatsword",
+  "helmet": "horned",
+  "desc": "Cavaliere maledetto con spadone.",
+  "abilities": [
+   {
+    "name": "Lama Oscura",
+    "cd": 1.4,
+    "kind": "big_strike",
+    "vfx": "slash_big",
+    "desc": "Colpo pesante"
+   },
+   {
+    "name": "Corruzione",
+    "cd": 6,
+    "kind": "dot",
+    "vfx": "curse",
+    "desc": "Danno continuo"
+   },
+   {
+    "name": "Onda Nera",
+    "cd": 11,
+    "kind": "aoe",
+    "vfx": "aura",
+    "desc": "Esplosione ombra"
+   }
+  ]
+ },
+ "ninjia": {
+  "key": "ninjia",
+  "name": "Ninja",
+  "icon": "🥷",
+  "arch": "melee",
+  "maxHp": 82,
+  "attack": 19,
+  "defense": 3,
+  "speed": 5.9,
+  "radius": 0.56,
+  "range": 2.5,
+  "color": "#6ee7b7",
+  "accent": "from-teal-400 to-emerald-700",
+  "text": "text-teal-300",
+  "theme": "wind",
+  "weapon": "katana",
+  "helmet": "hood",
+  "desc": "Assassino del vento con katana.",
+  "abilities": [
+   {
+    "name": "Taglio",
+    "cd": 1,
+    "kind": "strike",
+    "vfx": "slash",
+    "desc": "Colpo rapido"
+   },
+   {
+    "name": "Tempesta di Tagli",
+    "cd": 6,
+    "kind": "chain",
+    "vfx": "multislash",
+    "desc": "Più colpi"
+   },
+   {
+    "name": "Ombracorrente",
+    "cd": 10,
+    "kind": "aoe",
+    "vfx": "aura",
+    "desc": "Esplosione vento"
+   }
+  ]
+ },
+ "boia": {
+  "key": "boia",
+  "name": "Boia",
+  "icon": "🪚",
+  "arch": "melee",
+  "maxHp": 88,
+  "attack": 20,
+  "defense": 4,
+  "speed": 5.4,
+  "radius": 0.62,
+  "range": 2.5,
+  "color": "#1f2937",
+  "accent": "from-gray-700 to-gray-900",
+  "text": "text-gray-300",
+  "theme": "shadow",
+  "weapon": "greatsword",
+  "helmet": "helmet",
+  "desc": "Esecutore implacabile.",
+  "abilities": [
+   {
+    "name": "Decapitazione",
+    "cd": 1.6,
+    "kind": "big_strike",
+    "vfx": "slash_big",
+    "desc": "Colpo pesante"
+   },
+   {
+    "name": "Marchio di Morte",
+    "cd": 6,
+    "kind": "dot",
+    "vfx": "curse",
+    "desc": "Danno continuo"
+   },
+   {
+    "name": "Esecuzione",
+    "cd": 11,
+    "kind": "aoe",
+    "vfx": "explosion",
+    "desc": "Esplosione mortale"
+   }
+  ]
+ },
+ "arciere": {
+  "key": "arciere",
+  "name": "Arciere",
+  "icon": "🏹",
+  "arch": "ranged",
+  "maxHp": 80,
+  "attack": 17,
+  "defense": 3,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 9,
+  "color": "#4ade80",
+  "accent": "from-emerald-500 to-green-600",
+  "text": "text-emerald-300",
+  "theme": "nature",
+  "weapon": "bow",
+  "helmet": "hood",
+  "desc": "Tiratore con arco, frecce verdi.",
+  "abilities": [
+   {
+    "name": "Freccia",
+    "cd": 1.1,
+    "kind": "shot",
+    "vfx": "projectile",
+    "desc": "Freccia rapida"
+   },
+   {
+    "name": "Tiro Preciso",
+    "cd": 5,
+    "kind": "big_shot",
+    "vfx": "projectile",
+    "desc": "Freccia potente"
+   },
+   {
+    "name": "Pioggia di Frecce",
+    "cd": 11,
+    "kind": "aoe",
+    "vfx": "rain",
+    "desc": "Pioggia di frecce"
+   }
+  ]
+ },
+ "mago": {
+  "key": "mago",
+  "name": "Mago",
+  "icon": "🔥",
+  "arch": "ranged",
+  "maxHp": 78,
+  "attack": 19,
+  "defense": 3,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 9,
+  "color": "#f97316",
+  "accent": "from-orange-500 to-red-600",
+  "text": "text-orange-300",
+  "theme": "fire",
+  "weapon": "staff",
+  "helmet": "hat",
+  "desc": "Pirómante con sfere di fuoco.",
+  "abilities": [
+   {
+    "name": "Dardo Infuocato",
+    "cd": 1.1,
+    "kind": "shot",
+    "vfx": "projectile",
+    "desc": "Dardo di fuoco"
+   },
+   {
+    "name": "Palla di Fuoco",
+    "cd": 6,
+    "kind": "big_shot",
+    "vfx": "projectile",
+    "desc": "Sfera esplosiva"
+   },
+   {
+    "name": "Esplosione",
+    "cd": 11,
+    "kind": "aoe",
+    "vfx": "explosion",
+    "desc": "Esplosione di fuoco"
+   }
+  ]
+ },
+ "stregone": {
+  "key": "stregone",
+  "name": "Stregone",
+  "icon": "😈",
+  "arch": "ranged",
+  "maxHp": 80,
+  "attack": 18,
+  "defense": 3,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 9,
+  "color": "#b91c1c",
+  "accent": "from-red-700 to-rose-900",
+  "text": "text-red-400",
+  "theme": "hell",
+  "weapon": "staff",
+  "helmet": "horned",
+  "desc": "Demoni dell'inferno, maledizioni.",
+  "abilities": [
+   {
+    "name": "Dardo Demonico",
+    "cd": 1.1,
+    "kind": "shot",
+    "vfx": "projectile",
+    "desc": "Dardo demoniaco"
+   },
+   {
+    "name": "Maledizione",
+    "cd": 6,
+    "kind": "dot",
+    "vfx": "curse",
+    "desc": "Maledizione infernale"
+   },
+   {
+    "name": "Demoni",
+    "cd": 11,
+    "kind": "aoe",
+    "vfx": "aura",
+    "desc": "Evocazione demoni"
+   }
+  ]
+ },
+ "necromante": {
+  "key": "necromante",
+  "name": "Necromante",
+  "icon": "💀",
+  "arch": "ranged",
+  "maxHp": 78,
+  "attack": 17,
+  "defense": 3,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 9,
+  "color": "#65a30d",
+  "accent": "from-lime-600 to-green-900",
+  "text": "text-lime-300",
+  "theme": "death",
+  "weapon": "staff",
+  "helmet": "hood",
+  "desc": "Signore dei morti, ossa e decomposizione.",
+  "abilities": [
+   {
+    "name": "Dardo d'Ossa",
+    "cd": 1.1,
+    "kind": "shot",
+    "vfx": "projectile",
+    "desc": "Dardo d'ossa"
+   },
+   {
+    "name": "Decomposizione",
+    "cd": 6,
+    "kind": "dot",
+    "vfx": "curse",
+    "desc": "Decomposizione"
+   },
+   {
+    "name": "Esercito di Morti",
+    "cd": 11,
+    "kind": "aoe",
+    "vfx": "curse",
+    "desc": "Evocazione morti"
+   }
+  ]
+ },
+ "crio_mago": {
+  "key": "crio_mago",
+  "name": "Crio Mago",
+  "icon": "❄️",
+  "arch": "ranged",
+  "maxHp": 80,
+  "attack": 17,
+  "defense": 4,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 9,
+  "color": "#22d3ee",
+  "accent": "from-cyan-400 to-sky-600",
+  "text": "text-cyan-300",
+  "theme": "frost",
+  "weapon": "staff",
+  "helmet": "hat",
+  "desc": "Mago del ghiaccio, congelamento.",
+  "abilities": [
+   {
+    "name": "Ghiacciolo",
+    "cd": 1.1,
+    "kind": "shot",
+    "vfx": "projectile",
+    "desc": "Ghiacciolo"
+   },
+   {
+    "name": "Lancia di Ghiaccio",
+    "cd": 6,
+    "kind": "big_shot",
+    "vfx": "projectile",
+    "desc": "Lancia di ghiaccio"
+   },
+   {
+    "name": "Congelamento",
+    "cd": 9,
+    "kind": "dot",
+    "vfx": "frost",
+    "desc": "Congela e danneggia"
+   }
+  ]
+ },
+ "fulmine_mago": {
+  "key": "fulmine_mago",
+  "name": "Mago Fulmine",
+  "icon": "⚡",
+  "arch": "ranged",
+  "maxHp": 76,
+  "attack": 19,
+  "defense": 2,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 9,
+  "color": "#facc15",
+  "accent": "from-yellow-400 to-amber-600",
+  "text": "text-yellow-300",
+  "theme": "storm",
+  "weapon": "staff",
+  "helmet": "circlet",
+  "desc": "Mago della tempesta, saette.",
+  "abilities": [
+   {
+    "name": "Saetta",
+    "cd": 1.1,
+    "kind": "shot",
+    "vfx": "lightning",
+    "desc": "Saetta rapida"
+   },
+   {
+    "name": "Catena di Fulmini",
+    "cd": 6,
+    "kind": "chain",
+    "vfx": "lightning",
+    "desc": "Fulmini multipli"
+   },
+   {
+    "name": "Tempesta",
+    "cd": 11,
+    "kind": "aoe",
+    "vfx": "aura",
+    "desc": "Tempesta elettrica"
+   }
+  ]
+ },
+ "cacciatore": {
+  "key": "cacciatore",
+  "name": "Cacciatore",
+  "icon": "🎯",
+  "arch": "ranged",
+  "maxHp": 84,
+  "attack": 16,
+  "defense": 4,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 9,
+  "color": "#a16207",
+  "accent": "from-amber-700 to-stone-800",
+  "text": "text-amber-400",
+  "theme": "beast",
+  "weapon": "crossbow",
+  "helmet": "hood",
+  "desc": "Cacciatore con balestra e trappole.",
+  "abilities": [
+   {
+    "name": "Balestra",
+    "cd": 1.1,
+    "kind": "shot",
+    "vfx": "projectile",
+    "desc": "Dardo di balestra"
+   },
+   {
+    "name": "Tiro Pesante",
+    "cd": 5,
+    "kind": "big_shot",
+    "vfx": "projectile",
+    "desc": "Tiro potente"
+   },
+   {
+    "name": "Trappola",
+    "cd": 11,
+    "kind": "aoe",
+    "vfx": "explosion",
+    "desc": "Trappola esplosiva"
+   }
+  ]
+ },
+ "sciamano": {
+  "key": "sciamano",
+  "name": "Sciamano",
+  "icon": "🪶",
+  "arch": "healer",
+  "noMana": true,
+  "maxHp": 80,
+  "attack": 11,
+  "defense": 6,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 6.5,
+  "color": "#2dd4bf",
+  "accent": "dbaA_sciamano",
+  "text": "text-teal-300",
+  "theme": "spectral",
+  "weapon": "staff",
+  "helmet": "horned",
+  "desc": "Cure spirituali a ricarica: non usa mana.",
+  "abilities": [
+   {
+    "name": "Spirito Guaritore",
+    "cd": 2.8,
+    "kind": "heal_single",
+    "vfx": "heal_beam",
+    "desc": "Cura uno spirito alleato"
+   },
+   {
+    "name": "Totem della Vita",
+    "cd": 7,
+    "kind": "regen",
+    "vfx": "regen",
+    "desc": "Rigenerazione 6s"
+   },
+   {
+    "name": "Richiamo Ancestrale",
+    "cd": 10,
+    "kind": "heal_aoe",
+    "vfx": "heal_ring",
+    "desc": "Cura tutto il party"
+   }
+  ]
+ },
+ "alchimista": {
+  "key": "alchimista",
+  "name": "Alchimista",
+  "icon": "⚗️",
+  "arch": "healer",
+  "noMana": true,
+  "maxHp": 76,
+  "attack": 12,
+  "defense": 5,
+  "speed": 5.2,
+  "radius": 0.6,
+  "range": 7,
+  "color": "#a3e635",
+  "accent": "dbaA_alchimista",
+  "text": "text-lime-300",
+  "theme": "venom",
+  "weapon": "dagger",
+  "helmet": "hat",
+  "desc": "Elisir e fiale: cure a ricarica, senza mana.",
+  "abilities": [
+   {
+    "name": "Elisir Vitale",
+    "cd": 2.6,
+    "kind": "heal_single",
+    "vfx": "heal_beam",
+    "desc": "Cura con un elisir"
+   },
+   {
+    "name": "Fiala Protettiva",
+    "cd": 8,
+    "kind": "shield",
+    "vfx": "bubble",
+    "desc": "Scudo alchemico"
+   },
+   {
+    "name": "Nube Rigenerante",
+    "cd": 11,
+    "kind": "heal_aoe",
+    "vfx": "heal_ring",
+    "desc": "Cura ad area"
+   }
+  ]
+ },
+ "sentinella_gelo": {
+  "key": "sentinella_gelo",
+  "name": "Sentinella Glaciale",
+  "icon": "🧊",
+  "arch": "tank",
+  "noMana": true,
+  "maxHp": 225,
+  "attack": 11,
+  "defense": 23,
+  "speed": 4.2,
+  "radius": 0.8,
+  "range": 2.5,
+  "color": "#7dd3fc",
+  "accent": "dbaA_sentinella_gelo",
+  "text": "text-sky-300",
+  "theme": "frost",
+  "weapon": "hammer",
+  "helmet": "helmet",
+  "desc": "Tank di ghiaccio, nessun mana: protegge gli alleati.",
+  "abilities": [
+   {
+    "name": "Colpo Glaciale",
+    "cd": 1.6,
+    "kind": "taunt_strike",
+    "vfx": "taunt_strike",
+    "desc": "Colpo + provocazione"
+   },
+   {
+    "name": "Muro di Brina",
+    "cd": 11,
+    "kind": "dual",
+    "vfx": "ring",
+    "dmg": 0.8,
+    "fx": [
+     "self",
+     "allyShield"
+    ],
+    "red": 0.6,
+    "desc": "Danno + scudo a sé e all'alleato ferito"
+   },
+   {
+    "name": "Urlo Polare",
+    "cd": 7,
+    "kind": "threat",
+    "vfx": "ring",
+    "desc": "Attira il boss 4s"
+   }
+  ]
+ },
+ "vindice": {
+  "key": "vindice",
+  "name": "Vindice",
+  "icon": "⚔️",
+  "arch": "tank",
+  "noMana": true,
+  "maxHp": 215,
+  "attack": 13,
+  "defense": 20,
+  "speed": 4.4,
+  "radius": 0.78,
+  "range": 2.5,
+  "color": "#fb923c",
+  "accent": "dbaA_vindice",
+  "text": "text-orange-300",
+  "theme": "bronze",
+  "weapon": "greatsword",
+  "helmet": "horned",
+  "desc": "Tank vendicativo, nessun mana: colpisce mentre si difende.",
+  "abilities": [
+   {
+    "name": "Marchio del Vindice",
+    "cd": 1.6,
+    "kind": "taunt_strike",
+    "vfx": "taunt_strike",
+    "desc": "Colpo + provocazione"
+   },
+   {
+    "name": "Rappresaglia",
+    "cd": 8,
+    "kind": "dual",
+    "vfx": "slash_big",
+    "dmg": 1.8,
+    "fx": [
+     "self"
+    ],
+    "red": 0.5,
+    "desc": "Colpo forte + difesa personale"
+   },
+   {
+    "name": "Giuramento",
+    "cd": 13,
+    "kind": "wall",
+    "vfx": "aura",
+    "desc": "Danni -65% 5s"
+   }
+  ]
+ },
+ "bardo": {
+  "key": "bardo",
+  "name": "Bardo",
+  "icon": "🎶",
+  "arch": "ranged",
+  "cat": "potenziamento",
+  "maxHp": 78,
+  "attack": 13,
+  "defense": 5,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 8.5,
+  "color": "#f472b6",
+  "accent": "dbaA_bardo",
+  "text": "text-pink-300",
+  "theme": "celestial",
+  "weapon": "staff",
+  "helmet": "hat",
+  "desc": "Potenziamento (mana): canti che feriscono il boss e aiutano il party.",
+  "abilities": [
+   {
+    "name": "Nota Tagliente",
+    "cd": 1.6,
+    "kind": "dual",
+    "vfx": "projectile",
+    "dmg": 1.2,
+    "fx": [
+     "heal"
+    ],
+    "cost": 4,
+    "desc": "Danno + piccola cura al più ferito",
+    "hp": 1.2
+   },
+   {
+    "name": "Inno del Coraggio",
+    "cd": 9,
+    "kind": "dual",
+    "vfx": "ring",
+    "dmg": 0.7,
+    "fx": [
+     "adaptAll"
+    ],
+    "cost": 20,
+    "desc": "Danno + potenzia ogni alleato secondo il ruolo"
+   },
+   {
+    "name": "Ballata Rigenerante",
+    "cd": 12,
+    "kind": "dual",
+    "vfx": "ring",
+    "dmg": 0.7,
+    "fx": [
+     "healAll"
+    ],
+    "cost": 24,
+    "desc": "Danno + cura il party"
+   }
+  ]
+ },
+ "artefice": {
+  "key": "artefice",
+  "name": "Artefice Runico",
+  "icon": "🔷",
+  "arch": "ranged",
+  "cat": "potenziamento",
+  "maxHp": 80,
+  "attack": 13,
+  "defense": 6,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 8,
+  "color": "#60a5fa",
+  "accent": "dbaA_artefice",
+  "text": "text-blue-300",
+  "theme": "crystal",
+  "weapon": "staff",
+  "helmet": "circlet",
+  "desc": "Potenziamento (mana): rune che colpiscono e creano barriere.",
+  "abilities": [
+   {
+    "name": "Runa Esplosiva",
+    "cd": 1.7,
+    "kind": "dual",
+    "vfx": "projectile",
+    "dmg": 1.3,
+    "fx": [
+     "bubble"
+    ],
+    "cost": 5,
+    "desc": "Danno + bolla sul più ferito"
+   },
+   {
+    "name": "Sigillo Protettivo",
+    "cd": 11,
+    "kind": "dual",
+    "vfx": "ring",
+    "dmg": 0.7,
+    "fx": [
+     "bubbleAll"
+    ],
+    "cost": 24,
+    "desc": "Danno + bolla leggera a tutto il party"
+   },
+   {
+    "name": "Runa del Potere",
+    "cd": 9,
+    "kind": "dual",
+    "vfx": "aura",
+    "dmg": 0.7,
+    "fx": [
+     "adapt"
+    ],
+    "cost": 18,
+    "desc": "Danno + potenzia il miglior DPS"
+   }
+  ]
+ },
+ "araldo": {
+  "key": "araldo",
+  "name": "Araldo di Guerra",
+  "icon": "📯",
+  "arch": "ranged",
+  "cat": "potenziamento",
+  "maxHp": 86,
+  "attack": 14,
+  "defense": 6,
+  "speed": 5,
+  "radius": 0.62,
+  "range": 7.5,
+  "color": "#fbbf24",
+  "accent": "dbaA_araldo",
+  "text": "text-amber-300",
+  "theme": "bronze",
+  "weapon": "spear",
+  "helmet": "helmet",
+  "desc": "Potenziamento (energia dai danni): squilli che accelerano e rinforzano.",
+  "abilities": [
+   {
+    "name": "Squillo d'Assalto",
+    "cd": 1.7,
+    "kind": "dual",
+    "vfx": "projectile",
+    "dmg": 1.3,
+    "fx": [
+     "speed"
+    ],
+    "cost": 6,
+    "desc": "Danno + velocità d'attacco a un alleato"
+   },
+   {
+    "name": "Grido di Battaglia",
+    "cd": 10,
+    "kind": "dual",
+    "vfx": "ring",
+    "dmg": 0.8,
+    "fx": [
+     "adaptAll"
+    ],
+    "cost": 28,
+    "desc": "Danno + potenzia ogni alleato secondo il ruolo"
+   },
+   {
+    "name": "Vessillo Curativo",
+    "cd": 12,
+    "kind": "dual",
+    "vfx": "aura",
+    "dmg": 1,
+    "fx": [
+     "heal",
+     "bubble"
+    ],
+    "cost": 30,
+    "desc": "Danno + cura e bolla"
+   }
+  ]
+ },
+ "mistico": {
+  "key": "mistico",
+  "name": "Mistico Solare",
+  "icon": "☀️",
+  "arch": "ranged",
+  "cat": "potenziamento",
+  "maxHp": 82,
+  "attack": 13,
+  "defense": 6,
+  "speed": 5,
+  "radius": 0.6,
+  "range": 8,
+  "color": "#fde047",
+  "accent": "dbaA_mistico",
+  "text": "text-yellow-300",
+  "theme": "light",
+  "weapon": "mace",
+  "helmet": "circlet",
+  "desc": "Potenziamento (energia dai danni): luce che ferisce, cura e protegge.",
+  "abilities": [
+   {
+    "name": "Raggio Solare",
+    "cd": 1.6,
+    "kind": "dual",
+    "vfx": "projectile",
+    "dmg": 1.3,
+    "fx": [
+     "heal"
+    ],
+    "cost": 6,
+    "desc": "Danno + cura il più ferito",
+    "hp": 1.4
+   },
+   {
+    "name": "Aura Dorata",
+    "cd": 11,
+    "kind": "dual",
+    "vfx": "ring",
+    "dmg": 0.8,
+    "fx": [
+     "bubbleAll"
+    ],
+    "cost": 28,
+    "desc": "Danno + bolla a tutto il party"
+   },
+   {
+    "name": "Eclissi",
+    "cd": 14,
+    "kind": "dual",
+    "vfx": "explosion",
+    "dmg": 1.6,
+    "fx": [
+     "adaptAll"
+    ],
+    "cost": 35,
+    "desc": "Danno forte + potenzia ogni alleato"
+   }
+  ]
+ }
+}

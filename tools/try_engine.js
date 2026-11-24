@@ -1,0 +1,7 @@
+const fs=require('fs'),vm=require('vm');
+const deps=fs.readFileSync('../reference/code/engine_deps.js','utf8'),eng=fs.readFileSync('../reference/code/engine_raw.js','utf8');
+const stub=new Proxy(function(){},{get:(t,k)=>k===Symbol.toPrimitive?()=>0:stub,apply:()=>stub,construct:()=>stub});
+const win={devicePixelRatio:1,addEventListener(){},removeEventListener(){},matchMedia:()=>({matches:false,addEventListener(){},addListener(){}}),localStorage:{getItem:()=>null,setItem(){},removeItem(){}},innerWidth:1000,innerHeight:600};
+const ctx={window:win,performance:{now:()=>Date.now()},console,localStorage:win.localStorage,document:{createElement:()=>stub,addEventListener(){},documentElement:stub,body:stub,getElementById:()=>null,querySelector:()=>null,querySelectorAll:()=>[]},navigator:{userAgent:'node',maxTouchPoints:0},location:{origin:'x',pathname:'/'},requestAnimationFrame(){},setTimeout,clearTimeout,setInterval:()=>0,clearInterval(){},AbortController:class{},Element:class{},HTMLElement:class{},IntersectionObserver:class{},PointerEvent:class{},SVGElement:class{},WeakSet,queueMicrotask};
+ctx.globalThis=ctx;vm.createContext(ctx);
+try{vm.runInContext(deps+'\n'+eng+'\nglobalThis.__q6=q6;globalThis.__Kc=Kc;globalThis.__ug=ug;',ctx,{filename:'engine.js'});console.log('ok',typeof ctx.__q6,typeof ctx.__ug,Object.keys(ctx.__Kc).length,JSON.stringify(ctx.__Kc.cavaliere).slice(0,400));const b=ctx.__ug(3,0,5);console.log(Object.keys(b).join(','));}catch(e){console.log('ERR',e.stack.split('\n').slice(0,4).join('\n'))}

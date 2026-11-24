@@ -1,0 +1,206 @@
+{
+ "arciere": [
+  {
+   "name": "Richiamo del Companion",
+   "cd": 12,
+   "kind": "revive_companion",
+   "vfx": "aura",
+   "desc": "Resuscita il tuo companion"
+  },
+  {
+   "name": "Pioggia di Colpi",
+   "cd": 7,
+   "kind": "aoe",
+   "vfx": "rain",
+   "desc": "Pioggia di proiettili"
+  },
+  {
+   "name": "Tiro Multiplo",
+   "cd": 12,
+   "kind": "chain",
+   "vfx": "lightning",
+   "desc": "Proiettili a catena"
+  },
+  {
+   "name": "Devastazione Arcana",
+   "cd": 18,
+   "kind": "big_shot",
+   "vfx": "projectile",
+   "desc": "Proiettile enorme"
+  },
+  {
+   "name": "Apocalisse",
+   "cd": 22,
+   "kind": "aoe",
+   "vfx": "explosion",
+   "desc": "Esplosione finale"
+  },
+  {
+   "name": "Dardo Rapido",
+   "cd": 5,
+   "kind": "shot",
+   "vfx": "projectile",
+   "desc": "Tiro veloce"
+  },
+  {
+   "name": "Catena Folgorante",
+   "cd": 13,
+   "kind": "chain",
+   "vfx": "lightning",
+   "desc": "Fulmini a catena"
+  },
+  {
+   "name": "Tempesta di Frecce",
+   "cd": 16,
+   "kind": "aoe",
+   "vfx": "rain",
+   "desc": "Pioggia su tutta l'area"
+  },
+  {
+   "name": "Colpo Perfetto",
+   "cd": 24,
+   "kind": "big_shot",
+   "vfx": "projectile",
+   "desc": "Colpo mirato enorme"
+  }
+ ],
+ "cacciatore": [
+  {
+   "name": "Richiamo del Companion",
+   "cd": 12,
+   "kind": "revive_companion",
+   "vfx": "aura",
+   "desc": "Resuscita il tuo companion"
+  },
+  {
+   "name": "Pioggia di Colpi",
+   "cd": 7,
+   "kind": "aoe",
+   "vfx": "rain",
+   "desc": "Pioggia di proiettili"
+  },
+  {
+   "name": "Tiro Multiplo",
+   "cd": 12,
+   "kind": "chain",
+   "vfx": "lightning",
+   "desc": "Proiettili a catena"
+  },
+  {
+   "name": "Devastazione Arcana",
+   "cd": 18,
+   "kind": "big_shot",
+   "vfx": "projectile",
+   "desc": "Proiettile enorme"
+  },
+  {
+   "name": "Apocalisse",
+   "cd": 22,
+   "kind": "aoe",
+   "vfx": "explosion",
+   "desc": "Esplosione finale"
+  },
+  {
+   "name": "Dardo Rapido",
+   "cd": 5,
+   "kind": "shot",
+   "vfx": "projectile",
+   "desc": "Tiro veloce"
+  },
+  {
+   "name": "Catena Folgorante",
+   "cd": 13,
+   "kind": "chain",
+   "vfx": "lightning",
+   "desc": "Fulmini a catena"
+  },
+  {
+   "name": "Tempesta di Frecce",
+   "cd": 16,
+   "kind": "aoe",
+   "vfx": "rain",
+   "desc": "Pioggia su tutta l'area"
+  },
+  {
+   "name": "Colpo Perfetto",
+   "cd": 24,
+   "kind": "big_shot",
+   "vfx": "projectile",
+   "desc": "Colpo mirato enorme"
+  }
+ ],
+ "stregone": [
+  {
+   "name": "Evocazione Maggiore",
+   "cd": 10,
+   "kind": "summon_boost",
+   "boost": 2,
+   "vfx": "aura",
+   "desc": "Evoca companion x2.0"
+  },
+  {
+   "name": "Evocazione Suprema",
+   "cd": 16,
+   "kind": "summon_boost",
+   "boost": 4,
+   "vfx": "aura",
+   "desc": "Evoca companion x4.0"
+  },
+  {
+   "name": "Pioggia di Colpi",
+   "cd": 7,
+   "kind": "aoe",
+   "vfx": "rain",
+   "desc": "Pioggia di proiettili"
+  },
+  {
+   "name": "Tiro Multiplo",
+   "cd": 12,
+   "kind": "chain",
+   "vfx": "lightning",
+   "desc": "Proiettili a catena"
+  },
+  {
+   "name": "Devastazione Arcana",
+   "cd": 18,
+   "kind": "big_shot",
+   "vfx": "projectile",
+   "desc": "Proiettile enorme"
+  },
+  {
+   "name": "Apocalisse",
+   "cd": 22,
+   "kind": "aoe",
+   "vfx": "explosion",
+   "desc": "Esplosione finale"
+  },
+  {
+   "name": "Dardo Rapido",
+   "cd": 5,
+   "kind": "shot",
+   "vfx": "projectile",
+   "desc": "Tiro veloce"
+  },
+  {
+   "name": "Catena Folgorante",
+   "cd": 13,
+   "kind": "chain",
+   "vfx": "lightning",
+   "desc": "Fulmini a catena"
+  },
+  {
+   "name": "Tempesta di Frecce",
+   "cd": 16,
+   "kind": "aoe",
+   "vfx": "rain",
+   "desc": "Pioggia su tutta l'area"
+  },
+  {
+   "name": "Colpo Perfetto",
+   "cd": 24,
+   "kind": "big_shot",
+   "vfx": "projectile",
+   "desc": "Colpo mirato enorme"
+  }
+ ]
+}

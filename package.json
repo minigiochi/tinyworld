@@ -1,0 +1,10 @@
+{
+  "name": "tiny-world",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tiny World - riscrittura modulare (browser, HTML/JS statico)",
+  "scripts": {
+    "start": "python3 -m http.server 8080 --directory web",
+    "bundle": "node tools/bundle.js"
+  }
+}
