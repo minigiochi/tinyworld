@@ -528,3 +528,7 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Flusso (coop/world): crea party → Automatico/Comanda 1 eroe → modalità (Dungeon, Open world, Boss diretto) → Solo o Coop → partenza. Il pulsante "Boss Coop" separato è stato rimosso. Dungeon: coop non disponibile. Open world coop solo nella versione world.
 - Lobby coop da 1 a 4 giocatori (si può avviare da soli). Titoli e pulsanti seguono la modalità scelta.
 - Verificato: matematica dell'accumulatore a 30/60/144 fps, flusso con screenshot, avvio boss coop con 1 giocatore, ingresso nel mondo coop con 1 giocatore, boss solo. Non verificato: sensazione reale della velocità su schermi veloci/telefoni, partita coop con 2+ giocatori dopo questa modifica, interfaccia di "Comanda 1 eroe" ancora da ridurre.
+
+## Interfaccia "Comanda 1 eroe" più piccola (verticale e orizzontale)
+- Con il comando attivo: pannello abilità ridotto (verticale ×0.84, orizzontale ×0.76 su una sola riga di 8 pulsanti), schede eroe ridotte (×0.8 / ×0.7) senza la riga del livello, barra superiore, pillole HP/sopravvissuti, titolo boss e pulsanti a sinistra ridotti. Solo CSS in orig/script_14.js, attivo con body.dba-cmd e solo su schermi piccoli (≤760 px in verticale, ≤520 px di altezza in orizzontale).
+- Verificato: screenshot 390×844 e 844×390 (a 2× di densità) e desktop senza errori. Non verificato: telefoni reali, tablet, schermi molto stretti, altre modalità (automatico non cambiato).
