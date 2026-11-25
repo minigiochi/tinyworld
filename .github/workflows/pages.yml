@@ -22,5 +22,14 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: web
+      - name: Attendi che l'artefatto sia disponibile
+        run: sleep 20
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Secondo tentativo di pubblicazione
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 45
+      - id: deployment2
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
