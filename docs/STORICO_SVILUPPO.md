@@ -555,3 +555,9 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Correzione: seme calcolato con rumore di valore continuo (celle di ~14 unità) invece dell'hash caotico; la tinta usa il seme riscalato. Resta una deriva lentissima e impercettibile durante l'ondeggiamento.
 - La correzione `highp` di Mini3D (battaglia) resta come miglioramento separato.
 - Non verificato su telefono; il test visivo dell'ondeggiamento in headless non è stato conclusivo, la prova è numerica.
+
+## Blocco dopo la sconfitta in battaglia (mondo aperto)
+- Sintomo: dopo la morte del party in alcuni combattimenti il gioco si blocca; rientrando, il party è morto ma si muove nel mondo aperto.
+- Causa del blocco (non della singola eccezione): il ciclo di gioco richiedeva il fotogramma successivo solo in coda alla funzione, quindi qualsiasi errore al suo interno fermava tutto; inoltre se la funzione di fine battaglia lanciava un errore, la schermata di sconfitta non compariva e la battaglia restava a metà (eroi morti salvati).
+- Correzioni: (1) il ciclo continua sempre (try/catch, il fotogramma successivo è garantito); (2) l'errore nel callback di fine battaglia viene intercettato, la battaglia viene chiusa e, se è una sconfitta, compare comunque la schermata "Risorgi al campo"; (3) guardiano nel mondo aperto ogni 2,5 s: se il party è tutto morto e non c'è nessuna finestra aperta né battaglia, propone di risorgere (copre anche i salvataggi già "morti").
+- Verificato: sconfitta naturale e forzata su più nemici (modale "Il party è caduto" sempre presente) e un errore simulato nel callback (recuperato). NON ho riprodotto il blocco originale: la causa esatta dell'errore resta ignota. Gli errori vengono salvati in `window.__dbaLoopErr` e `window.__dbaCbErr` per diagnosi.
