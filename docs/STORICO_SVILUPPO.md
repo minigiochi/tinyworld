@@ -539,3 +539,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Correzioni: isteresi sull'avvicinamento (si ferma a 85% della portata, riparte oltre portata+0,35), separazione limitata e più dolce, rotazione graduale con sguardo verso il boss in combattimento.
 - Misura su una battaglia simulata (4 eroi, boss): inversioni di direzione 703 → 63; distanza percorsa dagli eroi circa 285 → 103 (parte da battaglie di durata diversa, quindi indicativa).
 - Non verificato: sensazione su telefono, coop reale con 2+ giocatori.
+
+## Icone del party sempre visibili, schermo intero automatico
+- Schede eroe e icone ultimate si adattano alla larghezza dello schermo (niente scorrimento): colonne dinamiche (5 in verticale, fino a una ogni ~84 px in orizzontale), righe più basse, testi ridotti, barra energia nascosta nelle schede compatte; si ricalcolano alla rotazione/ridimensionamento.
+- All'avvio di ogni battaglia l'HUD chiede lo schermo intero (se l'utente esce, non viene richiesto di nuovo nella stessa battaglia). Limite: i browser lo permettono solo dopo un tocco, e su iPhone Safari non supporta lo schermo intero per elementi.
+- Verificato con 4 e 8 eroi in verticale (390x844), 6 in orizzontale (844x390), 10 su desktop: tutte le schede dentro lo schermo.
