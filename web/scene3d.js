@@ -350,7 +350,7 @@
       },
       drawHero(h, boss, T, eng) {
         if (!h.pos) return; const s = st.heroes[h.id] = st.heroes[h.id] || { x: h.pos.x, z: h.pos.z, face: 0, step: 0, fall: 0 };
-        const dx = h.pos.x - s.x, dz = h.pos.z - s.z, moved = Math.hypot(dx, dz); if (moved > .002) { s.face = Math.atan2(dx, dz); s.step += moved * 6; } else if (boss && boss.pos) s.face = Math.atan2(boss.pos.x - h.pos.x, boss.pos.z - h.pos.z);
+        const dx = h.pos.x - s.x, dz = h.pos.z - s.z, moved = Math.hypot(dx, dz); if (moved > .002) s.step += moved * 6; { let want = s.face; const bd = boss && boss.pos && boss.alive !== false ? Math.hypot(boss.pos.x - h.pos.x, boss.pos.z - h.pos.z) : 1e9; if (bd < (h.baseRange || 3) + 4 || (moved <= .002 && boss && boss.pos)) want = Math.atan2(boss.pos.x - h.pos.x, boss.pos.z - h.pos.z); else if (moved > .002) want = Math.atan2(dx, dz); let dd = want - s.face; dd = Math.atan2(Math.sin(dd), Math.cos(dd)); s.face += dd * .18; }
         s.x = h.pos.x; s.z = h.pos.z; const base = hex(h.color || ARCH[h.arch] || '#fff'), acc = hex(h.accent || '#e5e7eb');
         const fl = Math.max(0, 1 - (clock - (st.flash[h.id] || -9)) / .25), cc = base.map((x) => Math.min(1, x * .8 + .15 + fl * .6));
         const big = h.arch === 'tank' ? 1.2 : 1, bob = Math.abs(Math.sin(s.step)) * .08, ls = clock - (st.lunge[h.id] || -9), L = ls < .3 ? Math.sin(ls / .3 * Math.PI) : 0;

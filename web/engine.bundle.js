@@ -838,7 +838,7 @@ function hero_moveNormally(eng, g, dx, dz, distBoss, range, dt) {
   if (flee) {
     const sp = g.speed * dt * 1.5;
     g.pos.x += flee.x * sp; g.pos.z += flee.z * sp; g.moving = true;
-  } else if (distBoss > range) {
+  } else if ((g._ap = distBoss > (g._ap ? range * 0.85 : range + 0.35))) {
     const sp = g.speed * dt;
     g.pos.x += (dx / distBoss) * sp; g.pos.z += (dz / distBoss) * sp; g.moving = true;
   } else {
@@ -877,7 +877,7 @@ function step_heroAct(eng, g, aliveAtStart, dt, ev) {
   for (const o of aliveAtStart) {
     if (o === g) continue;
     const ox = g.pos.x - o.pos.x, oz = g.pos.z - o.pos.z, d = Math.hypot(ox, oz), min = g.radius + o.radius;
-    if (d > 0 && d < min) { const push = (min - d) / 2; g.pos.x += (ox / d) * push; g.pos.z += (oz / d) * push; }
+    if (d > 0 && d < min) { const push = Math.min((min - d) / 2, g.speed * dt * 0.5) * 0.5; g.pos.x += (ox / d) * push; g.pos.z += (oz / d) * push; }
   }
   const p = eng.clampToArena(g.pos.x, g.pos.z); g.pos.x = p.x; g.pos.z = p.z;
   eng.useAbility(g, distBoss <= range + 0.6, ev);

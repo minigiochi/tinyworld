@@ -532,3 +532,10 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 ## Interfaccia "Comanda 1 eroe" più piccola (verticale e orizzontale)
 - Con il comando attivo: pannello abilità ridotto (verticale ×0.84, orizzontale ×0.76 su una sola riga di 8 pulsanti), schede eroe ridotte (×0.8 / ×0.7) senza la riga del livello, barra superiore, pillole HP/sopravvissuti, titolo boss e pulsanti a sinistra ridotti. Solo CSS in orig/script_14.js, attivo con body.dba-cmd e solo su schermi piccoli (≤760 px in verticale, ≤520 px di altezza in orizzontale).
 - Verificato: screenshot 390×844 e 844×390 (a 2× di densità) e desktop senza errori. Non verificato: telefoni reali, tablet, schermi molto stretti, altre modalità (automatico non cambiato).
+
+## Battaglie: velocità predefinita 1×, movimenti stabili
+- Velocità predefinita 1× (prima 2×); aggiunta l'opzione 0,5× nel selettore e nella barra in alto.
+- Causa del va-e-vieni: gli eroi si avvicinavano al boss, la separazione tra eroi li respingeva e riprendevano ad avvicinarsi, girandosi a ogni passo.
+- Correzioni: isteresi sull'avvicinamento (si ferma a 85% della portata, riparte oltre portata+0,35), separazione limitata e più dolce, rotazione graduale con sguardo verso il boss in combattimento.
+- Misura su una battaglia simulata (4 eroi, boss): inversioni di direzione 703 → 63; distanza percorsa dagli eroi circa 285 → 103 (parte da battaglie di durata diversa, quindi indicativa).
+- Non verificato: sensazione su telefono, coop reale con 2+ giocatori.
