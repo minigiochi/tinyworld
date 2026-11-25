@@ -549,3 +549,9 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Causa probabile: lo shader di Mini3D (battaglia) usava `precision mediump float`; le texture triplanari di tronchi e chiome sono calcolate dalla posizione nel mondo (`vW * uTri`), e in mezza precisione (16 bit, tipica dei telefoni) le coordinate perdono precisione, quindi da vicino la texture sfarfalla e va a blocchi. Sul PC la mezza precisione coincide con la precisione piena, per questo non si vede.
 - Correzione: precisione piena (`highp`) quando il dispositivo la supporta, con ripiego su `mediump`.
 - NON riprodotto qui (il browser di prova usa precisione piena): correzione basata sull'analisi del codice, da confermare su telefono.
+
+## Sfarfallio delle texture degli alberi (mondo aperto) — causa vera
+- Dal video dell'utente: il tronco, vicino, sfarfalla. Le texture degli alberi (shader DBA_OM) usavano un "seme" per albero calcolato con un hash caotico della posizione della mesh nel mondo. Quando ci si avvicina (<75 m) gli alberi cominciano a ondeggiare: la rotazione del gruppo sposta di pochi decimi di unità l'origine di tronco e chioma, e l'hash cambiava del tutto a ogni fotogramma (misura: cambio medio del seme ~0,33 su 1 per uno spostamento di 0,15; ora ~0,0003-0,002).
+- Correzione: seme calcolato con rumore di valore continuo (celle di ~14 unità) invece dell'hash caotico; la tinta usa il seme riscalato. Resta una deriva lentissima e impercettibile durante l'ondeggiamento.
+- La correzione `highp` di Mini3D (battaglia) resta come miglioramento separato.
+- Non verificato su telefono; il test visivo dell'ondeggiamento in headless non è stato conclusivo, la prova è numerica.
