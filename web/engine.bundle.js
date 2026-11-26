@@ -518,7 +518,7 @@ function boss_affix(eng, boss, alive, dt, ev) {
   if (boss.afxCd > 0) return;
   const from = { x: boss.pos.x, z: boss.pos.z };
   if (boss.affix === 'heal') {
-    boss.afxCd = 10; boss.hp = Math.min(boss.maxHp, boss.hp + boss.maxHp * 0.05);
+    boss.afxCd = 12; boss.hp = Math.min(boss.maxHp, boss.hp + boss.maxHp * 0.025);
     ev.push({ t: 'aoe', who: 'boss', from, kind: 'bossAoE', label: '✚ Rigenerazione', c: '#4ade80' });
   } else if (boss.affix === 'summon') {
     boss.afxCd = 12;

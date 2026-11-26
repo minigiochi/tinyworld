@@ -113,10 +113,10 @@
 
   /* ---------- eroi ---------- */
   function myHeroList() {
-    var keys = pkeys(), L = +$('lv').value || 10;
+    var keys = pkeys(), L = +$('lv').value || 1;
     return keys.map(function (k, i) { var h = hero(k, i, L); return { i: i, k: k, name: h.name, cls: h.className, icon: h.icon, level: h.level }; });
   }
-  function buildMyHero(i) { var k = pkeys()[i], h = hero(k, i, +$('lv').value || 10); return JSON.parse(JSON.stringify(h)); }
+  function buildMyHero(i) { var k = pkeys()[i], h = hero(k, i, +$('lv').value || 1); return JSON.parse(JSON.stringify(h)); }
   function lobbyView() {
     return { players: C.players.map(function (p) { return { name: p.name, hero: p.label || null, connected: p.connected !== false }; }), cfg: C.cfg };
   }
@@ -217,7 +217,7 @@
     C.players.forEach(function (p, pi) {
       if (!p || !p.hero) return; var h = JSON.parse(JSON.stringify(p.hero)); h.appId = h.id; h.id = 'p' + pi + '_' + h.id; heroes.push(h); owners[h.id] = pi;
     });
-    var target = Math.max(4, heroes.length), mine = C.players[0].hero, keys = pkeys(), L = +$('lv').value || 10;
+    var target = Math.max(4, heroes.length), mine = C.players[0].hero, keys = pkeys(), L = +$('lv').value || 1;
     keys.forEach(function (k, i) {
       if (heroes.length >= target) return; var h0 = hero(k, i, L); if (mine && h0.id === mine.id) return;
       var h = JSON.parse(JSON.stringify(h0)); h.appId = h.id; h.id = 'a' + i + '_' + h.id; heroes.push(h);
@@ -324,7 +324,7 @@
   }
   function bossOpts() { var t = $('ti'), h = ''; if (t) for (var i = 0; i < t.options.length; i++) h += '<option value="' + t.options[i].value + '"' + (+t.options[i].value === +C.cfg.ti ? ' selected' : '') + '>' + E(t.options[i].textContent) + '</option>'; return h; }
   function render() {
-    if (!UI) return; var h = '<div style="max-width:560px;width:100%"><h2 style="color:#fde68a;margin:0 0 4px;text-align:center">'+(C.mode === 'o' ? '🌍 Open world coop' : '🤝 Boss Coop')+'</h2><div style="font-size:12px;color:#94a3b8;text-align:center;margin-bottom:10px">1-4 giocatori · ognuno comanda un eroe · connessione diretta, senza server</div>';
+    if (!UI) return; var h = '<div style="max-width:560px;width:100%"><h2 style="color:#fde68a;margin:0 0 4px;text-align:center">'+(C.mode === 'o' ? '🌍 Open world coop' : '🤝 Boss Coop')+'</h2><div style="font-size:12px;color:#94a3b8;text-align:center;margin-bottom:10px">1-4 giocatori · ognuno comanda un eroe · connessione diretta, senza server</div><div style="font-size:12px;color:#fbbf24;opacity:.85;text-align:center;margin-bottom:10px">Crea una stanza o unisciti</div>';
     if (!C.role) {
       h += '<label style="font-size:12px;color:#94a3b8">Il tuo nome</label><input id="cpName" value="' + E(C.name) + '" maxlength="20" style="' + ss + ';width:100%;box-sizing:border-box;margin-bottom:6px"><button data-a="host" style="' + cs + '">👑 Crea una stanza pubblica</button><button data-a="browse" style="' + cs + '">🌐 Cerca stanze pubbliche</button><button data-a="join" style="' + cs + ';font-size:13px;border-color:#475569;color:#cbd5e1;background:none">🔑 Entra con un codice (avanzato)</button><button data-a="x" style="' + cs + ';font-size:13px;border-color:#475569;color:#94a3b8;background:none">Annulla</button>';
     } else if (C.role === 'host') {

@@ -565,3 +565,11 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 ### Aggiunta: banner diagnostico e prova col Prismatico
 - Il blocco è avvenuto contro il nemico multicolore (Prismatico, `DBA_PRISM`). Provato in simulazione a livelli -6, -1, 0…11 (firme "barrage" e "ring"), con motore (2400 passi) e con rendering reale: nessuna eccezione, sconfitta e schermata "Il party è caduto" sempre corrette. Causa non riprodotta.
 - Se un errore avviene nel ciclo di gioco o a fine battaglia, ora compare per 9 secondi un banner rosso in basso con messaggio e punto del codice (da fotografare e inviare).
+
+## Bilanciamento nemici, livello 1, solo open world, suggerimenti
+- **Vita nemici**: nel mondo il moltiplicatore base della vita dei nemici era ×2,2; ora ×1,1. Misura (party di 4 eroi livello 1, simulazione): mostri normali 1500-2100 PV e 30-70 s per abbatterli → 450-1300 PV e circa 10-30 s. Mini-boss (elite) da 5300-10800 PV a circa 2100-4300 PV.
+- **Cura automatica**: l'affisso "Rigenerazione" degli elite curava il 5% della vita massima ogni 10 s (fino a 2300-3700 PV curati in un combattimento, la barra tornava piena); ora 2,5% ogni 12 s (circa 160-290 PV in un combattimento). Restano invariati la cura per colpo dello stile "corno" e la firma "drain" (4-5% a lancio) di alcuni boss.
+- **Livello iniziale**: il campo livello base era 10; ora è 1 (anche nel coop). I salvataggi esistenti mantengono i livelli già raggiunti: per ripartire da 1 serve una nuova partita.
+- **Modalità**: nascosti Dungeon e Boss diretto nel selettore, tolta "Esperienza veloce" e il tasto "Cambia modalità"; resta solo Open world (Solo / Coop). Il codice dei modi nascosti resta nel progetto.
+- **Suggerimenti (max 6 parole)**: schermate di accesso, modalità, slot, party, selettore, lobby coop; e hints.js per il mondo (movimento, nemici, zaino/mappa) e per la battaglia (abilità o automatico, velocità).
+- Non verificato: bilanciamento a livelli alti (>10), coop reale con 2+ giocatori, telefono reale.
