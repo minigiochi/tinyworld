@@ -601,3 +601,9 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Causa: la configurazione degli eroi (livello, XP, talenti) era salvata in una chiave globale `dbaNextCfg` condivisa da tutte le partite e legata agli id `u1…u4`. Una partita nuova ereditava i livelli rimasti dalle vecchie versioni (quando il livello predefinito era 10, poi +1 con l'XP).
 - Correzione: la configurazione è ora separata per slot (`dbaNextCfg_s<N>`), senza ripiego sulla chiave della classe. Le partite esistenti ripartono dal livello 1 (inventario e oggetti non toccati).
 - Prova: con un `dbaNextCfg` sporco (livello 11 su u1–u4) una partita nuova parte con i 4 eroi a livello 1.
+
+## Mondo sempre attivo (server Node per Render)
+- `server/server.js` (dipendenza `ws`): relè WebSocket `/world` con lo stesso protocollo del mondo coop, seme fisso, area di interesse (12 giocatori vicini), massimo 30 giocatori, `/healthz`, file statici di `web/`. Le richieste di combattimento ricevono `wdeny`: il client combatte in locale (ripiego già esistente).
+- Client (coop.js): pulsante "🌍 Mondo sempre attivo (server)" nel menu coop dell'open world; indirizzo salvato in `dba_srv`; messaggi `wj`/`wl`/`wfull`. `server-config.js` per un indirizzo predefinito.
+- `render.yaml` (Blueprint, piano gratuito), `.github/workflows/keepalive.yml` (ping /healthz ogni 10 min, variabile `RENDER_URL`), `server/keepalive.js` (stesso ping da un PC), guida `docs/RENDER.md`.
+- Prova locale: server + 2 browser dal gioco: entrambi si vedono (avatar, eroe), combattimento locale, uscita rimuove l'avatar. Non provato su Render né con molti giocatori.

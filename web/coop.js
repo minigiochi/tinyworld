@@ -140,6 +140,9 @@
       else if (m.t === 'wdeny') { worldFightDeny(); }
       else if (m.t === 'wh') { if (m.hero && W.on) setHero(m.i, m.hero); }
       else if (m.t === 'wstart') worldStart(m);
+      else if (m.t === 'wj') { if (W.on && m.p) W.pl[m.p.i] = m.p; }
+      else if (m.t === 'wl') { delete W.rem[m.i]; delete W.pl[m.i]; dropAv(m.i); }
+      else if (m.t === 'wfull' || m.t === 'werr') { srvFail(m.t === 'wfull' ? 'Il mondo è pieno (' + m.max + ' giocatori): riprova tra poco.' : (m.msg || 'Errore del server')); }
       else if (m.t === 'ws') { var nw = performance.now(), seen = {}; m.p.forEach(function (r) { seen[r[0]] = 1; W.rem[r[0]] = { x: +r[1], z: +r[2], h: +r[3], m: r[4] ? 1 : 0, j: +r[5] || 0, ts: nw }; }); }
       else if (m.t === 'i') { (C.sched[m.k] = C.sched[m.k] || []).push(m); }
       else if (m.t === 'h') { if (m.k > C.hostTick) C.hostTick = m.k; }
@@ -328,7 +331,7 @@
   function render() {
     if (!UI) return; var h = '<div style="max-width:560px;width:100%"><h2 style="color:#fde68a;margin:0 0 4px;text-align:center">'+(C.mode === 'o' ? '🌍 Open world coop' : '🤝 Boss Coop')+'</h2><div style="font-size:12px;color:#94a3b8;text-align:center;margin-bottom:10px">1-4 giocatori · ognuno comanda un eroe · connessione diretta, senza server</div><div style="font-size:12px;color:#fbbf24;opacity:.85;text-align:center;margin-bottom:10px">Crea una stanza o unisciti</div>';
     if (!C.role) {
-      h += '<label style="font-size:12px;color:#94a3b8">Il tuo nome</label><input id="cpName" value="' + E(C.name) + '" maxlength="20" style="' + ss + ';width:100%;box-sizing:border-box;margin-bottom:6px"><button data-a="host" style="' + cs + '">👑 Crea una stanza pubblica</button><button data-a="browse" style="' + cs + '">🌐 Cerca stanze pubbliche</button><button data-a="join" style="' + cs + ';font-size:13px;border-color:#475569;color:#cbd5e1;background:none">🔑 Entra con un codice (avanzato)</button><button data-a="x" style="' + cs + ';font-size:13px;border-color:#475569;color:#94a3b8;background:none">Annulla</button>';
+      h += '<label style="font-size:12px;color:#94a3b8">Il tuo nome</label><input id="cpName" value="' + E(C.name) + '" maxlength="20" style="' + ss + ';width:100%;box-sizing:border-box;margin-bottom:6px">' + (C.mode === 'o' ? '<button data-a="srv" style="' + cs + ';border-color:rgba(134,239,172,.7);color:#bbf7d0">🌍 Mondo sempre attivo (server)</button>' : '') + '<button data-a="host" style="' + cs + '">👑 Crea una stanza pubblica</button><button data-a="browse" style="' + cs + '">🌐 Cerca stanze pubbliche</button><button data-a="join" style="' + cs + ';font-size:13px;border-color:#475569;color:#cbd5e1;background:none">🔑 Entra con un codice (avanzato)</button><button data-a="x" style="' + cs + ';font-size:13px;border-color:#475569;color:#94a3b8;background:none">Annulla</button>';
     } else if (C.role === 'host') {
       h += playersHtml() + (C.pub ? '<div style="font-size:13px;color:#86efac;margin:6px 0">🌐 Stanza pubblica visibile a tutti nell\'elenco · attendi che gli amici entrino</div>' : '') + (dirErr ? '<div style="font-size:12px;color:#fca5a5;margin:6px 0">⚠ ' + E(dirErr) + '</div>' : '');
       h += '<details style="margin:8px 0"><summary style="font-size:12px;color:#94a3b8;cursor:pointer">Invito manuale con codice (avanzato)</summary>';
@@ -347,6 +350,7 @@
     } else {
       if (gstage === 'browse') h += browseHtml();
       else if (gstage === 'joining' || gstage === 'link') h += '<div style="margin:14px 0;color:#fde68a">⏳ Collegamento alla stanza in corso…</div>' + (gerr ? '<div style="color:#fca5a5;font-size:12px">' + E(gerr) + '</div>' : '');
+      else if (gstage === 'srv') h += '<div style="font-size:13px;color:#bbf7d0;margin:6px 0">🌍 Mondo condiviso sempre acceso: entri quando vuoi, anche senza amici connessi. Ogni giocatore combatte con il proprio party.</div><label style="font-size:12px;color:#94a3b8">Il tuo nome</label><input id="cpName" value="' + E(C.name) + '" maxlength="20" style="' + ss + ';width:100%;box-sizing:border-box;margin-bottom:6px"><label style="font-size:12px;color:#94a3b8">Indirizzo del server</label><input id="cpSrv" value="' + E(srvUrl()) + '" placeholder="tinyworld.onrender.com" style="' + ss + ';width:100%;box-sizing:border-box;margin-bottom:6px">' + heroPicker() + (gerr ? '<div style="color:#fca5a5;font-size:12px;margin:8px 0">' + E(gerr) + '</div>' : '') + '<button data-a="srvgo" style="' + cs + (C.picked != null ? '' : ';opacity:.45') + '">🌍 Entra nel mondo</button>';
       else if (gstage === 'enter') h += '<div style="font-size:13px;margin:6px 0">1) Incolla il codice ricevuto dall\'host</div><textarea id="cpOffer" style="' + ts + '"></textarea><button data-a="jn" style="' + cs + '">Genera la risposta</button>' + (gerr ? '<div style="color:#fca5a5;font-size:12px">' + E(gerr) + '</div>' : '');
       else if (gstage === 'answer') h += '<div style="font-size:13px;margin:6px 0">2) Invia questa risposta all\'host e attendi il collegamento</div><textarea readonly style="' + ts + '" onclick="this.select()">' + E(gcode) + '</textarea><button data-a="cpg" style="' + ss + '">📋 Copia</button><div style="color:#94a3b8;font-size:12px;margin-top:8px">⏳ In attesa che l\'host ti colleghi…</div>';
       else h += playersHtml() + heroPicker() + '<div style="font-size:12px;color:#94a3b8;margin-top:10px">Boss: ' + E(bossName()) + ' · Livello ' + C.cfg.lv + '</div><div style="color:#fde68a;font-size:13px;margin-top:8px">⏳ Attendi che l\'host avvii la battaglia…</div>' + (C.hostGone ? '<div style="color:#fca5a5">Connessione persa</div>' : '');
@@ -359,6 +363,7 @@
     UI.querySelectorAll('button[data-pick]').forEach(function (b) { b.onclick = function () { pick(+b.dataset.pick); }; });
     UI.querySelectorAll('button[data-a]').forEach(function (b) { b.onclick = function () { act(b.dataset.a, +b.dataset.s); }; });
     var nm = $('cpName'); if (nm) nm.oninput = function () { C.name = nm.value || 'Giocatore'; };
+    var si = $('cpSrv'); if (si) si.oninput = function () { srvTmp = si.value; };
     var t1 = $('cpTi'), l1 = $('cpLv'), b1 = $('cpBi');
     if (t1) t1.onchange = function () { C.cfg.ti = +t1.value; pushLobby(); };
     if (l1) l1.onchange = function () { C.cfg.lv = Math.max(1, Math.min(80, +l1.value || 10)); pushLobby(); };
@@ -386,6 +391,8 @@
     if (a === 'host') { C.role = 'host'; C.name = ($('cpName') || {}).value || C.name; C.players = [{ name: C.name, connected: true }]; slots = [0, 1, 2].map(function () { return { state: 'idle' }; }); render(); dirHostStart(); }
     else if (a === 'browse') { C.name = ($('cpName') || {}).value || C.name; guestBrowse(); }
     else if (a === 'join') { C.role = 'guest'; if (!C.name) C.name = ($('cpName') || {}).value || C.name; if (DIR) { DIR.close(); DIR = null; } clearInterval(dirTimer); gstage = 'enter'; render(); }
+    else if (a === 'srv') { C.role = 'guest'; C.name = ($('cpName') || {}).value || C.name; if (DIR) { DIR.close(); DIR = null; } clearInterval(dirTimer); gerr = ''; gstage = 'srv'; render(); }
+    else if (a === 'srvgo') srvConnect();
     else if (a === 'inv') hostInvite(si);
     else if (a === 'acc') hostAccept(si);
     else if (a === 'cp' || a === 'cpg') { var tx = a === 'cp' ? slots[si].code : gcode; try { navigator.clipboard.writeText(tx); } catch (e) {} }
@@ -399,6 +406,32 @@
    * Ogni giocatore muove il proprio party; gli altri vedono l'eroe scelto + nome. L'host fa da relè
    * e invia a ciascuno solo i giocatori vicini (area di interesse). */
   var W = { on: false, rem: {}, av: {}, pl: {}, me: 0, last: 0, S: null, AOI: 700 };
+
+  /* ---------- mondo sempre attivo (server Node) ---------- */
+  var SRV = null, srvTmp = null;
+  function srvUrl() {
+    if (srvTmp != null) return srvTmp;
+    try { var v = localStorage.getItem('dba_srv'); if (v) return v; } catch (e) {}
+    if (/onrender\.com$/.test(location.hostname)) return location.host;
+    return window.DBA_SERVER_URL || '';
+  }
+  function srvFail(msg) { if (SRV) { try { SRV.close(); } catch (e) {} SRV = null; } clearTimeout(joinTO); C.peers = []; gerr = msg; if (!W.on) { gstage = 'srv'; render(); } else note('⚠ ' + msg); }
+  function srvConnect() {
+    var inp = $('cpSrv'), raw = (inp ? inp.value : srvUrl()).trim(), nm = $('cpName'); if (nm) C.name = nm.value || C.name;
+    if (C.picked == null) { gerr = 'Scegli prima il tuo eroe.'; render(); return; }
+    if (!raw) { gerr = 'Inserisci l\'indirizzo del server.'; render(); return; }
+    try { localStorage.setItem('dba_srv', raw); } catch (e) {}
+    var url = raw.replace(/^http/, 'ws'); if (!/^wss?:\/\//.test(url)) url = (/^(localhost|127\.|192\.168\.)/.test(url) ? 'ws://' : 'wss://') + url; url = url.replace(/\/+$/, '') + '/world';
+    var ws; try { ws = new WebSocket(url); } catch (e) { gerr = 'Indirizzo non valido'; render(); return; }
+    SRV = ws; gerr = ''; gstage = 'joining'; render();
+    var fake = { open: true, pc: { close: function () { try { ws.close(); } catch (e) {} } }, send: function (o) { if (ws.readyState === 1) { try { ws.send(JSON.stringify(o)); } catch (e) {} } } };
+    C.peers = [fake]; C.hostGone = false;
+    clearTimeout(joinTO); joinTO = setTimeout(function () { if (!W.on) srvFail('Il server non risponde (se era in pausa può servire più di un minuto: riprova).'); }, 90000);
+    ws.onopen = function () { ws.send(JSON.stringify({ t: 'hello', name: C.name, hero: slimH(buildMyHero(C.picked)) })); };
+    ws.onmessage = function (ev) { var m; try { m = JSON.parse(ev.data); } catch (e) { return; } if (m && m.t === 'wstart') clearTimeout(joinTO); try { onMsg(fake, m); } catch (e) { console.error(e); } };
+    ws.onerror = function () { if (!W.on && SRV === ws) srvFail('Collegamento al server non riuscito. Controlla l\'indirizzo.'); };
+    ws.onclose = function () { fake.open = false; if (SRV === ws) { SRV = null; if (W.on) note('⚠ Connessione al server persa: ricarica la pagina per rientrare'); else if (gstage === 'joining') srvFail('Connessione chiusa dal server.'); } };
+  }
   function worldHostStart() {
     var pl = [];
     C.players.forEach(function (p, i) { if (p && p.hero) pl.push({ i: i, name: p.name, hero: p.hero }); });

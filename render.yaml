@@ -1,0 +1,18 @@
+# Blueprint Render: crea da solo il servizio "tinyworld" (piano gratuito) collegato a questo repository.
+services:
+  - type: web
+    name: tinyworld
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: cd server && npm install --omit=dev
+    startCommand: node server/server.js
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: MAX_PLAYERS
+        value: "30"
+      - key: WORLD_SEED
+        value: "20260101"
