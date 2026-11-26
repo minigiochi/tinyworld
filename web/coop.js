@@ -6,7 +6,7 @@
   'use strict';
   var D = 6;                       // ritardo ingressi (passi da 0,05 s = 0,3 s)
   var HASH_EVERY = 40;             // controllo di sincronia ogni 40 passi
-  var ICE = window.DBA_ICE || { iceServers: [{ urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302', 'stun:global.stun.twilio.com:3478'] }, { urls: ['turn:openrelay.metered.ca:80', 'turn:openrelay.metered.ca:443', 'turn:openrelay.metered.ca:443?transport=tcp', 'turns:openrelay.metered.ca:443?transport=tcp'], username: 'openrelayproject', credential: 'openrelayproject' }] };
+  var ICE = window.DBA_ICE || { iceServers: [{ urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302', 'stun:global.stun.twilio.com:3478'] }, { urls: ['turn:freestun.net:3478', 'turn:freestun.net:5349'], username: 'free', credential: 'free' }, { urls: ['turn:openrelay.metered.ca:80', 'turn:openrelay.metered.ca:443', 'turn:openrelay.metered.ca:443?transport=tcp', 'turns:openrelay.metered.ca:443?transport=tcp'], username: 'openrelayproject', credential: 'openrelayproject' }] };
   var $ = function (id) { return document.getElementById(id); };
   var E = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
 
@@ -414,8 +414,9 @@
     window.__dbaWH = worldTick; rs = m.seed | 0; installFightHook();
     withRng(function () { $('owb').onclick(); });
   }
+  function slimH(h) { if (!h) return h; var o = {}; ['id', 'name', 'classKey', 'className', 'icon', 'arch', 'weapon', 'color', 'appearance', '_eq', 'naked', 'helmet', 'key', 'hideHelm', 'form', 'look', 'level'].forEach(function (k) { if (h[k] !== undefined) o[k] = h[k]; }); return o; }
   function dropAv(id) { var a = W.av[id]; if (!a) return; try { if (a.g.parent) a.g.parent.remove(a.g); } catch (e) {} if (a.tag) a.tag.remove(); delete W.av[id]; }
-  function setHero(i, h) { var o = W.pl[i]; if (o && o.hero && JSON.stringify(o.hero) === JSON.stringify(h)) return; W.pl[i] = Object.assign(W.pl[i] || { i: i, name: 'Giocatore' }, { hero: h }); dropAv(i); }
+  function setHero(i, h) { var o = W.pl[i]; if (o && o.hero && JSON.stringify(slimH(o.hero)) === JSON.stringify(slimH(h))) return; W.pl[i] = Object.assign(W.pl[i] || { i: i, name: 'Giocatore' }, { hero: slimH(h) }); dropAv(i); }
   function worldClear() { Object.keys(W.av).forEach(function (k) { var a = W.av[k]; try { if (a.g.parent) a.g.parent.remove(a.g); } catch (e) {} if (a.tag) a.tag.remove(); }); W.av = {}; }
   function project(cam, x, y, z) {
     var v = cam.matrixWorldInverse.elements, p = cam.projectionMatrix.elements;
@@ -427,7 +428,7 @@
     var A = window.__dbaWAPI; if (!A || !W.on) return;
     if (W.S !== A.S) { worldClear(); W.S = A.S; }
     var now = performance.now(), me = A.me;
-    if (now - (W.lastH || 0) > 2000) { W.lastH = now; try { var pa = window.__dbaGetParty && window.__dbaGetParty(), lid = A.lead, hh = pa && (pa.filter(function (x) { return x.id == lid; })[0] || pa[0]); if (hh) { var js = JSON.stringify(hh); if (js !== W.snapH || now - (W.lastF || 0) > 10000) { W.snapH = js; W.lastF = now; var hj = JSON.parse(js); if (C.role === 'host') { W.pl[W.me] = Object.assign(W.pl[W.me] || { i: W.me }, { hero: hj }); broadcast({ t: 'wh', i: W.me, hero: hj }); } else if (C.peers[0]) C.peers[0].send({ t: 'wh', hero: hj }); } } } catch (e) {} }
+    if (now - (W.lastH || 0) > 2000) { W.lastH = now; try { var pa = window.__dbaGetParty && window.__dbaGetParty(), lid = A.lead, hh = pa && (pa.filter(function (x) { return x.id == lid; })[0] || pa[0]); if (hh) { var js = JSON.stringify(slimH(hh)); if (js !== W.snapH || now - (W.lastF || 0) > 10000) { W.snapH = js; W.lastF = now; var hj = JSON.parse(js); if (C.role === 'host') { W.pl[W.me] = Object.assign(W.pl[W.me] || { i: W.me }, { hero: hj }); broadcast({ t: 'wh', i: W.me, hero: hj }); } else if (C.peers[0]) C.peers[0].send({ t: 'wh', hero: hj }); } } } catch (e) {} }
     if (now - W.last > 100) {
       W.last = now; var row = [W.me, +me.x.toFixed(1), +me.z.toFixed(1), +me.h.toFixed(2), me.m ? 1 : 0, +me.j.toFixed(2)];
       if (C.role === 'host') {

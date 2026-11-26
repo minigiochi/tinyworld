@@ -1,6 +1,6 @@
 // Dati e helper dei modelli eroe, estratti dal gioco originale (WOW_RACES, WOW_CLS, WOW_skin, WOW_merge, DBA_HOLD…).
 // Gli stub sotto sostituiscono le tabelle d'armi/armature che servono solo all'equipaggiamento visivo.
-var DBA_WP={},DBA_CW={},DBA_CO={},DBA_ARMK={},DBAQ={l:0,seg:(/Mobi|Android|iPhone/i.test(navigator.userAgent)?2:3),bump:0,htex:256},DBA_LEGO=false,WOW_MATS=null;
+var DBA_WP={},DBA_CW={},DBA_CO={},DBA_ARMK={},DBAQ={l:3,seg:3,bump:1,htex:512},DBA_LEGO=false,WOW_MATS=null;
 function WOW_TEX(){return null}
 function WOW_hash(s){var h=2166136261;s=String(s);for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
 var WOW_RT={};

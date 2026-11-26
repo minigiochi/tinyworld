@@ -591,3 +591,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 ## Coop: collegamento bloccato su "Entra"
 - Causa probabile: il WebRTC usava solo server STUN; con reti che bloccano il collegamento diretto (dati mobili/CGNAT, Wi‑Fi con restrizioni) la connessione resta in attesa. Il codice di rete non era cambiato (test locale host + 2 ospiti ok).
 - Aggiunti più STUN e un relay TURN pubblico (openrelay, non garantito) per le reti restrittive; dopo l'arrivo dell'offerta dell'host, timeout di 25 s con messaggio chiaro invece dell'attesa infinita.
+
+## Coop: avatar che spariscono, grafica più alta, collegamento
+- **Avatar remoti:** l'aggiornamento dell'equipaggiamento confrontava l'eroe intero (PV/mana inclusi, che cambiano di continuo) e ricostruiva l'avatar ogni pochi secondi, con messaggi pesanti. Ora si invia/confronta solo l'aspetto (`slimH`: classe, arma, colore, aspetto, equipaggiamento). Prova a 3 browser, hp/mana casuali per 17 s: avatar sempre lo stesso oggetto, sempre visibile.
+- **Grafica:** il valore globale `DBAQ` (wowdata.js) era al minimo (particelle al 30%, modelli semplificati su mobile, nessun bump): ora livello massimo. Risoluzione adattiva del mondo: soglia minima da 0,6 a 1,0 (`__dbaMinPR`). Qualità predefinita "Molto alta"; una tantum (`dba_q_v2`) il livello salvato viene portato a "Molto alta" (modificabile poi dalle impostazioni).
+- **Telefono ↔ PC:** aggiunto un secondo relay TURN pubblico (freestun) oltre a openrelay. Non verificabile dal mio ambiente.
