@@ -596,3 +596,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - **Avatar remoti:** l'aggiornamento dell'equipaggiamento confrontava l'eroe intero (PV/mana inclusi, che cambiano di continuo) e ricostruiva l'avatar ogni pochi secondi, con messaggi pesanti. Ora si invia/confronta solo l'aspetto (`slimH`: classe, arma, colore, aspetto, equipaggiamento). Prova a 3 browser, hp/mana casuali per 17 s: avatar sempre lo stesso oggetto, sempre visibile.
 - **Grafica:** il valore globale `DBAQ` (wowdata.js) era al minimo (particelle al 30%, modelli semplificati su mobile, nessun bump): ora livello massimo. Risoluzione adattiva del mondo: soglia minima da 0,6 a 1,0 (`__dbaMinPR`). Qualità predefinita "Molto alta"; una tantum (`dba_q_v2`) il livello salvato viene portato a "Molto alta" (modificabile poi dalle impostazioni).
 - **Telefono ↔ PC:** aggiunto un secondo relay TURN pubblico (freestun) oltre a openrelay. Non verificabile dal mio ambiente.
+
+## Open world: eroi che partivano dal livello 11
+- Causa: la configurazione degli eroi (livello, XP, talenti) era salvata in una chiave globale `dbaNextCfg` condivisa da tutte le partite e legata agli id `u1…u4`. Una partita nuova ereditava i livelli rimasti dalle vecchie versioni (quando il livello predefinito era 10, poi +1 con l'XP).
+- Correzione: la configurazione è ora separata per slot (`dbaNextCfg_s<N>`), senza ripiego sulla chiave della classe. Le partite esistenti ripartono dal livello 1 (inventario e oggetti non toccati).
+- Prova: con un `dbaNextCfg` sporco (livello 11 su u1–u4) una partita nuova parte con i 4 eroi a livello 1.

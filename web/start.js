@@ -133,7 +133,7 @@
   if (/screen=slots/.test(location.search)) { window.__dbaMode = LS.getItem('dba_mode') || 'quick'; document.addEventListener('DOMContentLoaded', () => { const sp = document.getElementById('dba-splash'); if (sp) sp.remove(); const i = document.getElementById('dbaIntro'); if (i) i.remove(); setTimeout(() => { const i2 = document.getElementById('dbaIntro'); if (i2) i2.remove(); afterIntro(); }, 300); }); }
   // barra superiore (Bestiario / Spellbook / Grimorio / Impostazioni) montata ad ogni cambio schermata
   (function () {
-    const prov = () => { let cfg = {}; try { cfg = JSON.parse(LS.getItem('dbaNextCfg') || '{}'); } catch (e) { } return (state.roster || []).map((r) => { const c = CARD[r.k] || {}, id = 'u' + r.uid; return { id, name: r.name || c.name, icon: c.icon, classKey: r.k, level: ((cfg[id] || cfg[r.k] || {}).lv) || 1 }; }); };
+    const prov = () => { let cfg = {}; try { cfg = JSON.parse(localStorage.getItem('dbaNextCfg' + (state.slot ? '_s' + state.slot : '')) || '{}'); } catch (e) { } return (state.roster || []).map((r) => { const c = CARD[r.k] || {}, id = 'u' + r.uid; return { id, name: r.name || c.name, icon: c.icon, classKey: r.k, level: ((cfg[id] || {}).lv) || 1 }; }); };
     const mt = () => { const h = document.getElementById('topbtns'); if (h && !h.firstChild && window.DBA_TOP) DBA_TOP.mount(h, prov); };
     new MutationObserver(mt).observe(root, { childList: true }); mt();
   })();
