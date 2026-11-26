@@ -573,3 +573,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - **Modalità**: nascosti Dungeon e Boss diretto nel selettore, tolta "Esperienza veloce" e il tasto "Cambia modalità"; resta solo Open world (Solo / Coop). Il codice dei modi nascosti resta nel progetto.
 - **Suggerimenti (max 6 parole)**: schermate di accesso, modalità, slot, party, selettore, lobby coop; e hints.js per il mondo (movimento, nemici, zaino/mappa) e per la battaglia (abilità o automatico, velocità).
 - Non verificato: bilanciamento a livelli alti (>10), coop reale con 2+ giocatori, telefono reale.
+
+## Coop open world: avatar remoti (arti + equipaggiamento)
+- Gli avatar degli amici ora hanno `ud` nel record di animazione: braccia e gambe si muovono quando camminano (prima `animH` usciva subito).
+- Ogni giocatore invia ogni 2 s (solo se cambia, e comunque ogni 10 s) l'eroe che sta guidando (`wh`); host e ospiti ricostruiscono l'avatar con l'equipaggiamento reale invece dell'istantanea della lobby.
+- Test locale a 3 browser (host + 2 ospiti, broker di prova): `ud` presente, rotazione anca varia in cammino, cambio eroe sull'ospite riflesso sull'host in ~5 s.

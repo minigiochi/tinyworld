@@ -129,6 +129,7 @@
       if (m.t === 'hello') { C.players[idx] = Object.assign(C.players[idx] || {}, { name: String(m.name || 'Giocatore').slice(0, 20), connected: true }); p.send({ t: 'welcome', me: idx }); pushLobby(); }
       else if (m.t === 'pick') { if (!C.players[idx]) return; C.players[idx].hero = m.hero; C.players[idx].label = (m.hero.name || m.hero.classKey) + ' · ' + (m.hero.className || '') + ' Lv ' + m.hero.level; pushLobby(); }
       else if (m.t === 'wreq') { worldFightReq(idx, m); }
+      else if (m.t === 'wh') { if (m.hero && W.on) { setHero(idx, m.hero); C.peers.forEach(function (q, qi) { if (q && q.open && qi + 1 !== idx) q.send({ t: 'wh', i: idx, hero: m.hero }); }); } }
       else if (m.t === 'wp') { W.rem[idx] = { x: +m.r[1], z: +m.r[2], h: +m.r[3], m: m.r[4] ? 1 : 0, j: +m.r[5] || 0, ts: performance.now() }; }
       else if (m.t === 'r') { if (!C.on) return; var u = C.owners[m.u]; if (u === idx) schedule({ u: m.u, a: m.a, i: m.i }); }
     } else {
@@ -137,6 +138,7 @@
       else if (m.t === 'lobby') { C.players = m.v.players; C.cfg = m.v.cfg; render(); }
       else if (m.t === 'start') { if (m.w) worldFightBegin(m); else begin(m); }
       else if (m.t === 'wdeny') { worldFightDeny(); }
+      else if (m.t === 'wh') { if (m.hero && W.on) setHero(m.i, m.hero); }
       else if (m.t === 'wstart') worldStart(m);
       else if (m.t === 'ws') { var nw = performance.now(), seen = {}; m.p.forEach(function (r) { seen[r[0]] = 1; W.rem[r[0]] = { x: +r[1], z: +r[2], h: +r[3], m: r[4] ? 1 : 0, j: +r[5] || 0, ts: nw }; }); }
       else if (m.t === 'i') { (C.sched[m.k] = C.sched[m.k] || []).push(m); }
@@ -412,6 +414,8 @@
     window.__dbaWH = worldTick; rs = m.seed | 0; installFightHook();
     withRng(function () { $('owb').onclick(); });
   }
+  function dropAv(id) { var a = W.av[id]; if (!a) return; try { if (a.g.parent) a.g.parent.remove(a.g); } catch (e) {} if (a.tag) a.tag.remove(); delete W.av[id]; }
+  function setHero(i, h) { var o = W.pl[i]; if (o && o.hero && JSON.stringify(o.hero) === JSON.stringify(h)) return; W.pl[i] = Object.assign(W.pl[i] || { i: i, name: 'Giocatore' }, { hero: h }); dropAv(i); }
   function worldClear() { Object.keys(W.av).forEach(function (k) { var a = W.av[k]; try { if (a.g.parent) a.g.parent.remove(a.g); } catch (e) {} if (a.tag) a.tag.remove(); }); W.av = {}; }
   function project(cam, x, y, z) {
     var v = cam.matrixWorldInverse.elements, p = cam.projectionMatrix.elements;
@@ -423,6 +427,7 @@
     var A = window.__dbaWAPI; if (!A || !W.on) return;
     if (W.S !== A.S) { worldClear(); W.S = A.S; }
     var now = performance.now(), me = A.me;
+    if (now - (W.lastH || 0) > 2000) { W.lastH = now; try { var pa = window.__dbaGetParty && window.__dbaGetParty(), lid = A.lead, hh = pa && (pa.filter(function (x) { return x.id == lid; })[0] || pa[0]); if (hh) { var js = JSON.stringify(hh); if (js !== W.snapH || now - (W.lastF || 0) > 10000) { W.snapH = js; W.lastF = now; var hj = JSON.parse(js); if (C.role === 'host') { W.pl[W.me] = Object.assign(W.pl[W.me] || { i: W.me }, { hero: hj }); broadcast({ t: 'wh', i: W.me, hero: hj }); } else if (C.peers[0]) C.peers[0].send({ t: 'wh', hero: hj }); } } } catch (e) {} }
     if (now - W.last > 100) {
       W.last = now; var row = [W.me, +me.x.toFixed(1), +me.z.toFixed(1), +me.h.toFixed(2), me.m ? 1 : 0, +me.j.toFixed(2)];
       if (C.role === 'host') {
@@ -443,7 +448,7 @@
         var g = A.build(pl.hero); g.scale.set(1.95, ((pl.hero.appearance && pl.hero.appearance.heightMul) || 1) * 1.95, 1.95); g.position.set(r.x, A.HT(r.x, r.z), r.z); A.S.add(g);
         var tag = document.createElement('div'); tag.style.cssText = 'position:fixed;z-index:10000;pointer-events:none;transform:translate(-50%,-100%);font:600 12px system-ui;color:#fde68a;text-shadow:0 1px 3px #000,0 0 6px #000;white-space:nowrap';
         tag.textContent = pl.name || 'Giocatore'; document.body.appendChild(tag);
-        a = W.av[id] = { g: g, tag: tag, o: { g: g, i: 0, tx: 0, tz: 0, dl: 0, mv: 0, hd: 0, dead: false } };
+        a = W.av[id] = { g: g, tag: tag, o: { g: g, ud: g.userData, i: 0, tx: 0, tz: 0, dl: 0, mv: 0, hd: 0, dead: false } };
       }
       var p = a.g.position; p.x += (r.x - p.x) * f; p.z += (r.z - p.z) * f;
       p.y = A.HT(p.x, p.z) + (r.m ? Math.abs(Math.sin(t * 11)) * .18 : 0) + r.j; a.g.rotation.y = r.h; a.g.rotation.z = r.m ? Math.sin(t * 11) * .06 : 0;
