@@ -587,3 +587,7 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Barra di comando (Comanda 1 eroe): fino a 15 abilità su 2 righe scorrevoli. Corretto anche un difetto preesistente: in schermo intero la barra e il banner dello spettatore restavano nascosti (ora seguono l'elemento a schermo intero).
 - **Livello nemici:** ogni nemico ha un livello fisso per bioma (1 + 2,1 per bioma, +2 miniboss, +3 guardiani/vaganti, +4 rari, boss finale 30, massimo 30). Le statistiche ora dipendono dal livello del nemico (non più dal livello medio del party): la differenza col party è reale. Il livello compare nel titolo della battaglia e in una targhetta sopra i nemici nel mondo (`lvtag.js`), colorato: verde (party molto più forte), giallo (pari), arancio (+3..+5), rosso con ☠ (+6 o più). Suggerimento: "Livello rosso: nemico troppo forte".
 - Misura (party di 4 eroi livello 1, senza equipaggiamento): vittoria contro nemici Lv 1, 3, 5; sconfitta contro Lv 7.
+
+## Coop: collegamento bloccato su "Entra"
+- Causa probabile: il WebRTC usava solo server STUN; con reti che bloccano il collegamento diretto (dati mobili/CGNAT, Wi‑Fi con restrizioni) la connessione resta in attesa. Il codice di rete non era cambiato (test locale host + 2 ospiti ok).
+- Aggiunti più STUN e un relay TURN pubblico (openrelay, non garantito) per le reti restrittive; dopo l'arrivo dell'offerta dell'host, timeout di 25 s con messaggio chiaro invece dell'attesa infinita.

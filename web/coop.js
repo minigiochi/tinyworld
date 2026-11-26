@@ -6,7 +6,7 @@
   'use strict';
   var D = 6;                       // ritardo ingressi (passi da 0,05 s = 0,3 s)
   var HASH_EVERY = 40;             // controllo di sincronia ogni 40 passi
-  var ICE = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+  var ICE = window.DBA_ICE || { iceServers: [{ urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302', 'stun:global.stun.twilio.com:3478'] }, { urls: ['turn:openrelay.metered.ca:80', 'turn:openrelay.metered.ca:443', 'turn:openrelay.metered.ca:443?transport=tcp', 'turns:openrelay.metered.ca:443?transport=tcp'], username: 'openrelayproject', credential: 'openrelayproject' }] };
   var $ = function (id) { return document.getElementById(id); };
   var E = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
 
@@ -94,7 +94,7 @@
       if (DIR) DIR.close(); DIR = new MQLite(BROKERS); await DIR.connect();
       DIR.onmessage = function (t, s) {
         if (t.indexOf(NS + 'r/') === 0) { var id = cleanStr(t.slice((NS + 'r/').length), 12); if (!s) { delete rooms[id]; } else { var m = jparse(s); if (m && typeof m.ts === 'number') rooms[id] = { id: id, name: cleanStr(m.name, 20), n: +m.n | 0, max: +m.max | 0 || 4, st: m.st === 'play' ? 'play' : 'lobby', boss: cleanStr(m.boss, 30), lv: +m.lv | 0, ts: m.ts }; } if (gstage === 'browse') render(); }
-        else if (joinRoom && t === NS + 'o/' + joinRoom + '/' + myGid) { clearTimeout(joinTO); guestJoin(s, function (code) { DIR.pub(NS + 'a/' + joinRoom + '/' + myGid, code, false); }); }
+        else if (joinRoom && t === NS + 'o/' + joinRoom + '/' + myGid) { clearTimeout(joinTO); joinTO = setTimeout(function () { if (gstage === 'joining') { gstage = 'browse'; gerr = 'Collegamento con l\'host non riuscito: la rete (o il Wi‑Fi/dati mobili) blocca la connessione diretta. Prova un\'altra rete o l\'invito manuale.'; render(); } }, 25000); guestJoin(s, function (code) { DIR.pub(NS + 'a/' + joinRoom + '/' + myGid, code, false); }); }
       };
       DIR.sub(NS + 'r/+'); clearInterval(dirTimer); dirTimer = setInterval(function () { if (gstage === 'browse' && UI) render(); }, 6000);
     } catch (e) { gerr = 'Elenco pubblico non raggiungibile. Prova più tardi o usa i codici manuali.'; }
