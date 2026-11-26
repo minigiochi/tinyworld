@@ -65,7 +65,8 @@ wss.on('connection', (ws) => {
       me = { id: nextId++, ws, name: String(m.name || 'Giocatore').replace(/[<>&"]/g, '').slice(0, 20) || 'Giocatore', hero, x: 0, z: 0, h: 0, m: 0, j: 0, ts: 0, rowAt: 0, far: true };
       const others = []; players.forEach((p) => others.push({ i: p.id, name: p.name, hero: p.hero }));
       players.set(me.id, me);
-      send(ws, { t: 'wstart', you: me.id, seed: SEED, players: others.concat([{ i: me.id, name: me.name, hero: me.hero }]) });
+      const roster = others.concat([{ i: me.id, name: me.name, hero: me.hero }]);
+      send(ws, m.re ? { t: 'wre', you: me.id, seed: SEED, players: roster } : { t: 'wstart', you: me.id, seed: SEED, players: roster });   // re: rientro dopo un riavvio, senza ricreare il mondo
       broadcast({ t: 'wj', p: { i: me.id, name: me.name, hero: me.hero } }, me.id);
       log('entra', me.id, me.name, '(' + players.size + ')');
       return;
@@ -102,8 +103,8 @@ setInterval(() => {
 /* elenco di tutti i giocatori online (per "raggiungi"), ogni 2 s */
 setInterval(() => {
   const now = Date.now(), all = [];
-  players.forEach((p) => { if (now - p.ts < 10000) all.push([p.id, Math.round(p.x), Math.round(p.z)]); });
-  players.forEach((p) => send(p.ws, { t: 'wall', p: all }));
+  players.forEach((p) => { if (p.ts) all.push([p.id, Math.round(p.x), Math.round(p.z)]); });
+  players.forEach((p) => send(p.ws, { t: 'wall', p: all, n: players.size }));
 }, 2000);
 
 /* connessioni morte */

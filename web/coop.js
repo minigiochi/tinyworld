@@ -141,7 +141,8 @@
       else if (m.t === 'wh') { if (m.hero && W.on) setHero(m.i, m.hero); }
       else if (m.t === 'wstart') worldStart(m);
       else if (m.t === 'wj') { if (W.on && m.p) W.pl[m.p.i] = m.p; }
-      else if (m.t === 'wall') { W.all = m.p; panelUpdate(); }
+      else if (m.t === 'wall') { W.all = m.p; W.nAll = m.n; panelUpdate(); }
+      else if (m.t === 'wre') { if (W.on) { W.me = m.you; W.pl = {}; m.players.forEach(function (p) { W.pl[p.i] = p; }); W.rem = {}; worldClear(); W.snapH = null; note('✔ Riconnesso al server'); } }
       else if (m.t === 'wl') { delete W.rem[m.i]; delete W.pl[m.i]; dropAv(m.i); }
       else if (m.t === 'wfull' || m.t === 'werr') { srvFail(m.t === 'wfull' ? 'Il mondo è pieno (' + m.max + ' giocatori): riprova tra poco.' : (m.msg || 'Errore del server')); }
       else if (m.t === 'ws') { var nw = performance.now(), seen = {}; m.p.forEach(function (r) { seen[r[0]] = 1; W.rem[r[0]] = { x: +r[1], z: +r[2], h: +r[3], m: r[4] ? 1 : 0, j: +r[5] || 0, ts: nw }; }); }
@@ -425,13 +426,24 @@
     var url = raw.replace(/^http/, 'ws'); if (!/^wss?:\/\//.test(url)) url = (/^(localhost|127\.|192\.168\.)/.test(url) ? 'ws://' : 'wss://') + url; url = url.replace(/\/+$/, '') + '/world';
     var ws; try { ws = new WebSocket(url); } catch (e) { gerr = 'Indirizzo non valido'; render(); return; }
     SRV = ws; gerr = ''; gstage = 'joining'; render();
-    var fake = { open: true, pc: { close: function () { try { ws.close(); } catch (e) {} } }, send: function (o) { if (ws.readyState === 1) { try { ws.send(JSON.stringify(o)); } catch (e) {} } } };
-    C.peers = [fake]; C.hostGone = false;
+    var fake = { open: true, pc: { close: function () { fake.stop = true; try { ws.close(); } catch (e) {} } }, send: function (o) { if (ws.readyState === 1) { try { ws.send(JSON.stringify(o)); } catch (e) {} } } };
+    C.peers = [fake]; C.hostGone = false; fake.url = url; fake.tries = 0;
     clearTimeout(joinTO); joinTO = setTimeout(function () { if (!W.on) srvFail('Il server non risponde (se era in pausa può servire più di un minuto: riprova).'); }, 90000);
-    ws.onopen = function () { ws.send(JSON.stringify({ t: 'hello', name: C.name, hero: slimH(buildMyHero(C.picked)) })); };
-    ws.onmessage = function (ev) { var m; try { m = JSON.parse(ev.data); } catch (e) { return; } if (m && m.t === 'wstart') clearTimeout(joinTO); try { onMsg(fake, m); } catch (e) { console.error(e); } };
+    srvWire(ws, fake, false);
+  }
+  function srvWire(ws, fake, re) {
+    SRV = ws;
+    ws.onopen = function () { fake.tries = 0; ws.send(JSON.stringify({ t: 'hello', re: re ? 1 : 0, name: C.name, hero: slimH(buildMyHero(C.picked)) })); };
+    ws.onmessage = function (ev) { var m; try { m = JSON.parse(ev.data); } catch (e) { return; } if (m && (m.t === 'wstart' || m.t === 'wre')) clearTimeout(joinTO); try { onMsg(fake, m); } catch (e) { console.error(e); } };
     ws.onerror = function () { if (!W.on && SRV === ws) srvFail('Collegamento al server non riuscito. Controlla l\'indirizzo.'); };
-    ws.onclose = function () { fake.open = false; if (SRV === ws) { SRV = null; if (W.on) note('⚠ Connessione al server persa: ricarica la pagina per rientrare'); else if (gstage === 'joining') srvFail('Connessione chiusa dal server.'); } };
+    ws.onclose = function () {
+      fake.open = false; if (fake.stop || SRV !== ws) return;
+      if (!W.on) { SRV = null; if (gstage === 'joining') srvFail('Connessione chiusa dal server.'); return; }
+      /* in gioco: riprova a rientrare (riavvio/pausa del server) senza ricreare il mondo */
+      if (fake.tries === 0) note('⚠ Connessione persa: riconnessione…');
+      var wait = Math.min(10000, 1500 + 1500 * fake.tries++);
+      setTimeout(function () { if (fake.stop || !W.on) return; var n = new WebSocket(fake.url); fake.open = true; C.peers = [fake]; fake.send = function (o) { if (n.readyState === 1) { try { n.send(JSON.stringify(o)); } catch (e) {} } }; fake.pc = { close: function () { fake.stop = true; try { n.close(); } catch (e) {} } }; srvWire(n, fake, true); }, wait);
+    };
   }
 
   /* ---------- elenco giocatori online (mondo sempre attivo) ---------- */
@@ -442,10 +454,10 @@
     if (!PAN) {
       PAN = document.createElement('div'); PAN.id = 'dbaPlayers';
       PAN.style.cssText = 'position:fixed;left:8px;top:150px;z-index:20001;font:600 12px system-ui,sans-serif;color:#fde68a;max-width:240px';
-      PAN.addEventListener('click', function (e) { var b = e.target.closest('button[data-go]'); if (b) { var p = (W.all || []).filter(function (r) { return r[0] === +b.dataset.go; })[0]; if (p && window.__owW) { try { window.__owW.push(p[1] + 5, p[2] + 5); } catch (x) {} } panOpen = false; panelUpdate(); } else if (e.target.closest('[data-tg]')) { panOpen = !panOpen; panelUpdate(); } });
+      PAN.addEventListener('click', function (e) { var b = e.target.closest('button[data-go]'); if (b) { var p = (W.all || []).filter(function (r) { return r[0] === +b.dataset.go; })[0]; if (p && window.__owW) { try { window.__owW.push(p[1] + 5, p[2] + 5); } catch (x) {} } panOpen = false; PAN._k = null; panelUpdate(); } else if (e.target.closest('[data-tg]')) { panOpen = !panOpen; PAN._k = null; panelUpdate(); } });
     }
     if (PAN.parentNode !== host) host.appendChild(PAN);
-    var me = window.__dbaWAPI && window.__dbaWAPI.me, n = (W.all || []).length, h = '<button data-tg="1" style="padding:6px 10px;border-radius:14px;border:1px solid rgba(251,191,36,.6);background:rgba(10,8,18,.8);color:#fde68a;font:inherit">👥 ' + n + ' online</button>';
+    var me = window.__dbaWAPI && window.__dbaWAPI.me, n = (W.all || []).length, h = '<button data-tg="1" style="padding:6px 10px;border-radius:14px;border:1px solid rgba(251,191,36,.6);background:rgba(10,8,18,.8);color:#fde68a;font:inherit">👥 ' + Math.max(n, W.nAll || 0) + ' online</button>';
     if (panOpen) {
       h += '<div style="margin-top:6px;padding:8px;border-radius:12px;background:rgba(10,8,18,.9);border:1px solid #334155">';
       (W.all || []).forEach(function (r) {
@@ -454,10 +466,11 @@
       });
       h += '</div>';
     }
-    var key = n + '|' + panOpen + '|' + (W.all || []).map(function (r) { return r[0] + ':' + ((W.pl[r[0]] && W.pl[r[0]].name) || ''); }).join(',');
+    var key = n + '|' + (W.nAll || 0) + '|' + panOpen + '|' + (W.all || []).map(function (r) { return r[0] + ':' + ((W.pl[r[0]] && W.pl[r[0]].name) || ''); }).join(',');
     if (PAN._k !== key) { PAN._k = key; PAN.innerHTML = h; }
     else if (panOpen) (W.all || []).forEach(function (r) { var sp = PAN.querySelector('span[data-d="' + r[0] + '"]'); if (sp && me) sp.textContent = Math.round(Math.hypot(r[1] - me.x, r[2] - me.z)) + ' m'; });
   }
+
   function worldHostStart() {
     var pl = [];
     C.players.forEach(function (p, i) { if (p && p.hero) pl.push({ i: i, name: p.name, hero: p.hero }); });

@@ -612,3 +612,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Problema: ogni giocatore riparte dalla propria posizione salvata e il server mostra solo i giocatori entro l'area di interesse: due giocatori lontani non si vedevano.
 - Aggiunto il pulsante "👥 N online" (in alto a sinistra) con l'elenco di tutti i giocatori, distanza e pulsante "Vai" che porta accanto all'altro. Il server invia l'elenco (`wall`) ogni 2 s. Area di interesse portata da 700 a 1000.
 - Prova locale: giocatori a 1530 m, il pannello li elenca, "Vai" porta a 7 m e l'avatar è visibile.
+
+## Mondo sempre attivo: riconnessione automatica e conteggio giocatori
+- Il client si riconnette da solo al server se la connessione cade (riavvio/redeploy di Render), senza dover ricaricare.
+- Il server invia a tutti ogni 2 s l'elenco completo e il numero di giocatori; il pannello "👥 N online" usa quel numero.
+- Corretto un errore che nascondeva il pannello (blocco rimosso per sbaglio durante la modifica).
