@@ -607,3 +607,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Client (coop.js): pulsante "🌍 Mondo sempre attivo (server)" nel menu coop dell'open world; indirizzo salvato in `dba_srv`; messaggi `wj`/`wl`/`wfull`. `server-config.js` per un indirizzo predefinito.
 - `render.yaml` (Blueprint, piano gratuito), `.github/workflows/keepalive.yml` (ping /healthz ogni 10 min, variabile `RENDER_URL`), `server/keepalive.js` (stesso ping da un PC), guida `docs/RENDER.md`.
 - Prova locale: server + 2 browser dal gioco: entrambi si vedono (avatar, eroe), combattimento locale, uscita rimuove l'avatar. Non provato su Render né con molti giocatori.
+
+## Mondo sempre attivo: elenco giocatori e "Vai"
+- Problema: ogni giocatore riparte dalla propria posizione salvata e il server mostra solo i giocatori entro l'area di interesse: due giocatori lontani non si vedevano.
+- Aggiunto il pulsante "👥 N online" (in alto a sinistra) con l'elenco di tutti i giocatori, distanza e pulsante "Vai" che porta accanto all'altro. Il server invia l'elenco (`wall`) ogni 2 s. Area di interesse portata da 700 a 1000.
+- Prova locale: giocatori a 1530 m, il pannello li elenca, "Vai" porta a 7 m e l'avatar è visibile.

@@ -141,6 +141,7 @@
       else if (m.t === 'wh') { if (m.hero && W.on) setHero(m.i, m.hero); }
       else if (m.t === 'wstart') worldStart(m);
       else if (m.t === 'wj') { if (W.on && m.p) W.pl[m.p.i] = m.p; }
+      else if (m.t === 'wall') { W.all = m.p; panelUpdate(); }
       else if (m.t === 'wl') { delete W.rem[m.i]; delete W.pl[m.i]; dropAv(m.i); }
       else if (m.t === 'wfull' || m.t === 'werr') { srvFail(m.t === 'wfull' ? 'Il mondo è pieno (' + m.max + ' giocatori): riprova tra poco.' : (m.msg || 'Errore del server')); }
       else if (m.t === 'ws') { var nw = performance.now(), seen = {}; m.p.forEach(function (r) { seen[r[0]] = 1; W.rem[r[0]] = { x: +r[1], z: +r[2], h: +r[3], m: r[4] ? 1 : 0, j: +r[5] || 0, ts: nw }; }); }
@@ -405,7 +406,7 @@
    * Il mondo è generato con lo stesso seme su tutti i PC (stessi nemici, strade, ostacoli).
    * Ogni giocatore muove il proprio party; gli altri vedono l'eroe scelto + nome. L'host fa da relè
    * e invia a ciascuno solo i giocatori vicini (area di interesse). */
-  var W = { on: false, rem: {}, av: {}, pl: {}, me: 0, last: 0, S: null, AOI: 700 };
+  var W = { on: false, rem: {}, av: {}, pl: {}, me: 0, last: 0, S: null, AOI: 1000 };
 
   /* ---------- mondo sempre attivo (server Node) ---------- */
   var SRV = null, srvTmp = null;
@@ -431,6 +432,31 @@
     ws.onmessage = function (ev) { var m; try { m = JSON.parse(ev.data); } catch (e) { return; } if (m && m.t === 'wstart') clearTimeout(joinTO); try { onMsg(fake, m); } catch (e) { console.error(e); } };
     ws.onerror = function () { if (!W.on && SRV === ws) srvFail('Collegamento al server non riuscito. Controlla l\'indirizzo.'); };
     ws.onclose = function () { fake.open = false; if (SRV === ws) { SRV = null; if (W.on) note('⚠ Connessione al server persa: ricarica la pagina per rientrare'); else if (gstage === 'joining') srvFail('Connessione chiusa dal server.'); } };
+  }
+
+  /* ---------- elenco giocatori online (mondo sempre attivo) ---------- */
+  var PAN = null, panOpen = false;
+  function panelUpdate() {
+    if (!W.on || !SRV) { if (PAN) { PAN.remove(); PAN = null; } return; }
+    var host = document.fullscreenElement || document.body;
+    if (!PAN) {
+      PAN = document.createElement('div'); PAN.id = 'dbaPlayers';
+      PAN.style.cssText = 'position:fixed;left:8px;top:150px;z-index:20001;font:600 12px system-ui,sans-serif;color:#fde68a;max-width:240px';
+      PAN.addEventListener('click', function (e) { var b = e.target.closest('button[data-go]'); if (b) { var p = (W.all || []).filter(function (r) { return r[0] === +b.dataset.go; })[0]; if (p && window.__owW) { try { window.__owW.push(p[1] + 5, p[2] + 5); } catch (x) {} } panOpen = false; panelUpdate(); } else if (e.target.closest('[data-tg]')) { panOpen = !panOpen; panelUpdate(); } });
+    }
+    if (PAN.parentNode !== host) host.appendChild(PAN);
+    var me = window.__dbaWAPI && window.__dbaWAPI.me, n = (W.all || []).length, h = '<button data-tg="1" style="padding:6px 10px;border-radius:14px;border:1px solid rgba(251,191,36,.6);background:rgba(10,8,18,.8);color:#fde68a;font:inherit">👥 ' + n + ' online</button>';
+    if (panOpen) {
+      h += '<div style="margin-top:6px;padding:8px;border-radius:12px;background:rgba(10,8,18,.9);border:1px solid #334155">';
+      (W.all || []).forEach(function (r) {
+        var isMe = r[0] === W.me, nm = (W.pl[r[0]] && W.pl[r[0]].name) || 'Giocatore', d = me ? Math.round(Math.hypot(r[1] - me.x, r[2] - me.z)) : 0;
+        h += '<div style="display:flex;align-items:center;gap:6px;margin:4px 0"><span style="flex:1;font-weight:' + (isMe ? '800' : '600') + '">' + E(nm) + (isMe ? ' (tu)' : '') + '</span>' + (isMe ? '' : '<span data-d="' + r[0] + '" style="font-weight:400;color:#94a3b8">' + d + ' m</span><button data-go="' + r[0] + '" style="padding:3px 8px;border-radius:10px;border:1px solid #475569;background:none;color:#cbd5e1;font:inherit">Vai</button>') + '</div>';
+      });
+      h += '</div>';
+    }
+    var key = n + '|' + panOpen + '|' + (W.all || []).map(function (r) { return r[0] + ':' + ((W.pl[r[0]] && W.pl[r[0]].name) || ''); }).join(',');
+    if (PAN._k !== key) { PAN._k = key; PAN.innerHTML = h; }
+    else if (panOpen) (W.all || []).forEach(function (r) { var sp = PAN.querySelector('span[data-d="' + r[0] + '"]'); if (sp && me) sp.textContent = Math.round(Math.hypot(r[1] - me.x, r[2] - me.z)) + ' m'; });
   }
   function worldHostStart() {
     var pl = [];

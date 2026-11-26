@@ -12,7 +12,7 @@ const { WebSocketServer } = require('ws');
 const PORT = +process.env.PORT || 8080;
 const SEED = (+process.env.WORLD_SEED || 20260101) | 0;
 const MAX_PLAYERS = +process.env.MAX_PLAYERS || 30;
-const AOI = 700, SEE_MAX = 12, STALE_MS = 4000, TICK_MS = 100;
+const AOI = 1000, SEE_MAX = 12, STALE_MS = 4000, TICK_MS = 100;
 const WEB = path.resolve(process.env.WEB_DIR || path.join(__dirname, '..', 'web'));
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.wasm': 'application/wasm', '.txt': 'text/plain', '.ico': 'image/x-icon' };
 const HERO_KEYS = ['id', 'name', 'classKey', 'className', 'icon', 'arch', 'weapon', 'color', 'appearance', '_eq', 'naked', 'helmet', 'key', 'hideHelm', 'form', 'look', 'level'];
@@ -98,6 +98,13 @@ setInterval(() => {
     if (rows.length || p.sent) { send(p.ws, { t: 'ws', p: rows }); p.sent = rows.length > 0; }
   });
 }, TICK_MS);
+
+/* elenco di tutti i giocatori online (per "raggiungi"), ogni 2 s */
+setInterval(() => {
+  const now = Date.now(), all = [];
+  players.forEach((p) => { if (now - p.ts < 10000) all.push([p.id, Math.round(p.x), Math.round(p.z)]); });
+  players.forEach((p) => send(p.ws, { t: 'wall', p: all }));
+}, 2000);
 
 /* connessioni morte */
 setInterval(() => { wss.clients.forEach((ws) => { if (ws.isAlive === false) { ws.terminate(); return; } ws.isAlive = false; try { ws.ping(); } catch (e) {} }); }, 25000);
