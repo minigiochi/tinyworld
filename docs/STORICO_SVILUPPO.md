@@ -578,3 +578,12 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Gli avatar degli amici ora hanno `ud` nel record di animazione: braccia e gambe si muovono quando camminano (prima `animH` usciva subito).
 - Ogni giocatore invia ogni 2 s (solo se cambia, e comunque ogni 10 s) l'eroe che sta guidando (`wh`); host e ospiti ricostruiscono l'avatar con l'equipaggiamento reale invece dell'istantanea della lobby.
 - Test locale a 3 browser (host + 2 ospiti, broker di prova): `ud` presente, rotazione anca varia in cammino, cambio eroe sull'ospite riflesso sull'host in ~5 s.
+
+## Albero abilità (31 classi) + livello dei nemici
+- **Abilità:** livello 1 = 3 abilità base. Poi una nuova ogni 3 livelli (3, 6, … 30 = 10 abilità), **uniche per classe** (nome, icona, effetti). **Ultimate al livello 10** (in più, unica per classe). **Resurrezione dei curatori al livello 8** (in più). Totale al livello 30: 14 abilità (15 per i 6 curatori).
+- Dati in `src/data/skillTree.json` (generati da `tools/gen_skilltree.py`; 341 nomi unici, nessuna collisione con le abilità esistenti), applicati al motore con `tools/patch_skills.py` (la sorgente reale resta `web/engine.bundle.js`).
+- Nuovi effetti nel motore: danno nel tempo, ruba-vita, indebolimento del boss (−danni 6 s), bonus attacco/velocità/rigenerazione/mana al party, auto-cura, esecuzione (bonus sotto il 35% di vita del boss). Le abilità di sola cura non partono se nessuno è ferito.
+- Ultimate: si riconosce dal flag `ult`; prima del livello 10 il pulsante/indicatore non conta quell'eroe ("si sblocca al livello 10"). Spellbook ordinato per livello, con icone e costo mana.
+- Barra di comando (Comanda 1 eroe): fino a 15 abilità su 2 righe scorrevoli. Corretto anche un difetto preesistente: in schermo intero la barra e il banner dello spettatore restavano nascosti (ora seguono l'elemento a schermo intero).
+- **Livello nemici:** ogni nemico ha un livello fisso per bioma (1 + 2,1 per bioma, +2 miniboss, +3 guardiani/vaganti, +4 rari, boss finale 30, massimo 30). Le statistiche ora dipendono dal livello del nemico (non più dal livello medio del party): la differenza col party è reale. Il livello compare nel titolo della battaglia e in una targhetta sopra i nemici nel mondo (`lvtag.js`), colorato: verde (party molto più forte), giallo (pari), arancio (+3..+5), rosso con ☠ (+6 o più). Suggerimento: "Livello rosso: nemico troppo forte".
+- Misura (party di 4 eroi livello 1, senza equipaggiamento): vittoria contro nemici Lv 1, 3, 5; sconfitta contro Lv 7.

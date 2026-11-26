@@ -36,9 +36,9 @@
     modal('📖 Spellbook', function (el) {
       function draw() {
         if (!party.length) { el.innerHTML = '<p style="padding:20px;color:#94a3b8">Il party è vuoto: aggiungi degli eroi.</p>'; return; }
-        var h = party[Math.min(si, party.length - 1)], lv = h.level || 1, cl = C[h.classKey], list = DBAEngine.abilitiesAt(h.classKey, 99).map(function (a) { return Object.assign({}, a, { learned: lv >= a._req }); });
+        var h = party[Math.min(si, party.length - 1)], lv = h.level || 1, cl = C[h.classKey], list = DBAEngine.abilitiesAt(h.classKey, 99).map(function (a) { return Object.assign({}, a, { learned: lv >= a._req }); }).sort(function (a, b) { return (a.ult ? 1 : 0) - (b.ult ? 1 : 0) || a._req - b._req; });
         el.innerHTML = '<div class="tabs">' + party.map(function (p, i) { return '<button data-i="' + i + '" class="' + (i === si ? 'on' : '') + '">' + E(p.icon) + ' ' + E(p.name) + ' · Liv.' + (p.level || 1) + '</button>'; }).join('') + '</div><div class="bd"><div style="font-size:11px;color:#94a3b8">' + E(cl ? cl.name : '') + ' · imparate ' + list.filter(function (a) { return a.learned; }).length + '/' + list.length + '</div>' +
-          list.map(function (a) { var c = cost[a.kind]; return '<div class="sp ' + (a.learned ? 'l' : '') + '"><div class="r1"><b>' + (a.learned ? '✅ ' : '🔒 ') + E(a.name) + '</b><span>' + (a.learned ? 'Imparata' : 'Livello ' + a._req) + '</span></div><div class="ds">' + E(a.desc || '—') + '</div><div class="cd">Ricarica ' + a.cd + 's' + (c ? ' · Mana ' + c : '') + '</div></div>'; }).join('') + '</div>';
+          list.map(function (a) { var c = a.cost != null ? a.cost : cost[a.kind]; return '<div class="sp ' + (a.learned ? 'l' : '') + '"><div class="r1"><b>' + (a.learned ? '✅ ' : '🔒 ') + (a.ic ? E(a.ic) + ' ' : '') + E(a.name) + (a.ult ? ' · ULTIMATE' : a.kind === 'revive' ? ' · RESURREZIONE' : '') + '</b><span>' + (a.learned ? 'Imparata' : 'Livello ' + a._req) + '</span></div><div class="ds">' + E(a.desc || '—') + '</div><div class="cd">Ricarica ' + a.cd + 's' + (c ? ' · Mana ' + c : '') + '</div></div>'; }).join('') + '</div>';
       }
       el.addEventListener('click', function (e) { var b = e.target.closest('.tabs button'); if (b) { si = +b.getAttribute('data-i'); draw(); } });
       draw();

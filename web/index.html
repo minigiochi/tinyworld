@@ -26,7 +26,7 @@ html.dba-picking body>*:not([style*="9998"]):not(#dbaDG){visibility:hidden!impor
 <div id="cfg" style="padding:0 8px 8px;display:flex;gap:6px;flex-wrap:wrap;font-size:12px"></div>
 </details>
 <script src="engine.bundle.js"></script>
-<script src="biomeTex.js"></script><script src="mini3d.js"></script><script src="bosses3d.js"></script><script src="hud.js"></script><script src="hints.js"></script><script src="topbar.js"></script><script src="decision.js"></script><script src="result.js"></script><script src="inventory.js"></script>
+<script src="biomeTex.js"></script><script src="mini3d.js"></script><script src="bosses3d.js"></script><script src="hud.js"></script><script src="hints.js"></script><script src="lvtag.js"></script><script src="topbar.js"></script><script src="decision.js"></script><script src="result.js"></script><script src="inventory.js"></script>
 <script>window.__dbaFSget=function(k,d){try{var v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}};window.__dbaFSOk=function(){var d=document.documentElement;return !!(d.requestFullscreen||d.webkitRequestFullscreen)};window.__dbaFS=function(on){try{var d=document.documentElement;if(on&&!window.__dbaFSOn()){(d.requestFullscreen||d.webkitRequestFullscreen).call(d)}else if(!on&&window.__dbaFSOn()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}}catch(e){}};window.__dbaFSOn=function(){return !!(document.fullscreenElement||document.webkitFullscreenElement)};</script>
 <script>if(!/[?&](slot|nointro)/.test(location.search))location.replace('start.html');window.DBA_MODE_PICK=function(){location.href='start.html?screen=slots'};try{window.__dbaMode=localStorage.getItem('dba_mode')||'quick'}catch(e){window.__dbaMode='quick'}</script>
 <script>
@@ -114,7 +114,7 @@ let battleCb=null;
 function showResult(e,r){if(!window.DBA_RESULT)return;const win=e.outcome==='victory',C=DBAEngine.CLASSES,ids=e.heroes.map(h=>h.classKey),
  loot=win?sjLoot(ids,0,e.boss.difficulty,e.heroes.length):[];
  setTimeout(()=>{if(eng!==e)return;DBA_RESULT.show({win,bossName:e.boss.name,time:e.time,alive:e.heroes.filter(h=>h.alive).length,total:e.heroes.length,summary:r.summary,
-  newAbil:t=>{try{const a=DBAEngine.abilitiesAt(t.classKey,t.level-1).length;return DBAEngine.abilitiesAt(t.classKey,t.level).slice(a)}catch(x){return[]}},
+  newAbil:t=>{try{const had=new Set(DBAEngine.abilitiesAt(t.classKey,t.level-1).map(a=>a.name));return DBAEngine.abilitiesAt(t.classKey,t.level).filter(a=>!had.has(a.name))}catch(x){return[]}},
   party:r.party.map(h=>({icon:h.icon,name:h.name,level:h.level,xp:h.xp,xpNeed:DBAEngine.xpForLevel(h.level),attack:h.attack,maxHp:h.maxHp})),
   loot:loot.map(i=>Object.assign({},i,{className:(C[i.classKey]||{}).name||i.classKey})),eff:i=>i.stats||{},
   onCollect:()=>invAdd(loot),onNext:()=>start(),onRetry:()=>start(),onInv:()=>{const b=$('invb');b&&b.click()},onNew:()=>{if(window.DBA_MODE_PICK)window.DBA_MODE_PICK();else location.reload()}})},e.outcome==='victory'?1400:900)}

@@ -16,7 +16,7 @@
     try {
       var A = window.__dbaWAPI, K = window.__dbaKe;
       if (K && K !== lastK) { lastK = K; var c = window.__dbaCtl && window.__dbaCtl.on; seq([c ? 'Tocca un\'abilità per lanciarla' : 'Il party combatte da solo', 'Cambia velocità in alto'], 172); }
-      else if (!K && A && A.S !== lastS && !document.getElementById('dbaIntro') && !document.querySelector('.dba-picking')) { lastS = A.S; seq(['Muoviti col joystick sinistro', 'Avvicinati a un nemico per combattere', 'Zaino e mappa: pulsanti a sinistra'], 0); }
+      else if (!K && A && A.S !== lastS && !document.getElementById('dbaIntro') && !document.querySelector('.dba-picking')) { lastS = A.S; seq(['Muoviti col joystick sinistro', 'Avvicinati a un nemico per combattere', 'Livello rosso: nemico troppo forte', 'Zaino e mappa: pulsanti a sinistra'], 0); }
     } catch (e) {}
   }, 600);
 })();
