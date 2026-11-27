@@ -617,3 +617,7 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Il client si riconnette da solo al server se la connessione cade (riavvio/redeploy di Render), senza dover ricaricare.
 - Il server invia a tutti ogni 2 s l'elenco completo e il numero di giocatori; il pannello "👥 N online" usa quel numero.
 - Corretto un errore che nascondeva il pannello (blocco rimosso per sbaglio durante la modifica).
+
+## Mondo condiviso: un solo mondo, niente "Nuovo mondo"
+- Entrando nel mondo sempre attivo non compare più la scelta "Continua / Nuovo mondo": il mondo è uno solo (stesso seme del server).
+- Se il salvataggio locale appartiene a questo mondo si riprende in automatico; se apparteneva a un altro mondo (es. partita singola precedente) viene scartato.

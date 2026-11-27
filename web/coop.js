@@ -484,6 +484,8 @@
     if (UI) { UI.remove(); UI = null; }
     document.documentElement.classList.remove('dba-picking');
     window.__dbaWH = worldTick; rs = m.seed | 0; installFightHook();
+    /* mondo condiviso = uno solo: nessuna scelta "nuovo mondo". Se il salvataggio locale e' di questo stesso mondo si riprende in automatico, altrimenti (salvataggio di un altro mondo) viene scartato */
+    try { var sl = window.__dbaSlot || 0, mk = 'dba_ow_seed_' + sl; if (localStorage.getItem(mk) === String(m.seed)) window.__owAuto = 1; else { localStorage.removeItem('dba_ow_save4_' + sl); window.__owAuto = 0; localStorage.setItem(mk, String(m.seed)); } } catch (e) {}
     withRng(function () { $('owb').onclick(); });
   }
   function slimH(h) { if (!h) return h; var o = {}; ['id', 'name', 'classKey', 'className', 'icon', 'arch', 'weapon', 'color', 'appearance', '_eq', 'naked', 'helmet', 'key', 'hideHelm', 'form', 'look', 'level'].forEach(function (k) { if (h[k] !== undefined) o[k] = h[k]; }); return o; }
