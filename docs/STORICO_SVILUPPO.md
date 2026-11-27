@@ -649,3 +649,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - `theme.css` parte 2: HUD di battaglia (fascia superiore, pillole, carte eroi, barre, pannelli e fine battaglia), barra comandi e pulsanti del mondo aperto, menu in alto, finestre Bestiario/Spellbook/Grimorio, decisioni di battaglia, schermata risultati, inventario, finestre a tutto schermo del gioco (scelta modalità, solo/coop) e pannello giocatori online.
 - Il pulsante selezionato nelle scelte (Automatico/Comanda 1 eroe) resta evidenziato in oro.
 - Corretto nel Diario il testo grezzo "${BN[0]}" (Cavalcatura).
+
+## Correzione urgente: gioco bloccato a schermo intero dopo un combattimento
+- Causa: all'inizio di ogni battaglia il gioco metteva a schermo intero solo l'area di battaglia (`#v3`) e non la pagina intera; a battaglia finita (o dopo la morte e la rinascita al campo) quell'elemento restava a schermo intero e nascondeva il mondo e i suoi pulsanti, che risultavano non cliccabili. Uscendo dallo schermo intero tornava tutto normale.
+- Correzione: lo schermo intero della battaglia (avvio automatico e pulsante ⛶) ora riguarda l'intera pagina; in più `fsguard.js` esce da solo dallo schermo intero se resta su un singolo elemento nascosto.
+- Verificato in locale: dopo il combattimento l'elemento a schermo intero è la pagina e i pulsanti del mondo ricevono i clic. Non verificato su telefono reale.

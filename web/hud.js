@@ -116,7 +116,7 @@
     const togglePause = () => pbtn.onclick(), pan = q('.pan'), panc = q('.panc');
     const open = (html) => { panc.innerHTML = html + '<br><button>Chiudi</button>'; panc.querySelector('button').onclick = () => pan.classList.remove('on'); pan.classList.add('on'); }, closeP = () => pan.classList.remove('on');
     pan.onclick = (e) => { if (e.target === pan) closeP(); };
-    let fsEng = null; addEventListener('resize', () => { sig = ''; }); const fs = () => { const d = host.ownerDocument; if (d.fullscreenElement) d.exitFullscreen(); else if (host.requestFullscreen) host.requestFullscreen(); };
+    let fsEng = null; addEventListener('resize', () => { sig = ''; }); const fs = () => { const d = host.ownerDocument; if (d.fullscreenElement) d.exitFullscreen(); else if (window.__dbaFS) window.__dbaFS(true); else if (d.documentElement.requestFullscreen) d.documentElement.requestFullscreen(); };
     const keysHtml = '<h3>Tasti</h3><p><kbd>Spazio</kbd> pausa · <kbd>1</kbd> <kbd>2</kbd> velocità · <kbd>F</kbd> schermo intero · <kbd>N</kbd> nomi eroi · <kbd>R</kbd> rotazione camera · <kbd>U</kbd> ultimate di tutti gli eroi pronti · <kbd>Esc</kbd> chiudi pannello.</p><p>Camera: trascina per ruotare, rotella/pizzica per zoom, doppio clic per rotazione automatica.</p>';
     const helpHtml = '<h3>Come leggere lo schermo</h3><p>In alto la barra rossa è la vita del boss. A sinistra il suo valore, al centro nome e difficoltà, a destra sopravvissuti e tempo.</p><p>Sotto: la fila di icone sono gli <b>ultimate</b> (ricarica 8 s); tocca un\'icona carica per lanciare l\'ultima abilità di quell\'eroe. Il pulsante a sinistra passa da <b>Ultimate</b> a <b>Provoca</b> (il boss punta l\'eroe scelto per 4 s).</p><p>Le carte mostrano livello, nome, vita (verde) e mana (blu) o furia (arancione). I cerchi colorati a terra sono attacchi in arrivo: esci dall\'area.</p>';
     const setHtml = () => '<h3>Impostazioni</h3>' + [['names', 'Etichette "Classe - Razza"', (api.get && api.get('names'))], ['hm', 'Modelli eroe originali', window.__heroModels !== false], ['bm', 'Modelli boss originali', window.__bossModels !== false], ['auto', 'Rotazione automatica camera', (api.get && api.get('auto'))]].map(([k, t, v]) => '<label><input type="checkbox" data-k="' + k + '"' + (v ? ' checked' : '') + '> ' + t + '</label>').join('');
@@ -159,7 +159,7 @@
         sh(sv, 'Sopravvissuti: <b>' + alive + ' / ' + hs.length + '</b><small>🕒 ' + Math.floor(eng.time) + 's</small>');
         if (b._p2 && ph < 2) { ph = 2; banner('FASE 2 · il boss accelera!'); } if (b.enraged && ph < 3) { ph = 3; banner('FURIA · attacco +50%!'); } if (b._p3 && ph < 4) { ph = 4; banner('FASE 3 · attacco finale!'); }
         if (eng.over && endShown !== eng) { endShown = eng; showEnd(eng); if (endNote) this.note(endNote); }
-        if (fsEng !== eng) { fsEng = eng; try { const d0 = host.ownerDocument; if (!d0.fullscreenElement && host.requestFullscreen) { const pr = host.requestFullscreen(); if (pr && pr.catch) pr.catch(() => {}); } } catch (e) {} }
+        if (fsEng !== eng) { fsEng = eng; try { const d0 = host.ownerDocument; if (!d0.fullscreenElement && d0.documentElement.requestFullscreen) { const pr = d0.documentElement.requestFullscreen(); if (pr && pr.catch) pr.catch(() => {}); } } catch (e) {} }
         const s = hs.map((h) => h.id || h.name).join('|');
         if (s !== sig) { sig = s; cards.innerHTML = ''; strip.querySelectorAll('.ic').forEach((e) => e.remove()); prevHp = [];
           els = hs.map((h) => { const c = document.createElement('div'); c.className = 'cd';
