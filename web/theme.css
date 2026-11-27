@@ -1,0 +1,27 @@
+/* Tiny World — tema grafico condiviso (oro, bronzo, legno scuro, blu runico), ispirato alla schermata iniziale */
+:root{--tw-gold:#f2c45a;--tw-gold2:#c8962e;--tw-wood:#2b1d12;--tw-wood2:#1a110b;--tw-rune:#5ec8ff;--tw-text:#f6e7c1}
+/* sfondo delle schermate di avvio: isola sfocata e scurita */
+#dbaIntro{background:linear-gradient(rgba(8,6,16,.25),rgba(8,6,16,.45)),url(art/bg.jpg) center/cover no-repeat fixed !important}
+body>#root>div.min-h-screen{background:linear-gradient(rgba(8,6,16,.35),rgba(8,6,16,.6)),url(art/bg.jpg) center/cover no-repeat fixed !important}
+/* pannelli: cornice dorata su legno scuro */
+#dbaIntro>div,.dba-mo>div,#dbaCoop>div{
+  background:linear-gradient(180deg,rgba(43,29,18,.96),rgba(22,14,9,.97)) !important;
+  border:2px solid var(--tw-gold2) !important;border-radius:16px !important;
+  box-shadow:0 0 0 2px #3a2410,inset 0 0 0 2px rgba(255,220,140,.18),0 12px 40px rgba(0,0,0,.65) !important;
+  padding:18px !important;color:var(--tw-text) !important}
+#dbaIntro>div{max-width:420px}
+/* titoli */
+#dbaIntro h1,#dbaIntro h2,.dba-mo h2,.dba-mo h3,#dbaCoop h2{font-family:Cinzel,Georgia,'Times New Roman',serif !important;color:var(--tw-gold) !important;text-shadow:0 2px 0 #3a2410,0 0 14px rgba(242,196,90,.35);letter-spacing:.06em}
+/* pulsanti: bronzo con bordo oro, bagliore blu runico al tocco */
+#dbaIntro button,.dba-mo button,#dbaCoop button{
+  background:linear-gradient(180deg,#5a3d1f,#3a2610) !important;color:var(--tw-gold) !important;
+  border:1.5px solid var(--tw-gold2) !important;border-radius:12px !important;
+  box-shadow:inset 0 1px 0 rgba(255,225,150,.35),0 3px 0 #1a0f06,0 4px 10px rgba(0,0,0,.45) !important;
+  text-shadow:0 1px 0 #1a0f06;transition:filter .15s,box-shadow .15s}
+#dbaIntro button:hover,.dba-mo button:hover,#dbaCoop button:hover{filter:brightness(1.12);box-shadow:inset 0 1px 0 rgba(255,225,150,.45),0 3px 0 #1a0f06,0 0 14px rgba(94,200,255,.55) !important}
+#dbaIntro button:active,.dba-mo button:active,#dbaCoop button:active{transform:translateY(2px);box-shadow:inset 0 1px 0 rgba(255,225,150,.3),0 1px 0 #1a0f06 !important}
+#dbaIntro input,#dbaCoop input,#dbaCoop select,#dbaCoop textarea{background:rgba(10,6,3,.7) !important;border:1.5px solid var(--tw-gold2) !important;color:var(--tw-gold) !important;border-radius:10px !important}
+#dbaIntro a{color:var(--tw-rune) !important}
+/* schermate slot/party (Tailwind): schede e pulsante principale */
+body>#root .rounded-2xl.border,body>#root .rounded-lg.border{border-color:rgba(200,150,46,.55) !important}
+body>#root #go{background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important;border:2px solid #f6e7c1;text-shadow:0 1px 0 rgba(255,235,170,.6);box-shadow:0 4px 0 #5a3a0c,0 6px 14px rgba(0,0,0,.5)}

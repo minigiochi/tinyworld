@@ -639,3 +639,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Dopo l'accesso (Google o ospite) e prima della scelta dell'esperienza/party compare "Come ti chiami?", precompilato con il nome dell'account Google (max 20 caratteri). Si può cambiare dalla schermata successiva.
 - Il nickname è il nome del primo personaggio creato (se non ne digiti uno) e il nome predefinito in coop/mondo condiviso.
 - Salvato in `dba_nick`, sincronizzato su Drive; "cambia account" lo azzera. I giocatori già esistenti lo vedono alla prima apertura.
+
+## Schermata iniziale illustrata e tema grafico
+- Nuova splash con l'illustrazione di Tiny World (`web/art/splash.jpg`, fornita dall'utente) in orizzontale a schermo intero e in verticale ingrandita e sfumata nello sfondo; "Tocca per iniziare" in una targa di legno e oro.
+- `web/theme.css` (caricato da start.html e index.html): pannelli con cornice oro su legno scuro, pulsanti bronzo con bagliore blu runico, titoli Cinzel, campi di testo coerenti, sfondo sfocato dell'isola (`art/bg.jpg`) nelle schermate di avvio.
+- Applicato a: accesso/nickname/scelta esperienza, schermate slot e party, finestre di dialogo del gioco (`.dba-mo`), menu coop. Non ancora applicato a: HUD di battaglia, barra comandi, inventario, mappa, diario.
