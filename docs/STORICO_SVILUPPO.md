@@ -644,3 +644,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Nuova splash con l'illustrazione di Tiny World (`web/art/splash.jpg`, fornita dall'utente) in orizzontale a schermo intero e in verticale ingrandita e sfumata nello sfondo; "Tocca per iniziare" in una targa di legno e oro.
 - `web/theme.css` (caricato da start.html e index.html): pannelli con cornice oro su legno scuro, pulsanti bronzo con bagliore blu runico, titoli Cinzel, campi di testo coerenti, sfondo sfocato dell'isola (`art/bg.jpg`) nelle schermate di avvio.
 - Applicato a: accesso/nickname/scelta esperienza, schermate slot e party, finestre di dialogo del gioco (`.dba-mo`), menu coop. Non ancora applicato a: HUD di battaglia, barra comandi, inventario, mappa, diario.
+
+## Tema grafico esteso a tutte le interfacce
+- `theme.css` parte 2: HUD di battaglia (fascia superiore, pillole, carte eroi, barre, pannelli e fine battaglia), barra comandi e pulsanti del mondo aperto, menu in alto, finestre Bestiario/Spellbook/Grimorio, decisioni di battaglia, schermata risultati, inventario, finestre a tutto schermo del gioco (scelta modalità, solo/coop) e pannello giocatori online.
+- Il pulsante selezionato nelle scelte (Automatico/Comanda 1 eroe) resta evidenziato in oro.
+- Corretto nel Diario il testo grezzo "${BN[0]}" (Cavalcatura).

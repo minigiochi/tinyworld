@@ -25,3 +25,81 @@ body>#root>div.min-h-screen{background:linear-gradient(rgba(8,6,16,.35),rgba(8,6
 /* schermate slot/party (Tailwind): schede e pulsante principale */
 body>#root .rounded-2xl.border,body>#root .rounded-lg.border{border-color:rgba(200,150,46,.55) !important}
 body>#root #go{background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important;border:2px solid #f6e7c1;text-shadow:0 1px 0 rgba(255,235,170,.6);box-shadow:0 4px 0 #5a3a0c,0 6px 14px rgba(0,0,0,.5)}
+
+/* ===== Parte 2: HUD di battaglia, barra comandi, inventario, risultati, decisioni, mondo aperto ===== */
+:root{--tw-btn:linear-gradient(180deg,#5a3d1f,#3a2610);--tw-btn-sh:inset 0 1px 0 rgba(255,225,150,.35),0 3px 0 #1a0f06,0 4px 10px rgba(0,0,0,.45);--tw-card:linear-gradient(180deg,#3b2915,#22160b);--tw-panel:linear-gradient(180deg,rgba(43,29,18,.97),rgba(22,14,9,.98));--tw-frame:0 0 0 2px #3a2410,inset 0 0 0 2px rgba(255,220,140,.16),0 12px 40px rgba(0,0,0,.65)}
+/* --- HUD battaglia --- */
+.hud .top{background:linear-gradient(#5a3d1f,#2a1a0d) !important;border-bottom:2px solid var(--tw-gold2) !important;box-shadow:0 3px 10px rgba(0,0,0,.55)}
+.hud .bot{background:linear-gradient(transparent,rgba(20,12,6,.88) 34%) !important}
+.hud .pill{background:var(--tw-card) !important;color:var(--tw-gold) !important;border:1.5px solid var(--tw-gold2);box-shadow:var(--tw-btn-sh)}
+.hud .sv small{color:#c9b48a !important}
+.hud .strip .lab,.hud .ic{background:var(--tw-card) !important;border:1.5px solid var(--tw-gold2) !important;color:var(--tw-gold) !important}
+.hud .cd{background:var(--tw-card) !important;border:2px solid var(--tw-gold2) !important;border-radius:10px !important;box-shadow:inset 0 0 0 1px rgba(255,220,140,.14),0 2px 6px rgba(0,0,0,.5)}
+.hud .cd .n{color:var(--tw-text)}
+.hud .cd.rdy{border-color:var(--tw-rune) !important;box-shadow:0 0 12px rgba(94,200,255,.6),inset 0 0 0 1px rgba(94,200,255,.3)}
+.hud .ic.rdy{box-shadow:0 0 10px 2px rgba(94,200,255,.65) !important}
+.hud .bar{background:#120a04 !important;border:1px solid #5a3d1f !important}
+.hud .ub{border:1.5px solid var(--tw-gold2) !important;background:rgba(18,10,4,.8) !important}
+.hud .ttl h1{font-family:Cinzel,Georgia,serif;color:var(--tw-gold);text-shadow:0 2px 0 #3a2410,0 0 12px rgba(242,196,90,.4)}
+.hud .tl button,.hud .tr button{background:var(--tw-btn) !important;color:var(--tw-gold) !important;border:1.5px solid var(--tw-gold2) !important;box-shadow:var(--tw-btn-sh)}
+.hud .tr button.on{background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important}
+.hud .panc,.hud .endc{background:var(--tw-panel) !important;border:2px solid var(--tw-gold2) !important;border-radius:16px !important;box-shadow:var(--tw-frame);color:var(--tw-text)}
+.hud .panc h3,.hud .endc h2{font-family:Cinzel,Georgia,serif;color:var(--tw-gold) !important;text-shadow:0 2px 0 #3a2410}
+.hud .panc button,.hud .endc button{background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important;border:2px solid #f6e7c1 !important;box-shadow:0 3px 0 #5a3a0c,0 5px 12px rgba(0,0,0,.5);text-shadow:0 1px 0 rgba(255,235,170,.6)}
+.hud .panc kbd{background:#3a2610 !important;border-color:var(--tw-gold2) !important;color:var(--tw-gold)}
+.hud .flt{background:rgba(26,15,6,.9) !important;border-color:var(--tw-gold2) !important}
+/* --- barra comandi / spettatore / mondo aperto --- */
+#dbaCtl button,#dbaSpec button,#dbaDG button,.owm button{background:var(--tw-btn) !important;color:var(--tw-gold) !important;border:1.5px solid var(--tw-gold2) !important;box-shadow:var(--tw-btn-sh) !important;text-shadow:0 1px 0 #1a0f06}
+#dbaCtl button:hover,#dbaDG button:hover,.owm button:hover{filter:brightness(1.12);box-shadow:var(--tw-btn-sh),0 0 12px rgba(94,200,255,.5) !important}
+#dbaCtl .cd,#dbaCtl>div{border-color:var(--tw-gold2)}
+#dbaPlayers button{background:var(--tw-btn) !important;border:1.5px solid var(--tw-gold2) !important;box-shadow:var(--tw-btn-sh)}
+#dbaPlayers>div{background:var(--tw-panel) !important;border:2px solid var(--tw-gold2) !important;box-shadow:var(--tw-frame)}
+/* --- menu in alto (bestiario, spellbook, ...) --- */
+.dbaTop button{background:var(--tw-btn) !important;color:var(--tw-gold) !important;border:1.5px solid var(--tw-gold2) !important;border-radius:10px !important;box-shadow:var(--tw-btn-sh);text-shadow:0 1px 0 #1a0f06}
+.dbaTop button:hover{filter:brightness(1.12)}
+#dbaTopM{background:rgba(8,5,3,.78) !important}
+#dbaTopM .bx{background:var(--tw-panel) !important;border:2px solid var(--tw-gold2) !important;border-radius:16px !important;box-shadow:var(--tw-frame)}
+#dbaTopM .hd{border-bottom:1px solid rgba(200,150,46,.45) !important}
+#dbaTopM .hd b{font-family:Cinzel,Georgia,serif;color:var(--tw-gold) !important;letter-spacing:.06em;text-shadow:0 2px 0 #3a2410}
+#dbaTopM .x{color:var(--tw-gold) !important}
+#dbaTopM .tabs{border-bottom:1px solid rgba(200,150,46,.3) !important}
+#dbaTopM .tabs button,#dbaTopM .sg button{background:var(--tw-btn) !important;color:var(--tw-text) !important;border:1.5px solid rgba(200,150,46,.6) !important}
+#dbaTopM .tabs button.on,#dbaTopM .sg button.on{background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important;border-color:#f6e7c1 !important}
+#dbaTopM .sp,#dbaTopM .bs{background:rgba(90,61,31,.28) !important;border:1px solid rgba(200,150,46,.35) !important}
+#dbaTopM .sp.l{background:rgba(94,200,255,.1) !important;border-color:rgba(94,200,255,.5) !important}
+/* --- decisioni di battaglia --- */
+.dba-dec .bx{background:var(--tw-panel) !important;border:2px solid var(--tw-gold2) !important;border-radius:16px !important;box-shadow:var(--tw-frame)}
+.dba-dec button{background:var(--tw-btn) !important;border:1.5px solid rgba(200,150,46,.7) !important;color:var(--tw-text) !important;box-shadow:var(--tw-btn-sh)}
+.dba-dec button:hover{filter:brightness(1.12);border-color:var(--tw-rune) !important}
+.dba-dec button.on{background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important;border-color:#f6e7c1 !important}
+.dba-dec button.on .t b,.dba-dec button.on .d,.dba-dec button.on .t u{color:#2b1405 !important}
+.dba-dec .hd .k{color:var(--tw-gold2) !important}
+/* --- schermata risultati --- */
+#dbaRes{background:linear-gradient(rgba(8,5,3,.82),rgba(8,5,3,.92)),url(art/bg.jpg) center/cover fixed !important}
+#dbaRes .hero{background:radial-gradient(120% 140% at 50% 0%,rgba(242,196,90,.25),rgba(34,22,11,.95) 62%) !important;border:2px solid var(--tw-gold2) !important;box-shadow:var(--tw-frame),0 0 40px rgba(242,196,90,.15) inset !important}
+#dbaRes .hero.lose{background:radial-gradient(120% 140% at 50% 0%,rgba(239,68,68,.22),rgba(34,22,11,.95) 62%) !important;border-color:#a8432f !important}
+#dbaRes .cd div,#dbaRes .pc,#dbaRes .lu{background:rgba(90,61,31,.3) !important;border:1px solid rgba(200,150,46,.45) !important}
+#dbaRes button{background:var(--tw-btn) !important;color:var(--tw-gold) !important;border:1.5px solid var(--tw-gold2) !important;border-radius:12px !important;box-shadow:var(--tw-btn-sh)}
+#dbaRes button.bt:first-of-type,#dbaRes .bt.pr{background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important;border-color:#f6e7c1 !important}
+/* --- inventario --- */
+#dbaInv{background:rgba(8,5,3,.7) !important}
+#dbaInv .w{background:var(--tw-panel) !important;border:2px solid var(--tw-gold2) !important;border-radius:18px !important;box-shadow:var(--tw-frame)}
+#dbaInv .hd{border-bottom:1px solid rgba(200,150,46,.45) !important}
+#dbaInv .pa{background:rgba(90,61,31,.22) !important;border-color:rgba(200,150,46,.35) !important}
+#dbaInv .b,#dbaInv .ch{background:var(--tw-btn) !important;color:var(--tw-text) !important;border:1.5px solid rgba(200,150,46,.6) !important;box-shadow:var(--tw-btn-sh)}
+#dbaInv .ch.on{background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important;border-color:#f6e7c1 !important}
+#dbaInv .s{background:rgba(18,10,4,.5) !important;border:1px solid rgba(200,150,46,.3) !important}
+#dbaInv .s.f{border-color:var(--tw-gold2) !important;background:rgba(200,150,46,.14) !important}
+/* --- finestre generiche rimaste (a11y, tastiera, volume, suggerimenti) --- */
+#dba-a11y,#dba-kb,#dba-vol{background:var(--tw-panel) !important;border:2px solid var(--tw-gold2) !important;box-shadow:var(--tw-frame);color:var(--tw-text) !important}
+#dba-a11y button,#dba-kb button,#dba-a11y-btn,#dba-kb-btn{background:var(--tw-btn) !important;color:var(--tw-gold) !important;border:1.5px solid var(--tw-gold2) !important}
+
+/* --- finestre a tutto schermo create dal gioco (scelta modalità, lobby, ecc.) --- */
+div:is([style*="position:fixed"],[style*="position: fixed"]):is([style*="rgba(5,3,12"],[style*="rgba(5, 3, 12"]):not(#dbaCoop){background:linear-gradient(rgba(8,5,3,.72),rgba(8,5,3,.86)),url(art/bg.jpg) center/cover fixed !important}
+div:is([style*="position:fixed"],[style*="position: fixed"]):is([style*="rgba(5,3,12"],[style*="rgba(5, 3, 12"]):not(#dbaCoop)>div{background:var(--tw-panel);border:2px solid var(--tw-gold2);border-radius:16px;box-shadow:var(--tw-frame);padding:18px !important;color:var(--tw-text)}
+div:is([style*="position:fixed"],[style*="position: fixed"]):is([style*="rgba(5,3,12"],[style*="rgba(5, 3, 12"]) h2{font-family:Cinzel,Georgia,serif;color:var(--tw-gold) !important;text-shadow:0 2px 0 #3a2410;letter-spacing:.05em}
+div:is([style*="position:fixed"],[style*="position: fixed"]):is([style*="rgba(5,3,12"],[style*="rgba(5, 3, 12"]) button{background:var(--tw-btn) !important;color:var(--tw-gold) !important;border:1.5px solid var(--tw-gold2) !important;border-radius:12px !important;box-shadow:var(--tw-btn-sh);text-shadow:0 1px 0 #1a0f06}
+div:is([style*="position:fixed"],[style*="position: fixed"]):is([style*="rgba(5,3,12"],[style*="rgba(5, 3, 12"]) button:hover{filter:brightness(1.12);box-shadow:var(--tw-btn-sh),0 0 12px rgba(94,200,255,.5)}
+/* stato "selezionato" dei pulsanti a scelta (il gioco lo segna con uno sfondo ambra nello stile inline) */
+div:is([style*="position:fixed"],[style*="position: fixed"]) button:is([style*="rgba(251,191,36,.18)"],[style*="rgba(251, 191, 36, 0.18)"]){background:linear-gradient(180deg,#e7b441,#a8701c) !important;color:#2b1405 !important;border-color:#f6e7c1 !important;text-shadow:0 1px 0 rgba(255,235,170,.6) !important}
+.hud .cards{background:linear-gradient(#3b2915,#1c1109) !important;border-top:2px solid var(--tw-gold2) !important;box-shadow:0 -3px 10px rgba(0,0,0,.5)}
