@@ -54,7 +54,7 @@
     root.querySelector('#cname').oninput = function () { state.name = this.value; };
     root.querySelectorAll('div[data-k]').forEach((d) => d.onclick = (e) => {
       if (e.target.closest('button')) return; if (state.roster.length >= MAXP) return;
-      state.roster.push({ uid: state.uid++, k: d.dataset.k, name: state.name.trim() || '' }); state.name = ''; save(); showParty();
+      state.roster.push({ uid: state.uid++, k: d.dataset.k, name: state.name.trim() || (state.roster.length ? '' : (LS.getItem('dba_nick') || '')) }); state.name = ''; save(); showParty();
     });
     root.querySelectorAll('button[data-v]').forEach((b) => b.onclick = (e) => { e.stopPropagation(); view3d(b.dataset.v); });
     root.querySelectorAll('button[data-x]').forEach((b) => b.onclick = () => { state.roster = state.roster.filter((r) => r.uid != b.dataset.x); save(); showParty(); });

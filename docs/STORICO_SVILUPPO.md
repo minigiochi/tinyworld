@@ -634,3 +634,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Guida: `docs/GOOGLE_DRIVE.md`. Verificato con Google simulato, non con Google reale.
 
 - ID client Google inserito in `web/auth-config.js`: il pulsante "Accedi con Google" è attivo (non ancora provato con Google reale).
+
+## Nickname del giocatore
+- Dopo l'accesso (Google o ospite) e prima della scelta dell'esperienza/party compare "Come ti chiami?", precompilato con il nome dell'account Google (max 20 caratteri). Si può cambiare dalla schermata successiva.
+- Il nickname è il nome del primo personaggio creato (se non ne digiti uno) e il nome predefinito in coop/mondo condiviso.
+- Salvato in `dba_nick`, sincronizzato su Drive; "cambia account" lo azzera. I giocatori già esistenti lo vedono alla prima apertura.

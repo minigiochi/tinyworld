@@ -314,6 +314,7 @@
   var ss = 'padding:5px 8px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:13px';
   function open(mode) {
     C.mode = mode || C.mode || 'b';
+    if (!C.nk) { C.nk = 1; try { var nk0 = (localStorage.getItem('dba_nick') || '').trim(); if (nk0) C.name = nk0; } catch (e) {} }
     if (UI) UI.remove();
     document.documentElement.classList.remove('dba-picking');
     UI = document.createElement('div'); UI.id = 'dbaCoop';
