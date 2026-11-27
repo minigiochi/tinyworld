@@ -431,10 +431,21 @@
     clearTimeout(joinTO); joinTO = setTimeout(function () { if (!W.on) srvFail('Il server non risponde (se era in pausa può servire più di un minuto: riprova).'); }, 90000);
     srvWire(ws, fake, false);
   }
+  /* battito: tiene viva la presenza anche con scheda in secondo piano / combattimento / menu (il gioco non invia posizioni), e rileva i collegamenti morti */
+  function srvBeat() {
+    var f = C.peers && C.peers[0]; if (!SRV || !W.on || !f || f.stop) return;
+    if (SRV.readyState === 1) {
+      try { SRV.send(JSON.stringify({ t: 'hb' })); if (W.lastRow && performance.now() - W.last > 1500) SRV.send(JSON.stringify({ t: 'wp', r: W.lastRow })); } catch (e) {}
+      if (f.lm && Date.now() - f.lm > 12000) { try { SRV.close(); } catch (e) {} }     // niente dal server da 12 s: collegamento morto, si riconnette
+    }
+  }
+  setInterval(srvBeat, 3000);
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) srvBeat(); });
+  window.addEventListener('online', function () { var f = C.peers && C.peers[0]; if (SRV && W.on && f && !f.stop && SRV.readyState !== 1) { try { SRV.close(); } catch (e) {} } });
   function srvWire(ws, fake, re) {
     SRV = ws;
-    ws.onopen = function () { fake.tries = 0; ws.send(JSON.stringify({ t: 'hello', re: re ? 1 : 0, name: C.name, hero: slimH(buildMyHero(C.picked)) })); };
-    ws.onmessage = function (ev) { var m; try { m = JSON.parse(ev.data); } catch (e) { return; } if (m && (m.t === 'wstart' || m.t === 'wre')) clearTimeout(joinTO); try { onMsg(fake, m); } catch (e) { console.error(e); } };
+    ws.onopen = function () { fake.tries = 0; fake.lm = Date.now(); ws.send(JSON.stringify({ t: 'hello', re: re ? 1 : 0, name: C.name, hero: slimH(buildMyHero(C.picked)) })); };
+    ws.onmessage = function (ev) { fake.lm = Date.now(); var m; try { m = JSON.parse(ev.data); } catch (e) { return; } if (m && (m.t === 'wstart' || m.t === 'wre')) clearTimeout(joinTO); try { onMsg(fake, m); } catch (e) { console.error(e); } };
     ws.onerror = function () { if (!W.on && SRV === ws) srvFail('Collegamento al server non riuscito. Controlla l\'indirizzo.'); };
     ws.onclose = function () {
       fake.open = false; if (fake.stop || SRV !== ws) return;
@@ -504,11 +515,11 @@
     var now = performance.now(), me = A.me;
     if (now - (W.lastH || 0) > 2000) { W.lastH = now; try { var pa = window.__dbaGetParty && window.__dbaGetParty(), lid = A.lead, hh = pa && (pa.filter(function (x) { return x.id == lid; })[0] || pa[0]); if (hh) { var js = JSON.stringify(slimH(hh)); if (js !== W.snapH || now - (W.lastF || 0) > 10000) { W.snapH = js; W.lastF = now; var hj = JSON.parse(js); if (C.role === 'host') { W.pl[W.me] = Object.assign(W.pl[W.me] || { i: W.me }, { hero: hj }); broadcast({ t: 'wh', i: W.me, hero: hj }); } else if (C.peers[0]) C.peers[0].send({ t: 'wh', hero: hj }); } } } catch (e) {} }
     if (now - W.last > 100) {
-      W.last = now; var row = [W.me, +me.x.toFixed(1), +me.z.toFixed(1), +me.h.toFixed(2), me.m ? 1 : 0, +me.j.toFixed(2)];
+      W.last = now; var row = W.lastRow = [W.me, +me.x.toFixed(1), +me.z.toFixed(1), +me.h.toFixed(2), me.m ? 1 : 0, +me.j.toFixed(2)];
       if (C.role === 'host') {
         C.peers.forEach(function (p, i) {
           if (!p || !p.open) return; var id = i + 1, ref = W.rem[id] || { x: me.x, z: me.z }, out = [row];
-          Object.keys(W.rem).forEach(function (k) { var r = W.rem[k]; if (+k === id || now - r.ts > 4000) return; if (Math.hypot(r.x - ref.x, r.z - ref.z) < W.AOI) out.push([+k, r.x, r.z, r.h, r.m, r.j]); });
+          Object.keys(W.rem).forEach(function (k) { var r = W.rem[k]; if (+k === id || now - r.ts > 25000) return; if (Math.hypot(r.x - ref.x, r.z - ref.z) < W.AOI) out.push([+k, r.x, r.z, r.h, r.m, r.j]); });
           if (Math.hypot(me.x - ref.x, me.z - ref.z) >= W.AOI) out.shift();
           p.send({ t: 'ws', p: out });
         });
@@ -517,7 +528,7 @@
     var cam = window.__dbaSky && window.__dbaSky.cam, f = Math.min(1, dt * 9);
     Object.keys(W.rem).forEach(function (id) {
       var r = W.rem[id], a = W.av[id], far = Math.hypot(r.x - me.x, r.z - me.z) > W.AOI;
-      if (now - r.ts > 4000 || far) { if (a) { if (a.g.parent) a.g.parent.remove(a.g); if (a.tag) a.tag.remove(); delete W.av[id]; } return; }
+      if (now - r.ts > 25000 || far) { if (a) { if (a.g.parent) a.g.parent.remove(a.g); if (a.tag) a.tag.remove(); delete W.av[id]; } return; }
       if (!a) {
         var pl = W.pl[id]; if (!pl || !pl.hero) return;
         var g = A.build(pl.hero); g.scale.set(1.95, ((pl.hero.appearance && pl.hero.appearance.heightMul) || 1) * 1.95, 1.95); g.position.set(r.x, A.HT(r.x, r.z), r.z); A.S.add(g);

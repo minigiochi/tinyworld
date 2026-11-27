@@ -12,7 +12,7 @@ const { WebSocketServer } = require('ws');
 const PORT = +process.env.PORT || 8080;
 const SEED = (+process.env.WORLD_SEED || 20260101) | 0;
 const MAX_PLAYERS = +process.env.MAX_PLAYERS || 30;
-const AOI = 1000, SEE_MAX = 12, STALE_MS = 4000, TICK_MS = 100;
+const AOI = 1000, SEE_MAX = 12, STALE_MS = 25000, TICK_MS = 100;
 const WEB = path.resolve(process.env.WEB_DIR || path.join(__dirname, '..', 'web'));
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg', '.wasm': 'application/wasm', '.txt': 'text/plain', '.ico': 'image/x-icon' };
 const HERO_KEYS = ['id', 'name', 'classKey', 'className', 'icon', 'arch', 'weapon', 'color', 'appearance', '_eq', 'naked', 'helmet', 'key', 'hideHelm', 'form', 'look', 'level'];
@@ -37,7 +37,7 @@ const server = http.createServer((req, res) => {
   const url = decodeURIComponent((req.url || '/').split('?')[0]);
   if (url === '/healthz') {
     res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', 'Access-Control-Allow-Origin': '*' });
-    res.end(JSON.stringify({ ok: true, players: players.size, uptimeS: Math.round((Date.now() - started) / 1000) }));
+    const nw = Date.now(); res.end(JSON.stringify({ ok: true, players: players.size, uptimeS: Math.round((nw - started) / 1000), list: [...players.values()].map((p) => ({ id: p.id, name: p.name, conn: Math.round((nw - p.joined) / 1000), idle: Math.round((nw - (p.seen || p.joined)) / 1000), pos: p.ts ? [Math.round(p.x), Math.round(p.z)] : null })) }));
     return;
   }
   let file = path.normalize(path.join(WEB, url === '/' ? 'index.html' : url));
@@ -58,11 +58,13 @@ wss.on('connection', (ws) => {
   ws.on('message', (data) => {
     let m; try { m = JSON.parse(data.toString()); } catch (e) { return; }
     if (!m || typeof m.t !== 'string') return;
+    ws.isAlive = true; if (me) me.seen = Date.now();
+    if (m.t === 'hb') return;
     if (!me) {
       if (m.t !== 'hello') return;
       if (players.size >= MAX_PLAYERS) { send(ws, { t: 'wfull', max: MAX_PLAYERS }); ws.close(); return; }
       const hero = slim(m.hero); if (!hero) { send(ws, { t: 'werr', msg: 'Eroe non valido' }); ws.close(); return; }
-      me = { id: nextId++, ws, name: String(m.name || 'Giocatore').replace(/[<>&"]/g, '').slice(0, 20) || 'Giocatore', hero, x: 0, z: 0, h: 0, m: 0, j: 0, ts: 0, rowAt: 0, far: true };
+      me = { id: nextId++, ws, name: String(m.name || 'Giocatore').replace(/[<>&"]/g, '').slice(0, 20) || 'Giocatore', hero, x: 0, z: 0, h: 0, m: 0, j: 0, ts: 0, rowAt: 0, far: true, joined: Date.now(), seen: Date.now() };
       const others = []; players.forEach((p) => others.push({ i: p.id, name: p.name, hero: p.hero }));
       players.set(me.id, me);
       const roster = others.concat([{ i: me.id, name: me.name, hero: me.hero }]);
@@ -81,8 +83,8 @@ wss.on('connection', (ws) => {
       send(ws, { t: 'wdeny' });          // il server non ospita battaglie: il client combatte in locale
     }
   });
-  ws.on('close', () => {
-    if (me && players.get(me.id) === me) { players.delete(me.id); broadcast({ t: 'wl', i: me.id }); log('esce', me.id, me.name, '(' + players.size + ')'); }
+  ws.on('close', (code) => {
+    if (me && players.get(me.id) === me) { players.delete(me.id); broadcast({ t: 'wl', i: me.id }); log('esce', me.id, me.name, '(' + players.size + ')', 'codice', code, 'connesso', Math.round((Date.now() - me.joined) / 1000) + 's', 'silenzio', Math.round((Date.now() - me.seen) / 1000) + 's'); }
   });
   ws.on('error', () => {});
 });
@@ -108,7 +110,7 @@ setInterval(() => {
 }, 2000);
 
 /* connessioni morte */
-setInterval(() => { wss.clients.forEach((ws) => { if (ws.isAlive === false) { ws.terminate(); return; } ws.isAlive = false; try { ws.ping(); } catch (e) {} }); }, 25000);
+setInterval(() => { wss.clients.forEach((ws) => { if ((ws.miss || 0) >= 3) { log('termino socket muto'); ws.terminate(); return; } ws.miss = ws.isAlive === false ? (ws.miss || 0) + 1 : 0; ws.isAlive = false; try { ws.ping(); } catch (e) {} }); }, 25000);
 
 function log() { console.log(new Date().toISOString(), ...arguments); }
 if (require.main === module) server.listen(PORT, () => log('Tiny World server su porta', PORT, '· seme', SEED, '· web:', WEB));
