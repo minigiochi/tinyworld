@@ -659,3 +659,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Causa: una regola del tema grafico (`.hud .bot`) copriva con un velo scuro semitrasparente gran parte dello schermo di battaglia, sopra il pannello Vittoria/Sconfitta e sopra tutte le battaglie successive. Regola rimossa.
 - La pillola "👥 N online" non copre più il pulsante della mappa sul telefono (spostata a destra della colonna dei pulsanti).
 - Verificato in locale in modalità telefono (touch) nel mondo condiviso: sconfitta → pannello leggibile → tocco su Continua → "Il party è caduto" → tocco su "Risorgi al campo" → mondo cliccabile.
+
+## La battaglia non si chiude più da sola
+- Prima, a fine battaglia, il gioco proseguiva automaticamente dopo ~2 secondi. Ora il pannello Vittoria/Sconfitta resta finché non si preme "Continua".
+- Resta l'uscita automatica solo come rete di sicurezza quando il pannello finale non c'è (vista 2D senza HUD), per non lasciare il giocatore bloccato.
+- Verificato in locale (modalità telefono, mondo condiviso): dopo 15 s senza toccare il pannello è ancora visibile; con il tocco su Continua si prosegue.
