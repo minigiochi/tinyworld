@@ -626,3 +626,9 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Un giocatore non inviava la posizione durante combattimenti, menu o con la scheda in secondo piano, e dopo 4 s spariva per gli altri. Ora il client invia un battito ogni 3 s (anche l'ultima posizione) e il server/avatar tollerano 25 s.
 - Se dal server non arriva nulla per 12 s il client considera il collegamento morto e si riconnette da solo; riconnessione anche al ritorno della scheda in primo piano.
 - Il server tollera 3 controlli mancati prima di chiudere un socket e registra codice di chiusura e durata; `/healthz` ora elenca i giocatori (nome, da quanto connessi, silenzio) per la diagnosi.
+
+## Accesso con Google e salvataggi su Google Drive
+- Schermata iniziale: "Accedi con Google" (compare quando `web/auth-config.js` contiene l'ID client) oppure "Gioca come ospite".
+- Salvataggi nella cartella nascosta dell'app nel Drive del giocatore (`drive.appdata`), sincronizzati ogni 60 s, a scheda nascosta e alla chiusura; sul dispositivo nuovo si sceglie se usare i progressi del cloud.
+- Corretto lo scheletro di sync originale: ignorava i salvataggi principali (`dbaNext…`, prefisso senza underscore) e sincronizzava anche dati specifici del dispositivo.
+- Guida: `docs/GOOGLE_DRIVE.md`. Verificato con Google simulato, non con Google reale.
