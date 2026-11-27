@@ -654,3 +654,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Causa: all'inizio di ogni battaglia il gioco metteva a schermo intero solo l'area di battaglia (`#v3`) e non la pagina intera; a battaglia finita (o dopo la morte e la rinascita al campo) quell'elemento restava a schermo intero e nascondeva il mondo e i suoi pulsanti, che risultavano non cliccabili. Uscendo dallo schermo intero tornava tutto normale.
 - Correzione: lo schermo intero della battaglia (avvio automatico e pulsante ⛶) ora riguarda l'intera pagina; in più `fsguard.js` esce da solo dallo schermo intero se resta su un singolo elemento nascosto.
 - Verificato in locale: dopo il combattimento l'elemento a schermo intero è la pagina e i pulsanti del mondo ricevono i clic. Non verificato su telefono reale.
+
+## Correzione: schermata di fine battaglia scura e battaglie successive scure
+- Causa: una regola del tema grafico (`.hud .bot`) copriva con un velo scuro semitrasparente gran parte dello schermo di battaglia, sopra il pannello Vittoria/Sconfitta e sopra tutte le battaglie successive. Regola rimossa.
+- La pillola "👥 N online" non copre più il pulsante della mappa sul telefono (spostata a destra della colonna dei pulsanti).
+- Verificato in locale in modalità telefono (touch) nel mondo condiviso: sconfitta → pannello leggibile → tocco su Continua → "Il party è caduto" → tocco su "Risorgi al campo" → mondo cliccabile.

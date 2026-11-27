@@ -30,7 +30,6 @@ body>#root #go{background:linear-gradient(180deg,#e7b441,#a8701c) !important;col
 :root{--tw-btn:linear-gradient(180deg,#5a3d1f,#3a2610);--tw-btn-sh:inset 0 1px 0 rgba(255,225,150,.35),0 3px 0 #1a0f06,0 4px 10px rgba(0,0,0,.45);--tw-card:linear-gradient(180deg,#3b2915,#22160b);--tw-panel:linear-gradient(180deg,rgba(43,29,18,.97),rgba(22,14,9,.98));--tw-frame:0 0 0 2px #3a2410,inset 0 0 0 2px rgba(255,220,140,.16),0 12px 40px rgba(0,0,0,.65)}
 /* --- HUD battaglia --- */
 .hud .top{background:linear-gradient(#5a3d1f,#2a1a0d) !important;border-bottom:2px solid var(--tw-gold2) !important;box-shadow:0 3px 10px rgba(0,0,0,.55)}
-.hud .bot{background:linear-gradient(transparent,rgba(20,12,6,.88) 34%) !important}
 .hud .pill{background:var(--tw-card) !important;color:var(--tw-gold) !important;border:1.5px solid var(--tw-gold2);box-shadow:var(--tw-btn-sh)}
 .hud .sv small{color:#c9b48a !important}
 .hud .strip .lab,.hud .ic{background:var(--tw-card) !important;border:1.5px solid var(--tw-gold2) !important;color:var(--tw-gold) !important}

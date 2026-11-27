@@ -465,7 +465,7 @@
     var host = document.fullscreenElement || document.body;
     if (!PAN) {
       PAN = document.createElement('div'); PAN.id = 'dbaPlayers';
-      PAN.style.cssText = 'position:fixed;left:8px;top:150px;z-index:20001;font:600 12px system-ui,sans-serif;color:#fde68a;max-width:240px';
+      PAN.style.cssText = 'position:fixed;left:62px;top:calc(env(safe-area-inset-top,0px) + 112px);z-index:20001;font:600 12px system-ui,sans-serif;color:#fde68a;max-width:240px';
       PAN.addEventListener('click', function (e) { var b = e.target.closest('button[data-go]'); if (b) { var p = (W.all || []).filter(function (r) { return r[0] === +b.dataset.go; })[0]; if (p && window.__owW) { try { window.__owW.push(p[1] + 5, p[2] + 5); } catch (x) {} } panOpen = false; PAN._k = null; panelUpdate(); } else if (e.target.closest('[data-tg]')) { panOpen = !panOpen; PAN._k = null; panelUpdate(); } });
     }
     if (PAN.parentNode !== host) host.appendChild(PAN);
