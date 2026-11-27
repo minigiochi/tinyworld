@@ -632,3 +632,5 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Salvataggi nella cartella nascosta dell'app nel Drive del giocatore (`drive.appdata`), sincronizzati ogni 60 s, a scheda nascosta e alla chiusura; sul dispositivo nuovo si sceglie se usare i progressi del cloud.
 - Corretto lo scheletro di sync originale: ignorava i salvataggi principali (`dbaNext…`, prefisso senza underscore) e sincronizzava anche dati specifici del dispositivo.
 - Guida: `docs/GOOGLE_DRIVE.md`. Verificato con Google simulato, non con Google reale.
+
+- ID client Google inserito in `web/auth-config.js`: il pulsante "Accedi con Google" è attivo (non ancora provato con Google reale).
