@@ -67,7 +67,7 @@
       while (add.length < need) add.push(keys[Math.random() * keys.length | 0]);
       add.slice(0, need).forEach((k) => state.roster.push({ uid: state.uid++, k, name: '' })); save(); showParty();
     };
-    root.querySelector('#go').onclick = () => { if (!state.roster.length) return; save(); location.href = 'index.html?slot=' + state.slot; };
+    root.querySelector('#go').onclick = () => { if (!state.roster.length) return; save(); try { sessionStorage.setItem('dba_in', '1'); } catch (e) { } location.href = 'game.html?slot=' + state.slot; };
     root.querySelector('#chg').onclick = () => showSlots();
     state.uid = Math.max(state.uid, ...state.roster.map((r) => r.uid + 1), 1);
   }

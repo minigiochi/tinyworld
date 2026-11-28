@@ -264,7 +264,7 @@
     o.style.cssText = 'position:fixed;inset:0;z-index:9990;background:rgba(5,3,12,.82);display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif';
     o.innerHTML = '<div style="max-width:380px;padding:24px;border-radius:18px;text-align:center;border:1px solid ' + (win ? 'rgba(251,191,36,.6)' : 'rgba(239,68,68,.5)') + ';background:rgba(15,10,20,.96);color:#e2e8f0"><div style="font-size:52px">' + (win ? '🏆' : '💀') + '</div><h2 style="margin:6px 0;color:' + (win ? '#fde68a' : '#fca5a5') + '">' + (win ? 'Vittoria!' : 'Sconfitta') + '</h2><div style="font-size:14px;margin-bottom:14px">' + (win ? 'Il boss è stato sconfitto in ' : 'Il gruppo è stato annientato dopo ') + Math.round(eng.time) + ' s<br>Sopravvissuti: ' + eng.heroes.filter(function (h) { return h.alive; }).length + '/' + eng.heroes.length + '</div><button id="coopBack" style="padding:12px 22px;border-radius:12px;border:1px solid rgba(251,191,36,.6);background:rgba(251,191,36,.16);color:#fde68a;font-size:15px;font-weight:700">Torna al menù</button></div>';
     document.body.appendChild(o);
-    $('coopBack').onclick = function () { cleanup(); eng = null; if (window.__reopenPick) window.__reopenPick(); else location.href = 'start.html?screen=slots'; };
+    $('coopBack').onclick = function () { cleanup(); eng = null; if (window.__reopenPick) window.__reopenPick(); else (window.__dbaToStart ? window.__dbaToStart() : (location.href = './')); };
   }
   function note(t) { var b = $('dbaCoopBar'); if (!b) return; b.dataset.note = t; b.dataset.nt = Date.now(); }
   function banner() {

@@ -31,13 +31,14 @@
     // controlli camera: trascinamento (mouse/tocco), rotella e pinch
     const ptrs = new Map();
     canvas.addEventListener('pointerdown', (e) => { canvas.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]); st.auto = false; });
+    let zt = 0; const zm = (d) => { const SG = window.__dbaSet || (window.__dbaSet = {}), cm = SG.cameraMode; if (cm === 'first') return; if (cm === 'third') SG.thirdPersonDistance = Math.max(3, Math.min(25, d)); else { SG.cameraDistance = Math.max(8, Math.min(60, d)); st._cd = SG.cameraDistance; r.camera({ dist: SG.cameraDistance }); } clearTimeout(zt); zt = setTimeout(() => { try { if (window.__dbaSaveSet) window.__dbaSaveSet(SG); } catch (e) { } }, 400); };
     canvas.addEventListener('pointerup', (e) => ptrs.delete(e.pointerId)); canvas.addEventListener('pointercancel', (e) => ptrs.delete(e.pointerId));
     canvas.addEventListener('pointermove', (e) => {
       const p = ptrs.get(e.pointerId); if (!p) return; const c = r.cam;
-      if (ptrs.size === 2) { const o = [...ptrs.entries()].find(([k]) => k !== e.pointerId)[1], d0 = Math.hypot(p[0] - o[0], p[1] - o[1]); ptrs.set(e.pointerId, [e.clientX, e.clientY]); const d1 = Math.hypot(e.clientX - o[0], e.clientY - o[1]); r.camera({ dist: Math.max(10, Math.min(60, c.dist * d0 / (d1 || d0))) }); return; }
+      if (ptrs.size === 2) { const o = [...ptrs.entries()].find(([k]) => k !== e.pointerId)[1], d0 = Math.hypot(p[0] - o[0], p[1] - o[1]); ptrs.set(e.pointerId, [e.clientX, e.clientY]); const d1 = Math.hypot(e.clientX - o[0], e.clientY - o[1]); zm(c.dist * d0 / (d1 || d0)); return; }
       r.camera({ yaw: c.yaw - (e.clientX - p[0]) * .008, pitch: Math.max(.15, Math.min(1.45, c.pitch + (e.clientY - p[1]) * .006)) }); ptrs.set(e.pointerId, [e.clientX, e.clientY]);
     });
-    canvas.addEventListener('wheel', (e) => { e.preventDefault(); r.camera({ dist: Math.max(10, Math.min(60, r.cam.dist * (1 + Math.sign(e.deltaY) * .08))) }); }, { passive: false });
+    canvas.addEventListener('wheel', (e) => { e.preventDefault(); zm(r.cam.dist * (1 + Math.sign(e.deltaY) * .08)); }, { passive: false });
     canvas.addEventListener('dblclick', () => { st.auto = true; });
     const S = {
       renderer: r,

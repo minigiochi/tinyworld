@@ -7,7 +7,7 @@
   var SK = 'dbaNextSettings', DEF = { cameraMode: 'rotate', showLevel: false, cameraDistance: 16, thirdPersonDistance: 5 };
   function loadSet() { var o = {}; try { o = JSON.parse(localStorage.getItem(SK) || '{}') || {}; } catch (e) { } return Object.assign({}, DEF, o); }
   function saveSet(s) { window.__dbaSet = s; try { localStorage.setItem(SK, JSON.stringify(s)); } catch (e) { } }
-  window.__dbaSet = loadSet();
+  window.__dbaSet = loadSet(); window.__dbaSaveSet = saveSet;
   var css = '.dbaTop{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.dbaTop button{padding:6px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:rgba(255,248,230,.8);font-size:12px;cursor:pointer}.dbaTop button:hover{background:rgba(255,255,255,.1)}' +
     '#dbaTopM{position:fixed;inset:0;z-index:10002;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:10px;font-family:system-ui,sans-serif}#dbaTopM .bx{background:#0b0710;border:1px solid rgba(255,255,255,.18);border-radius:14px;width:100%;max-width:560px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;color:#e2e8f0;text-align:left}' +
     '#dbaTopM .hd{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.1)}#dbaTopM .hd b{color:#fde68a;font-size:16px}#dbaTopM .x{background:none;border:0;color:#94a3b8;font-size:22px;cursor:pointer}' +
@@ -67,8 +67,8 @@
       function draw() {
         var M = [['rotate', 'Orbita'], ['third', '3ª Pers.'], ['first', '1ª Pers.']];
         el.innerHTML = '<div><label>Telecamera</label><div class="sg">' + M.map(function (m) { return '<button data-m="' + m[0] + '" class="' + (S.cameraMode === m[0] ? 'on' : '') + '">' + m[1] + '</button>'; }).join('') + '</div></div>' +
-          (S.cameraMode === 'rotate' ? '<div><label>Distanza: ' + Math.round(S.cameraDistance) + '</label><input type="range" min="8" max="35" step="1" value="' + S.cameraDistance + '" data-r="cameraDistance"></div>' : '') +
-          (S.cameraMode === 'third' ? '<div><label>Distanza: ' + Math.round(S.thirdPersonDistance) + '</label><input type="range" min="3" max="15" step="1" value="' + S.thirdPersonDistance + '" data-r="thirdPersonDistance"></div>' : '') +
+          (S.cameraMode === 'rotate' ? '<div><label>Distanza: ' + Math.round(S.cameraDistance) + '</label><input type="range" min="8" max="60" step="1" value="' + S.cameraDistance + '" data-r="cameraDistance"></div>' : '') +
+          (S.cameraMode === 'third' ? '<div><label>Distanza: ' + Math.round(S.thirdPersonDistance) + '</label><input type="range" min="3" max="25" step="1" value="' + S.thirdPersonDistance + '" data-r="thirdPersonDistance"></div>' : '') +
           '<div style="display:flex;justify-content:space-between;align-items:center"><span style="color:#94a3b8;font-size:12px">Livello nel nome</span><span class="sg" style="display:block"><button data-l="1" class="' + (S.showLevel ? 'on' : '') + '" style="padding:4px 14px">' + (S.showLevel ? 'ON' : 'OFF') + '</button></span></div><div id="dbaSS"></div>';
         var h = el.querySelector('#dbaSS'); if (window.DBA_SETSEC) window.DBA_SETSEC(h);
       }

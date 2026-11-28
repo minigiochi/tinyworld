@@ -664,3 +664,8 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - Prima, a fine battaglia, il gioco proseguiva automaticamente dopo ~2 secondi. Ora il pannello Vittoria/Sconfitta resta finché non si preme "Continua".
 - Resta l'uscita automatica solo come rete di sicurezza quando il pannello finale non c'è (vista 2D senza HUD), per non lasciare il giocatore bloccato.
 - Verificato in locale (modalità telefono, mondo condiviso): dopo 15 s senza toccare il pannello è ancora visibile; con il tocco su Continua si prosegue.
+
+## Ingresso unico e telecamera in battaglia
+- La pagina iniziale è ora `web/index.html` (URL `/`); il gioco è `web/game.html`. `start.html` resta come rimando a `./`.
+- Qualsiasi link (`/index.html?slot=1`, `/game.html?slot=1`, `/start.html`, `?screen=slots`) finisce su `/` con splash e login. Il gioco si apre solo se il passaggio dalla pagina iniziale ha impostato `sessionStorage.dba_in` (la ricarica in partita funziona); il ritorno al menu usa `dba_back`.
+- Battaglia: pulsanti 🎥 (Orbita / Terza / Prima persona), −/＋ distanza, tasti V e +/−, rotella/pinch; scelte salvate in `dbaNextSettings`.
