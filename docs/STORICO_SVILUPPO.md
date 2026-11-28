@@ -669,3 +669,9 @@ Segmenti di default a 3 (2 su telefono) in creatore/battaglia (prima 1: tronco e
 - La pagina iniziale è ora `web/index.html` (URL `/`); il gioco è `web/game.html`. `start.html` resta come rimando a `./`.
 - Qualsiasi link (`/index.html?slot=1`, `/game.html?slot=1`, `/start.html`, `?screen=slots`) finisce su `/` con splash e login. Il gioco si apre solo se il passaggio dalla pagina iniziale ha impostato `sessionStorage.dba_in` (la ricarica in partita funziona); il ritorno al menu usa `dba_back`.
 - Battaglia: pulsanti 🎥 (Orbita / Terza / Prima persona), −/＋ distanza, tasti V e +/−, rotella/pinch; scelte salvate in `dbaNextSettings`.
+
+## Continua/Cambia scelte e guide per nuovi utenti
+- "Comanda 1 eroe" è il predefinito (preferenza `dba_ctl_pref`, ricordata dopo il primo cambio).
+- Ogni avvio salva `dba_resume` (slot, solo/coop, modalità, eroe). Dopo il login, con una partita precedente, compare «Continua con queste scelte / Cambia scelte»: Continua apre `game.html?slot=N&resume=1` e rientra da solo (open world solo, oppure server coop con l'eroe scelto).
+- Messaggi guidati alla prima partita (schermata esperienza e scelta modalità), nascosti dopo il primo avvio (`dba_tips_done`).
+- Corretto un tag malformato a fine `game.html` (link theme.css / fsguard.js).

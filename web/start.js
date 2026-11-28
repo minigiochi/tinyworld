@@ -123,8 +123,15 @@
   if (__tmpR) window.__app = (h) => __tmpR.appearance(h);
 
   // ---------- avvio: dopo accesso/modalità mostra gli slot ----------
-  window.__dbaLastInfo = function () { return null; };
-  window.__dbaStart = function () { };
+  window.__dbaLastInfo = function () {
+    const R = jget('dba_resume', null); if (!R || !R.slot) return null;
+    const d = jget(slotKey(R.slot), null); if (!d || !d.roster || !d.roster.length) return null;
+    return { last: R, party: d.roster.map((r) => ({ id: 'u' + r.uid, name: r.name || (CARD[r.k] || {}).name || r.k, classKey: r.k })) };
+  };
+  window.__dbaStart = function (r) {
+    const R = r.last; state.slot = R.slot; try { LS.setItem('dbaNextActive', String(R.slot)); sessionStorage.setItem('dba_in', '1'); } catch (e) { }
+    location.href = 'game.html?slot=' + R.slot + '&resume=1';
+  };
   let started = false;
   function afterIntro() { if (started) return; started = true; showSlots(); }
   const mo = new MutationObserver(() => { if (!document.getElementById('dbaIntro') && window.__dbaMode && !document.getElementById('dba-splash')) { mo.disconnect(); afterIntro(); } });

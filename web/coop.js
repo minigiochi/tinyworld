@@ -312,7 +312,7 @@
   var cs = 'display:block;width:100%;margin:8px 0;padding:12px;border-radius:12px;border:1px solid rgba(251,191,36,.55);background:rgba(251,191,36,.14);color:#fde68a;font-size:15px;font-weight:700;cursor:pointer';
   var ts = 'width:100%;box-sizing:border-box;height:70px;margin:6px 0;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font:11px monospace;word-break:break-all';
   var ss = 'padding:5px 8px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:13px';
-  function open(mode) {
+  function open(mode, opt) {
     C.mode = mode || C.mode || 'b';
     if (!C.nk) { C.nk = 1; try { var nk0 = (localStorage.getItem('dba_nick') || '').trim(); if (nk0) C.name = nk0; } catch (e) {} }
     if (UI) UI.remove();
@@ -320,6 +320,14 @@
     UI = document.createElement('div'); UI.id = 'dbaCoop';
     UI.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(5,3,12,.96);display:flex;align-items:flex-start;justify-content:center;padding:16px;font-family:system-ui,sans-serif;overflow:auto;color:#e2e8f0';
     document.body.appendChild(UI); C.role = C.role || null; render();
+    if (opt && opt.resume) { var R = opt.resume; setTimeout(function () { try { resumeSrv(R); } catch (e) { console.error(e); } }, 50); }
+  }
+  function resumeSrv(R) {
+    var L = myHeroList(), idx = -1;
+    L.forEach(function (h) { if (idx < 0 && R.heroName && h.name === R.heroName && (!R.heroK || h.k === R.heroK)) idx = h.i; });
+    if (idx < 0 && R.heroK) L.forEach(function (h) { if (idx < 0 && h.k === R.heroK) idx = h.i; });
+    act('srv'); if (idx >= 0) pick(idx);
+    if (idx >= 0) srvConnect(); else { gerr = 'Scegli il tuo eroe per entrare.'; render(); }
   }
   function heroPicker() {
     var L = myHeroList(), mine = (C.role === 'host' ? C.players[0] : (C.players[C.me] || {})) || {};
@@ -424,6 +432,7 @@
     if (C.picked == null) { gerr = 'Scegli prima il tuo eroe.'; render(); return; }
     if (!raw) { gerr = 'Inserisci l\'indirizzo del server.'; render(); return; }
     try { localStorage.setItem('dba_srv', raw); } catch (e) {}
+    try { var ph = myHeroList()[C.picked] || {}; localStorage.setItem('dba_resume', JSON.stringify({ slot: +(new URLSearchParams(location.search).get('slot') || 0), kind: 'coop', mode: 'o', srv: true, heroName: ph.name, heroK: ph.k, ctl: { on: true }, ts: Date.now() })); } catch (e) {}
     var url = raw.replace(/^http/, 'ws'); if (!/^wss?:\/\//.test(url)) url = (/^(localhost|127\.|192\.168\.)/.test(url) ? 'ws://' : 'wss://') + url; url = url.replace(/\/+$/, '') + '/world';
     var ws; try { ws = new WebSocket(url); } catch (e) { gerr = 'Indirizzo non valido'; render(); return; }
     SRV = ws; gerr = ''; gstage = 'joining'; render();
